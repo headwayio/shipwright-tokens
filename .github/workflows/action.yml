@@ -1,0 +1,17 @@
+on:
+  push:
+     branches:
+       - master
+
+jobs:
+  generate-build-number-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Token Transform
+        runs:
+          using: "composite"
+          steps:
+            - run: npx token-transformer ./tokens/tokens.json
+              shell: bash
+            - run: style-dictionary build
+              shell: bash
