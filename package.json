@@ -1,12 +1,13 @@
 {
-  "name": "mystyled",
+  "name": "headway-shipwright-token-style",
   "version": "1.0.0",
-  "description": "This example code is bare-bones to show you what this framework can do. If you have the style-dictionary module installed globally, you can `cd` into this directory and run: ```bash style-dictionary build ```",
+  "description": "to be determine",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx token-transformer tokens/tokens.json tokens/test.json",
-    "build-style-dictionary": "style-dictionary build"
+    "build-transform": "npx token-transformer tokens/tokens.json tokens/tokens.json",
+    "build-sd": "style-dictionary build",
+    "build-tw": "postcss ./styles.css -o ./tailwind.css",
+    "build": "npm run build-transform && npm run build-sd && npm run build-tw"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,13 @@
   },
   "homepage": "https://github.com/tomxkay/style-dictionary#readme",
   "dependencies": {
+    "postcss-cli": "^10.0.0",
     "style-dictionary": "^3.7.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.12",
+    "postcss": "^8.4.16",
+    "postcss-import": "^15.0.0",
+    "tailwindcss": "^3.1.8"
   }
 }
