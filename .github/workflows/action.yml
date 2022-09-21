@@ -11,5 +11,5 @@ jobs:
       - run: npx token-transformer ../../tokens/tokens.json ../../tokens/test.json
       # - run: style-dictionary build -c ../../config.json
       - name: List files in the repository
-          run: ls ${{ github.workspace }}
+        run: ls ${{ github.workspace }}
 
