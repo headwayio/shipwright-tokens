@@ -11,5 +11,5 @@ jobs:
         uses: actions/setup-node@v2.4.0
       - run: npm install
       - run: npm run build
-      - run: ls ${{ github.workspace }}
+      - run: ls ${{ github.workspace }}/tokens
 
