@@ -6,10 +6,6 @@ jobs:
   generate-build-number-deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: npm install -g token-transformer
-      - run: npm install -g style-dictionary
-      - run: npx token-transformer ../../tokens/tokens.json ../../tokens/test.json
-      # - run: style-dictionary build -c ../../config.json
-      - name: List files in the repository
-        run: ls ${{ github.workspace }}
+      - run: npm install
+      - run: npm run build
 

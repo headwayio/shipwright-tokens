@@ -1,0 +1,23 @@
+{
+  "name": "mystyled",
+  "version": "1.0.0",
+  "description": "This example code is bare-bones to show you what this framework can do. If you have the style-dictionary module installed globally, you can `cd` into this directory and run: ```bash style-dictionary build ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx token-transformer tokens.json tokens/test.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomxkay/style-dictionary.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomxkay/style-dictionary/issues"
+  },
+  "homepage": "https://github.com/tomxkay/style-dictionary#readme",
+  "dependencies": {
+    "style-dictionary": "^3.7.1"
+  }
+}
