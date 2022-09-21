@@ -11,7 +11,6 @@ jobs:
         uses: actions/setup-node@v2.4.0
       - run: npm install
       - run: npm run build
-      - run: npm run build-style-dictionary
       - run: ls ${{ github.workspace }}
       - run: ls ${{ github.workspace }}/tokens
       - run: ls ${{ github.workspace }}/build
