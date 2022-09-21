@@ -5,6 +5,8 @@ on:
 jobs:
   generate-build-number-deploy:
     runs-on: ubuntu-latest
+    with:
+      persist-credentials: false
     steps:
       - run: npm install
       - run: npm run build
