@@ -1,6 +1,6 @@
 name: Headway.io Figma token translator Test
 description: test description
-author: Headway.io
+author: Headwayio
 
 on:
   push:
