@@ -7,7 +7,7 @@
     "build-transform": "npx token-transformer tokens/tokens.json tokens/tokens.json",
     "build-sd": "style-dictionary build",
     "build-tw": "postcss ./styles.css -o ./tailwind.css",
-    "build": "npm run build-transform && npm run build-sd && npm run build-tw"
+    "build": "npm run build-transform && npm run build-sd"
   },
   "repository": {
     "type": "git",
