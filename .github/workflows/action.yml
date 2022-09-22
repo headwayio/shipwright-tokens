@@ -1,5 +1,4 @@
 name: Headwayio Figma token translator - Test
-description: 'test description'
 
 on:
   push:
