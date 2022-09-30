@@ -1,11 +1,11 @@
-name: Headway.io Figma token translator Test
-description: test description
+name: Shipwright Token
+description: Automates style generation from a Shipwright design
 author: Headwayio
 
 on:
   push:
-     branches:
-       - main
+      branches:
+        - main
 jobs:
   generate-build-number-deploy:
     runs-on: ubuntu-latest
