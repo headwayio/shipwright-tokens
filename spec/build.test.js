@@ -8,6 +8,7 @@ describe("npm run build", () => {
   });
 
   it("outputs a scss file", async () => {
+    exec("rm ./build/scss/_variables.scss");
     execSync("npm run build");
 
     expect(fs.existsSync("./build/scss/_variables.scss")).toBe(true);
