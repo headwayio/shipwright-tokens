@@ -4,8 +4,8 @@ author: Headwayio
 
 on:
   push:
-      branches:
-        - main
+    branches:
+      - main
 jobs:
   generate-build-number-deploy:
     runs-on: ubuntu-latest
@@ -15,10 +15,9 @@ jobs:
         uses: actions/setup-node@v2.4.0
       - run: npm install
       - run: npm run build
-      - run: ls ${{ github.workspace }}
-      - run: ls ${{ github.workspace }}/tokens
-      - run: ls ${{ github.workspace }}/build
+      - run: ls "${{ github.workspace }}"
+      - run: ls "${{ github.workspace }}"/tokens
+      - run: ls "${{ github.workspace }}"/build
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: automated change
-
