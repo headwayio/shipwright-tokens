@@ -27,7 +27,7 @@ runs:
       uses: actions/setup-node@v2.4.0
     - run: npx token-transformer ${{ inputs.tokenFile }} ${{ inputs.outputFolder }}/tokens.json
       shell: bash
-    - run: npx style-dictionary build --config ${{ github.action_path }}/${{ inputs.styleSystem }}.json
+    - run: npx style-dictionary build --config ${{ github.action_path }}/configs/${{ inputs.styleSystem }}.json
       shell: bash
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
