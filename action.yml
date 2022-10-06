@@ -29,8 +29,6 @@ runs:
       shell: bash
     - run: npx style-dictionary build --config ${{ github.action_path }}/config.json
       shell: bash
-    - run: npx postcss ./styles.css -o ./tailwind.css
-      shell: bash
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: automated change
