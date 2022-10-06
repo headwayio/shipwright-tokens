@@ -23,6 +23,8 @@ runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
     - name: Setup Node.js environment
       uses: actions/setup-node@v2.4.0
     - run: npx token-transformer ${{ inputs.tokenFile }} ${{ inputs.outputFolder }}/tokens.json
@@ -32,4 +34,3 @@ runs:
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Updated style Shipwright tokens
-        commit_options: "--no-verify"
