@@ -21,15 +21,15 @@ author: Headwayio
 
 runs:
   using: "composite"
-  # image: "docker://ubuntu:latest"
   steps:
-    # - uses: docker://ubuntu:latest
     - uses: actions/checkout@v2
     - name: Setup Node.js environment
       uses: actions/setup-node@v2.4.0
-    - run: npm install
+    - run: npx token-transformer tokens/tokens.json output/tokens.json
       shell: bash
-    - run: npm run build
+    - run: npx style-dictionary build
+      shell: bash
+    - run: npx postcss ./styles.css -o ./tailwind.css
       shell: bash
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
