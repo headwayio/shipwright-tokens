@@ -20,8 +20,8 @@ author: Headwayio
 #           commit_message: automated change
 
 runs:
-  using: "docker"
-  image: "docker://ubuntu:latest"
+  using: "composite"
+  # image: "docker://ubuntu:latest"
   steps:
     - uses: actions/checkout@v2
     - name: Setup Node.js environment
