@@ -27,7 +27,7 @@ runs:
       uses: actions/setup-node@v2.4.0
     - run: npx token-transformer tokens/tokens.json output/tokens.json
       shell: bash
-    - run: npx style-dictionary build
+    - run: npx style-dictionary build --config ${{ github.action_path }}/config.json
       shell: bash
     - run: npx postcss ./styles.css -o ./tailwind.css
       shell: bash
