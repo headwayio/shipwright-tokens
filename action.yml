@@ -2,19 +2,32 @@ name: Shipwright Tokens
 description: Automates style generation from a Shipwright design
 author: Headwayio
 
-on:
-  push:
-    branches:
-      - main
-jobs:
-  generate-build-number-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.4.0
-      - run: npm install
-      - run: npm run build
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: automated change
+# on:
+#   push:
+#     branches:
+#       - main
+# jobs:
+#   generate-build-number-deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Setup Node.js environment
+#         uses: actions/setup-node@v2.4.0
+#       - run: npm install
+#       - run: npm run build
+#       - uses: stefanzweifel/git-auto-commit-action@v4
+#         with:
+#           commit_message: automated change
+
+runs:
+  using: "docker"
+  image: "docker://ubuntu:latest"
+  steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2.4.0
+    - run: npm install
+    - run: npm run build
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: automated change
