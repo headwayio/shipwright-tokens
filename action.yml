@@ -27,7 +27,7 @@ runs:
         ref: ${{ github.head_ref }}
     - name: Setup Node.js environment
       uses: actions/setup-node@v2.4.0
-    - run: npx token-transformer ${{ inputs.tokenFile }} ${{ inputs.outputFolder }}/tokens.json
+    - run: npx token-transformer ${{ inputs.tokenFile }} ${{ inputs.outputFolder }}/tokens.json --expandTypography=true --expandComposition=true --preserveRawValue=false --resolveReferences=true
       shell: bash
     - run: npx style-dictionary build --config ${{ github.action_path }}/configs/${{ inputs.styleSystem }}.json
       shell: bash
