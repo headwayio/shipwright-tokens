@@ -4,7 +4,7 @@
   "description": "to be determine",
   "main": "index.js",
   "scripts": {
-    "build-transform": "npx token-transformer tokens/tokens.json tokens/tokens.json",
+    "build-transform": "npx token-transformer tokens/src/tokens.json tokens/dist/tokens.json",
     "build-sd": "style-dictionary build --config configs/all.json",
     "build-tw": "postcss ./styles.css -o ./tailwind.css",
     "build": "npm run build-transform && npm run build-sd",
