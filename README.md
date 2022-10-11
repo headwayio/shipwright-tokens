@@ -1,7 +1,7 @@
 # Shipwright Tokens
  
 ## Contents
-- [Configure: Filter Actions](#configure-filter-actions-by-pr)
+- [Configure: Filter Actions](#configure-filter-actions)
  
 ## Configure: Filter Actions
 Shipwright Tokens is a powerful tool, but you probably don't want it to run for every PR made in your repo. Instead, you likely only want it to run when you've made changes to your design tokens in Figma. This section will show you how to configure your action to run Shipwright Tokens only when you want it.
