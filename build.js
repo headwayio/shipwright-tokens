@@ -36,10 +36,36 @@ StyleDictionary.registerTransform({
         ({ color, type, x, y, blur, spread }) =>
           `${
             type === "innerShadow" ? "inset " : ""
-          }${x}px ${y}px ${blur} ${spread} ${color}`
+          }${x}px ${y}px ${blur}px ${spread}px ${color}`
       )
       .join(", ");
     return finalValues;
+  },
+});
+
+StyleDictionary.registerTransform({
+  name: "lineHeight/px",
+  type: "value",
+  matcher: ({ type }) => type === "lineHeights",
+  transformer: ({ value }) =>
+    typeof value === "string" ? value : `${value}px`,
+});
+
+StyleDictionary.registerTransform({
+  name: "fontWeight/lowerCase",
+  type: "value",
+  matcher: ({ type }) => type === "fontWeights",
+  transformer: ({ value }) => {
+    const val = value.toLowerCase();
+    return val === "regular"
+      ? 400
+      : val === "medium"
+      ? 500
+      : val === "semi bold" || val === "semibold"
+      ? 600
+      : val === "black"
+      ? 800
+      : val;
   },
 });
 
@@ -51,6 +77,8 @@ StyleDictionary.registerTransformGroup({
     "size/rem",
     "color/hex",
     "shadows/css",
+    "lineHeight/px",
+    "fontWeight/lowerCase",
   ],
 });
 
