@@ -1,0 +1,23 @@
+{
+  "source": ["tokens/transformed/**/*.json"],
+  "platforms": {
+    "tailwind": {
+      "transformGroup": "js/custom",
+      "buildPath": "./build/tailwind/",
+      "files": [
+        {
+          "destination": "typography.json",
+          "format": "twTypography"
+        },
+        {
+          "destination": "colors.json",
+          "format": "twColors"
+        },
+        {
+          "destination": "shadows.json",
+          "format": "twShadows"
+        }
+      ]
+    }
+  }
+}

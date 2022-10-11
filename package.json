@@ -1,7 +1,7 @@
 {
   "name": "headway-shipwright-token-style",
   "version": "1.0.0",
-  "description": "to be determine",
+  "description": "to be determined",
   "main": "index.js",
   "scripts": {
     "build-transform": "npx token-transformer tokens/src/tokens.json tokens/dist/tokens.json",
