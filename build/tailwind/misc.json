@@ -1,10 +1,10 @@
 {
-  "fontFamilies": {
+  "fontFamily": {
     "inter": "Inter",
     "sf-pro-text": "SF Pro Text",
     "source-sans-pro": "Source Sans Pro"
   },
-  "lineHeights": {
+  "lineHeight": {
     "0": 112,
     "1": 72,
     "2": 56,
@@ -24,7 +24,7 @@
     "16": 52,
     "17": "AUTO"
   },
-  "fontWeights": {
+  "fontWeight": {
     "inter-0": "Regular",
     "inter-1": "Italic",
     "inter-2": "Bold",

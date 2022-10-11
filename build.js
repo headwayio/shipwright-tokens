@@ -86,7 +86,16 @@ StyleDictionary.registerFormat({
       (k = "") => k[0] !== "_" && !excluded.includes(k)
     );
     keys.forEach((key) => {
-      entries[key] = JSON.parse(formatEntries(tokens[key]));
+      const singularized =
+        key === "fontFamilies"
+          ? "fontFamily"
+          : key === "lineHeights"
+          ? "lineHeight"
+          : key === "fontWeights"
+          ? "fontWeight"
+          : key;
+
+      entries[singularized] = JSON.parse(formatEntries(tokens[key]));
     });
 
     return JSON.stringify(entries) || "";
