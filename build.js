@@ -1,34 +1,29 @@
 const StyleDictionary = require("style-dictionary").extend("config.json");
 
-// const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers;
-
 const flattenObj = (key, obj) => {
   if (obj === undefined) return;
+  if (key === "value") return obj;
 
   const getEntries = () =>
     Object.fromEntries(Object.entries(obj)?.map(([k, v]) => flattenObj(k, v)));
 
-  return typeof obj?.value === "string"
-    ? [key, obj.value]
-    : [key, getEntries()];
+  const hasAValueKey = Object.keys(obj).includes("value");
+
+  return hasAValueKey ? [key, obj?.value] : [key, getEntries()];
 };
 
-const formatEntries = (colors) =>
-  JSON.stringify(
-    Object.fromEntries(
-      Object.entries(colors)?.map(([k, v]) => {
-        const isStringOrNum = typeof v === "string" || typeof v === "number";
-        return isStringOrNum ? [k, v] : flattenObj(k, v);
-      })
-    )
-  );
-
-StyleDictionary.registerFilter({
-  name: "isColor",
-  matcher: function (token) {
-    return token.attributes.category === "colors";
-  },
-});
+const formatEntries = (entries) =>
+  !entries
+    ? ""
+    : JSON.stringify(
+        Object.fromEntries(
+          Object.entries(entries)?.map(([k, v]) => {
+            const isStringOrNum =
+              typeof v === "string" || typeof v === "number";
+            return isStringOrNum ? [k, v] : flattenObj(k, v);
+          })
+        )
+      );
 
 StyleDictionary.registerTransform({
   name: "shadows/css",
@@ -61,22 +56,40 @@ StyleDictionary.registerTransformGroup({
 
 StyleDictionary.registerFormat({
   name: "twShadows",
-  formatter: ({ dictionary, file, options }) => {
+  formatter: ({ dictionary }) => {
     return formatEntries(dictionary?.tokens?.shadows);
   },
 });
 
 StyleDictionary.registerFormat({
   name: "twColors",
-  formatter: ({ dictionary, file, options }) => {
-    return formatEntries(dictionary?.tokens?.colors);
+  formatter: ({ dictionary }) => {
+    return formatEntries(dictionary?.tokens["color set"]);
   },
 });
 
 StyleDictionary.registerFormat({
   name: "twTypography",
-  formatter: ({ dictionary, file, options }) => {
-    return formatEntries(dictionary?.tokens?.colors);
+  formatter: ({ dictionary }) => {
+    return formatEntries(dictionary?.tokens["type set"]);
+  },
+});
+
+StyleDictionary.registerFormat({
+  name: "twMisc",
+  formatter: ({ dictionary = {} }) => {
+    const { tokens } = dictionary;
+    const excluded = ["color set", "shadows", "type set"];
+
+    const entries = {};
+    const keys = Object.keys(tokens)?.filter(
+      (k = "") => k[0] !== "_" && !excluded.includes(k)
+    );
+    keys.forEach((key) => {
+      entries[key] = JSON.parse(formatEntries(tokens[key]));
+    });
+
+    return JSON.stringify(entries) || "";
   },
 });
 
