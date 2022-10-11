@@ -18,6 +18,9 @@ jobs:
     steps:
       - name: Shipwright Tokens
         uses: headwayio/shipwright-tokens@main
+        # Pass in options to the Github Action: styleSystem, outputFolder, etc.
         with:
+          # Options: mui, scss, tailwind
           styleSystem: mui
+          # This is relative to the root of the repo
           outputFolder: styles
