@@ -52,6 +52,23 @@ StyleDictionary.registerTransform({
 });
 
 StyleDictionary.registerTransform({
+  name: "letterSpacing/em",
+  type: "value",
+  matcher: ({ type }) => type === "letterSpacing",
+  transformer: ({ value }) => {
+    if (typeof value === "string") {
+      const lastChar = value.slice(-1);
+      if (lastChar === "%") {
+        let newBase = value.slice(0, value.length - 1);
+        return newBase + "em";
+      }
+      return value;
+    }
+    return `${value}px`;
+  },
+});
+
+StyleDictionary.registerTransform({
   name: "fontWeight/lowerCase",
   type: "value",
   matcher: ({ type }) => type === "fontWeights",
@@ -78,6 +95,7 @@ StyleDictionary.registerTransformGroup({
     "color/hex",
     "shadows/css",
     "lineHeight/px",
+    "letterSpacing/em",
     "fontWeight/lowerCase",
   ],
 });
