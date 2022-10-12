@@ -9,6 +9,6 @@ describe("npm run build", () => {
 
     expect(fs.existsSync("./build/scss/_variables.scss")).toBe(true);
 
-    exec("rm -rf build/ tokens/dist");
+    exec("rm -rf build/ tokens/dist configs/config.json");
   });
 });

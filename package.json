@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build-transform": "npx token-transformer tokens/src/tokens.json tokens/dist/tokens.json",
-    "build-sd": "style-dictionary build --config configs/all.json",
+    "build-sd": "style-dictionary build --config configs/config.json",
+    "build-sd-config": "node configs/build-config.js",
     "build-tw": "postcss ./styles.css -o ./tailwind.css",
-    "build": "npm run build-transform && npm run build-sd",
+    "build": "npm run build-sd-config && npm run build-transform && npm run build-sd",
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest"
   },
   "type": "module",

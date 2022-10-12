@@ -165,11 +165,11 @@ const buildConfig = (src = "tokens", dist = "build") => {
     },
   };
 
-  fs.writeFile("configs/build-test.json", JSON.stringify(config), (err) => {
+  fs.writeFile("configs/config.json", JSON.stringify(config), (err) => {
     if (err) {
       console.error(err);
     }
   });
 };
 
-buildConfig("style/tokens", "style/build");
+buildConfig();
