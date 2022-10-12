@@ -2,11 +2,13 @@ const StyleDictionary = require("style-dictionary").extend("config.json");
 
 const flattenObj = (key, obj) => {
   if (obj === undefined) return;
-  if (key === "value") return obj;
 
   const getEntries = () =>
     Object.fromEntries(Object.entries(obj)?.map(([k, v]) => flattenObj(k, v)));
 
+  // We're checking for a 'value' key this way, rather than a simple obj.value
+  // check, because we want to avoid a false negative if obj.value resolves to a
+  // falsy value
   const hasAValueKey = Object.keys(obj).includes("value");
 
   return hasAValueKey ? [key, obj?.value] : [key, getEntries()];
@@ -24,6 +26,45 @@ const formatEntries = (entries) =>
           })
         )
       );
+
+const parseFontWeight = (value) => {
+  if (typeof value !== "string") return value;
+  const val = value?.toLowerCase();
+  return val === "regular"
+    ? 400
+    : val === "medium"
+    ? 500
+    : val === "semi bold" || val === "semibold"
+    ? 600
+    : val === "black"
+    ? 800
+    : val;
+};
+
+const parseLetterSpacing = (value) => {
+  if (typeof value === "string") {
+    const lastChar = value.slice(-1);
+    if (lastChar === "%") {
+      let newBase = value.slice(0, value.length - 1);
+      return newBase + "em";
+    }
+    return value;
+  }
+  return `${value}px`;
+};
+
+const parseLineHeight = (value) =>
+  typeof value === "string" ? value : `${value}px`;
+
+const parseTypography = (obj = {}) => {
+  const { fontWeight, lineHeight, letterSpacing } = obj;
+  return {
+    ...obj,
+    fontWeight: parseFontWeight(fontWeight),
+    lineHeight: parseLineHeight(lineHeight),
+    letterSpacing: parseLetterSpacing(letterSpacing),
+  };
+};
 
 StyleDictionary.registerTransform({
   name: "shadows/css",
@@ -47,43 +88,28 @@ StyleDictionary.registerTransform({
   name: "lineHeight/px",
   type: "value",
   matcher: ({ type }) => type === "lineHeights",
-  transformer: ({ value }) =>
-    typeof value === "string" ? value : `${value}px`,
+  transformer: ({ value }) => parseLineHeight(value),
 });
 
 StyleDictionary.registerTransform({
   name: "letterSpacing/em",
   type: "value",
   matcher: ({ type }) => type === "letterSpacing",
-  transformer: ({ value }) => {
-    if (typeof value === "string") {
-      const lastChar = value.slice(-1);
-      if (lastChar === "%") {
-        let newBase = value.slice(0, value.length - 1);
-        return newBase + "em";
-      }
-      return value;
-    }
-    return `${value}px`;
-  },
+  transformer: ({ value }) => parseLetterSpacing(value),
 });
 
 StyleDictionary.registerTransform({
-  name: "fontWeight/lowerCase",
+  name: "fontWeight/lowerCaseOrNum",
   type: "value",
   matcher: ({ type }) => type === "fontWeights",
-  transformer: ({ value }) => {
-    const val = value.toLowerCase();
-    return val === "regular"
-      ? 400
-      : val === "medium"
-      ? 500
-      : val === "semi bold" || val === "semibold"
-      ? 600
-      : val === "black"
-      ? 800
-      : val;
-  },
+  transformer: ({ value }) => parseFontWeight(value),
+});
+
+StyleDictionary.registerTransform({
+  name: "typography/nested",
+  type: "value",
+  matcher: ({ type }) => type === "typography",
+  transformer: ({ value }) => parseTypography(value),
 });
 
 StyleDictionary.registerTransformGroup({
@@ -96,29 +122,24 @@ StyleDictionary.registerTransformGroup({
     "shadows/css",
     "lineHeight/px",
     "letterSpacing/em",
-    "fontWeight/lowerCase",
+    "fontWeight/lowerCaseOrNum",
+    "typography/nested",
   ],
 });
 
 StyleDictionary.registerFormat({
   name: "twShadows",
-  formatter: ({ dictionary }) => {
-    return formatEntries(dictionary?.tokens?.shadows);
-  },
+  formatter: ({ dictionary }) => formatEntries(dictionary?.tokens?.shadows),
 });
 
 StyleDictionary.registerFormat({
   name: "twColors",
-  formatter: ({ dictionary }) => {
-    return formatEntries(dictionary?.tokens["color set"]);
-  },
+  formatter: ({ dictionary }) => formatEntries(dictionary?.tokens["color set"]),
 });
 
 StyleDictionary.registerFormat({
   name: "twTypography",
-  formatter: ({ dictionary }) => {
-    return formatEntries(dictionary?.tokens["type set"]);
-  },
+  formatter: ({ dictionary }) => formatEntries(dictionary?.tokens["type set"]),
 });
 
 StyleDictionary.registerFormat({

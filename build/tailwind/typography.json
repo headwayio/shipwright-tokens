@@ -3,30 +3,30 @@
     "h1": {
       "regular": {
         "fontFamily": "Inter",
-        "fontWeight": "Regular",
-        "lineHeight": 112,
+        "fontWeight": 400,
+        "lineHeight": "112px",
         "fontSize": 96,
-        "letterSpacing": -1.5,
+        "letterSpacing": "-1.5px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
       },
       "italic": {
         "fontFamily": "Inter",
-        "fontWeight": "Italic",
-        "lineHeight": 112,
+        "fontWeight": "italic",
+        "lineHeight": "112px",
         "fontSize": 96,
-        "letterSpacing": -1.5,
+        "letterSpacing": "-1.5px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
       },
       "bold": {
         "fontFamily": "Inter",
-        "fontWeight": "Bold",
-        "lineHeight": 112,
+        "fontWeight": "bold",
+        "lineHeight": "112px",
         "fontSize": 96,
-        "letterSpacing": -1.5,
+        "letterSpacing": "-1.5px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
@@ -35,30 +35,30 @@
     "h2": {
       "regular": {
         "fontFamily": "Inter",
-        "fontWeight": "Regular",
-        "lineHeight": 72,
+        "fontWeight": 400,
+        "lineHeight": "72px",
         "fontSize": 60,
-        "letterSpacing": -0.5,
+        "letterSpacing": "-0.5px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
       },
       "italic": {
         "fontFamily": "Inter",
-        "fontWeight": "Italic",
-        "lineHeight": 72,
+        "fontWeight": "italic",
+        "lineHeight": "72px",
         "fontSize": 60,
-        "letterSpacing": -0.5,
+        "letterSpacing": "-0.5px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
       },
       "bold": {
         "fontFamily": "Inter",
-        "fontWeight": "Bold",
-        "lineHeight": 72,
+        "fontWeight": "bold",
+        "lineHeight": "72px",
         "fontSize": 60,
-        "letterSpacing": -0.5,
+        "letterSpacing": "-0.5px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
@@ -67,30 +67,30 @@
     "h3": {
       "regular": {
         "fontFamily": "Inter",
-        "fontWeight": "Regular",
-        "lineHeight": 56,
+        "fontWeight": 400,
+        "lineHeight": "56px",
         "fontSize": 48,
-        "letterSpacing": "0%",
+        "letterSpacing": "0em",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
       },
       "italic": {
         "fontFamily": "Inter",
-        "fontWeight": "Italic",
-        "lineHeight": 56,
+        "fontWeight": "italic",
+        "lineHeight": "56px",
         "fontSize": 48,
-        "letterSpacing": "0%",
+        "letterSpacing": "0em",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
       },
       "bold": {
         "fontFamily": "Inter",
-        "fontWeight": "Bold",
-        "lineHeight": 56,
+        "fontWeight": "bold",
+        "lineHeight": "56px",
         "fontSize": 48,
-        "letterSpacing": "0%",
+        "letterSpacing": "0em",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
@@ -99,30 +99,30 @@
     "h4": {
       "regular": {
         "fontFamily": "Inter",
-        "fontWeight": "Regular",
-        "lineHeight": 40,
+        "fontWeight": 400,
+        "lineHeight": "40px",
         "fontSize": 34,
-        "letterSpacing": 0.25,
+        "letterSpacing": "0.25px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
       },
       "italic": {
         "fontFamily": "Inter",
-        "fontWeight": "Italic",
-        "lineHeight": 40,
+        "fontWeight": "italic",
+        "lineHeight": "40px",
         "fontSize": 34,
-        "letterSpacing": 0.25,
+        "letterSpacing": "0.25px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
       },
       "bold": {
         "fontFamily": "Inter",
-        "fontWeight": "Bold",
-        "lineHeight": 40,
+        "fontWeight": "bold",
+        "lineHeight": "40px",
         "fontSize": 34,
-        "letterSpacing": 0.25,
+        "letterSpacing": "0.25px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
@@ -131,30 +131,30 @@
     "h5": {
       "regular": {
         "fontFamily": "Inter",
-        "fontWeight": "Regular",
-        "lineHeight": 32,
+        "fontWeight": 400,
+        "lineHeight": "32px",
         "fontSize": 24,
-        "letterSpacing": -0.18,
+        "letterSpacing": "-0.18px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
       },
       "bold": {
         "fontFamily": "Inter",
-        "fontWeight": "Bold",
-        "lineHeight": 32,
+        "fontWeight": "bold",
+        "lineHeight": "32px",
         "fontSize": 24,
-        "letterSpacing": -0.18,
+        "letterSpacing": "-0.18px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
       },
       "italic": {
         "fontFamily": "Inter",
-        "fontWeight": "Italic",
-        "lineHeight": 32,
+        "fontWeight": "italic",
+        "lineHeight": "32px",
         "fontSize": 24,
-        "letterSpacing": -0.18,
+        "letterSpacing": "-0.18px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
@@ -163,30 +163,30 @@
     "h6": {
       "regular": {
         "fontFamily": "Inter",
-        "fontWeight": "Regular",
-        "lineHeight": 24,
+        "fontWeight": 400,
+        "lineHeight": "24px",
         "fontSize": 20,
-        "letterSpacing": 0.15,
+        "letterSpacing": "0.15px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
       },
       "italic": {
         "fontFamily": "Inter",
-        "fontWeight": "Italic",
-        "lineHeight": 24,
+        "fontWeight": "italic",
+        "lineHeight": "24px",
         "fontSize": 20,
-        "letterSpacing": 0.15,
+        "letterSpacing": "0.15px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
       },
       "bold": {
         "fontFamily": "Inter",
-        "fontWeight": "Bold",
-        "lineHeight": 24,
+        "fontWeight": "bold",
+        "lineHeight": "24px",
         "fontSize": 20,
-        "letterSpacing": 0.15,
+        "letterSpacing": "0.15px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
@@ -196,20 +196,20 @@
   "body": {
     "body1": {
       "fontFamily": "Inter",
-      "fontWeight": "Regular",
-      "lineHeight": 24,
+      "fontWeight": 400,
+      "lineHeight": "24px",
       "fontSize": 16,
-      "letterSpacing": 0.5,
+      "letterSpacing": "0.5px",
       "paragraphSpacing": 0,
       "textCase": "none",
       "textDecoration": "none"
     },
     "body2": {
       "fontFamily": "Inter",
-      "fontWeight": "Regular",
-      "lineHeight": 24,
+      "fontWeight": 400,
+      "lineHeight": "24px",
       "fontSize": 14,
-      "letterSpacing": 0.25,
+      "letterSpacing": "0.25px",
       "paragraphSpacing": 0,
       "textCase": "none",
       "textDecoration": "none"
@@ -219,20 +219,20 @@
     "subtitle1": {
       "regular": {
         "fontFamily": "Inter",
-        "fontWeight": "Regular",
-        "lineHeight": 24,
+        "fontWeight": 400,
+        "lineHeight": "24px",
         "fontSize": 16,
-        "letterSpacing": "0.15%",
+        "letterSpacing": "0.15em",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
       },
       "semiBold": {
         "fontFamily": "Inter",
-        "fontWeight": "Semi Bold",
-        "lineHeight": 24,
+        "fontWeight": 600,
+        "lineHeight": "24px",
         "fontSize": 16,
-        "letterSpacing": "0.15%",
+        "letterSpacing": "0.15em",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
@@ -241,20 +241,20 @@
     "subtitle2": {
       "medium": {
         "fontFamily": "Inter",
-        "fontWeight": "Medium",
-        "lineHeight": 24,
+        "fontWeight": 500,
+        "lineHeight": "24px",
         "fontSize": 14,
-        "letterSpacing": 0.1,
+        "letterSpacing": "0.1px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
       },
       "semiBold": {
         "fontFamily": "Inter",
-        "fontWeight": "Semi Bold",
-        "lineHeight": 24,
+        "fontWeight": 600,
+        "lineHeight": "24px",
         "fontSize": 14,
-        "letterSpacing": 0.1,
+        "letterSpacing": "0.1px",
         "paragraphSpacing": 0,
         "textCase": "none",
         "textDecoration": "none"
@@ -264,10 +264,10 @@
   "caption": {
     "caption": {
       "fontFamily": "Inter",
-      "fontWeight": "Regular",
-      "lineHeight": 16,
+      "fontWeight": 400,
+      "lineHeight": "16px",
       "fontSize": 12,
-      "letterSpacing": 0.4,
+      "letterSpacing": "0.4px",
       "paragraphSpacing": 0,
       "textCase": "none",
       "textDecoration": "none"
@@ -276,10 +276,10 @@
   "button": {
     "button": {
       "fontFamily": "Inter",
-      "fontWeight": "Medium",
-      "lineHeight": 16,
+      "fontWeight": 500,
+      "lineHeight": "16px",
       "fontSize": 14,
-      "letterSpacing": 1.25,
+      "letterSpacing": "1.25px",
       "paragraphSpacing": 0,
       "textCase": "uppercase",
       "textDecoration": "none"
@@ -288,10 +288,10 @@
   "overline": {
     "overline": {
       "fontFamily": "Inter",
-      "fontWeight": "Semi Bold",
-      "lineHeight": 16,
+      "fontWeight": 600,
+      "lineHeight": "16px",
       "fontSize": 12,
-      "letterSpacing": 1.5,
+      "letterSpacing": "1.5px",
       "paragraphSpacing": 0,
       "textCase": "uppercase",
       "textDecoration": "none"
@@ -300,130 +300,130 @@
   "ios": {
     "largeTitle": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": "Regular",
-      "lineHeight": 41,
+      "fontWeight": 400,
+      "lineHeight": "41px",
       "fontSize": 34,
-      "letterSpacing": 0,
+      "letterSpacing": "0px",
       "paragraphSpacing": 0,
       "textCase": "none",
       "textDecoration": "none"
     },
     "title1": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": "Semibold",
-      "lineHeight": 34,
+      "fontWeight": 600,
+      "lineHeight": "34px",
       "fontSize": 28,
-      "letterSpacing": 0,
+      "letterSpacing": "0px",
       "paragraphSpacing": 0,
       "textCase": "none",
       "textDecoration": "none"
     },
     "title2": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": "Semibold",
-      "lineHeight": 28,
+      "fontWeight": 600,
+      "lineHeight": "28px",
       "fontSize": 22,
-      "letterSpacing": 0,
+      "letterSpacing": "0px",
       "paragraphSpacing": 0,
       "textCase": "none",
       "textDecoration": "none"
     },
     "title3": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": "Semibold",
-      "lineHeight": 24,
+      "fontWeight": 600,
+      "lineHeight": "24px",
       "fontSize": 20,
-      "letterSpacing": 0,
+      "letterSpacing": "0px",
       "paragraphSpacing": 0,
       "textCase": "none",
       "textDecoration": "none"
     },
     "headline": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": "Bold",
-      "lineHeight": 22,
+      "fontWeight": "bold",
+      "lineHeight": "22px",
       "fontSize": 17,
-      "letterSpacing": 0,
+      "letterSpacing": "0px",
       "paragraphSpacing": 0,
       "textCase": "none",
       "textDecoration": "none"
     },
     "body": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": "Regular",
-      "lineHeight": 22,
+      "fontWeight": 400,
+      "lineHeight": "22px",
       "fontSize": 17,
-      "letterSpacing": 0,
+      "letterSpacing": "0px",
       "paragraphSpacing": 0,
       "textCase": "none",
       "textDecoration": "none"
     },
     "largeButton": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": "Regular",
-      "lineHeight": 22,
+      "fontWeight": 400,
+      "lineHeight": "22px",
       "fontSize": 17,
-      "letterSpacing": 0,
+      "letterSpacing": "0px",
       "paragraphSpacing": 0,
       "textCase": "none",
       "textDecoration": "none"
     },
     "callout": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": "Medium",
-      "lineHeight": 21,
+      "fontWeight": 500,
+      "lineHeight": "21px",
       "fontSize": 16,
-      "letterSpacing": 0,
+      "letterSpacing": "0px",
       "paragraphSpacing": 0,
       "textCase": "none",
       "textDecoration": "none"
     },
     "subheadline": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": "Medium",
-      "lineHeight": 16,
+      "fontWeight": 500,
+      "lineHeight": "16px",
       "fontSize": 14,
-      "letterSpacing": 0,
+      "letterSpacing": "0px",
       "paragraphSpacing": 0,
       "textCase": "uppercase",
       "textDecoration": "none"
     },
     "smallButton": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": "Regular",
-      "lineHeight": 20,
+      "fontWeight": 400,
+      "lineHeight": "20px",
       "fontSize": 15,
-      "letterSpacing": 0,
+      "letterSpacing": "0px",
       "paragraphSpacing": 0,
       "textCase": "none",
       "textDecoration": "none"
     },
     "footnote": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": "Regular",
-      "lineHeight": 18,
+      "fontWeight": 400,
+      "lineHeight": "18px",
       "fontSize": 13,
-      "letterSpacing": 0,
+      "letterSpacing": "0px",
       "paragraphSpacing": 0,
       "textCase": "none",
       "textDecoration": "none"
     },
     "caption1": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": "Regular",
-      "lineHeight": 16,
+      "fontWeight": 400,
+      "lineHeight": "16px",
       "fontSize": 12,
-      "letterSpacing": 0,
+      "letterSpacing": "0px",
       "paragraphSpacing": 0,
       "textCase": "none",
       "textDecoration": "none"
     },
     "caption2": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": "Regular",
-      "lineHeight": 13,
+      "fontWeight": 400,
+      "lineHeight": "13px",
       "fontSize": 11,
-      "letterSpacing": 0,
+      "letterSpacing": "0px",
       "paragraphSpacing": 0,
       "textCase": "none",
       "textDecoration": "none"
