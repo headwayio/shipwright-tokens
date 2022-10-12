@@ -172,8 +172,6 @@ const buildConfig = (dist = "build", src = "tokens") => {
       console.error(err);
     }
   });
-
-  // console.log(dist, src);
 };
 
 buildConfig(args[2], args[3]);
