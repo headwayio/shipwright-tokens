@@ -1,6 +1,8 @@
 import * as fs from "fs";
 
-const buildConfig = (src = "tokens", dist = "build") => {
+const args = process.argv;
+
+const buildConfig = (dist = "build", src = "tokens") => {
   const config = {
     source: [`${src}/**/*.json`],
     platforms: {
@@ -170,6 +172,8 @@ const buildConfig = (src = "tokens", dist = "build") => {
       console.error(err);
     }
   });
+
+  // console.log(dist, src);
 };
 
-buildConfig();
+buildConfig(args[2], args[3]);
