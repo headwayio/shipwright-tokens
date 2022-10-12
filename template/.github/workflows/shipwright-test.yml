@@ -1,0 +1,26 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Shipwright Tokens Example
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on pull request events but only for the "main" branch
+  pull_request:
+    branches: ["main"]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Shipwright Tokens
+        uses: headwayio/shipwright-tokens@main
+        # Pass in options to the Github Action: styleSystem, outputFolder, etc.
+        with:
+          # Options: mui, scss, tailwind
+          styleSystem: mui
+          # This is relative to the root of the repo
+          outputFolder: styles
