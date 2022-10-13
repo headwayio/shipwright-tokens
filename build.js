@@ -36,6 +36,8 @@ const parseFontWeight = (value) => {
     ? 500
     : val === "semi bold" || val === "semibold"
     ? 600
+    : val === "bold"
+    ? 700
     : val === "black"
     ? 800
     : val;

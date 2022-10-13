@@ -27,16 +27,16 @@
   "fontWeight": {
     "inter-0": 400,
     "inter-1": "italic",
-    "inter-2": "bold",
+    "inter-2": 700,
     "inter-3": 600,
     "inter-4": 500,
     "sf-pro-text-5": 400,
     "sf-pro-text-6": 600,
-    "sf-pro-text-7": "bold",
+    "sf-pro-text-7": 700,
     "sf-pro-text-8": 500,
     "inter-9": 800,
     "source-sans-pro-10": 400,
-    "source-sans-pro-11": "bold",
+    "source-sans-pro-11": 700,
     "source-sans-pro-12": 600
   },
   "fontSize": {

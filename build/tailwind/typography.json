@@ -23,7 +23,7 @@
       },
       "bold": {
         "fontFamily": "Inter",
-        "fontWeight": "bold",
+        "fontWeight": 700,
         "lineHeight": "112px",
         "fontSize": 96,
         "letterSpacing": "-1.5px",
@@ -55,7 +55,7 @@
       },
       "bold": {
         "fontFamily": "Inter",
-        "fontWeight": "bold",
+        "fontWeight": 700,
         "lineHeight": "72px",
         "fontSize": 60,
         "letterSpacing": "-0.5px",
@@ -87,7 +87,7 @@
       },
       "bold": {
         "fontFamily": "Inter",
-        "fontWeight": "bold",
+        "fontWeight": 700,
         "lineHeight": "56px",
         "fontSize": 48,
         "letterSpacing": "0em",
@@ -119,7 +119,7 @@
       },
       "bold": {
         "fontFamily": "Inter",
-        "fontWeight": "bold",
+        "fontWeight": 700,
         "lineHeight": "40px",
         "fontSize": 34,
         "letterSpacing": "0.25px",
@@ -141,7 +141,7 @@
       },
       "bold": {
         "fontFamily": "Inter",
-        "fontWeight": "bold",
+        "fontWeight": 700,
         "lineHeight": "32px",
         "fontSize": 24,
         "letterSpacing": "-0.18px",
@@ -183,7 +183,7 @@
       },
       "bold": {
         "fontFamily": "Inter",
-        "fontWeight": "bold",
+        "fontWeight": 700,
         "lineHeight": "24px",
         "fontSize": 20,
         "letterSpacing": "0.15px",
@@ -340,7 +340,7 @@
     },
     "headline": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": "bold",
+      "fontWeight": 700,
       "lineHeight": "22px",
       "fontSize": 17,
       "letterSpacing": "0px",
