@@ -29,18 +29,21 @@ const formatEntries = (entries) =>
 
 const parseFontWeight = (value) => {
   if (typeof value !== "string") return value;
-  const val = value?.toLowerCase();
-  return val === "regular"
-    ? 400
-    : val === "medium"
-    ? 500
-    : val === "semi bold" || val === "semibold"
-    ? 600
-    : val === "bold"
-    ? 700
-    : val === "black"
-    ? 800
-    : val;
+  const val = value?.toLowerCase().replace(" ", "");
+  switch(val) {
+    case "regular":
+      return 400;
+    cae "medium":
+      return 500;
+    case "semibold":
+      return 600;
+    case "bold":
+      return 700;
+    case "black":
+      return 800;
+    default:
+      return val;
+  }
 };
 
 const parseLetterSpacing = (value) => {
