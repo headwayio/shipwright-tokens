@@ -32,7 +32,7 @@ runs:
         ref: ${{ github.head_ref }}
     - name: Setup Node.js environment
       uses: actions/setup-node@v2.4.0
-    - run: node configs/build-config.js ${{ inputs.styleOutputFolder }} ${{ inputs.tokenOutputFolder }}
+    - run: node ${{ github.action_path }}/configs/build-config.js ${{ inputs.styleOutputFolder }} ${{ inputs.tokenOutputFolder }}
       shell: bash
     - run: npx token-transformer ${{ inputs.tokenFile }} ${{ inputs.tokenOutputFolder }}/tokens.json --expandTypography=true --expandComposition=true --preserveRawValue=false --resolveReferences=true
       shell: bash
