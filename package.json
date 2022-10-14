@@ -4,12 +4,11 @@
   "description": "to be determined",
   "main": "index.js",
   "scripts": {
-    "build-transform": "npx token-transformer tokens/src/tokens.json tokens/dist/tokens.json",
+    "build-transform": "npx token-transformer tokens/src/tokens.json tokens/transformed/tokens.json",
     "build-sd": "style-dictionary build --config configs/all.json",
     "build": "npm run build-transform && npm run build-sd",
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest"
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tomxkay/style-dictionary.git"

@@ -33,7 +33,7 @@ const parseFontWeight = (value) => {
   switch(val) {
     case "regular":
       return 400;
-    cae "medium":
+    case "medium":
       return 500;
     case "semibold":
       return 600;

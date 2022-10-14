@@ -1,14 +1,15 @@
-import * as fs from "fs";
-import { exec, execSync } from "child_process";
+const fs = require("fs");
+const { exec, execSync } = require("child_process");
 
 
 describe("npm run build", () => {
   it("outputs a scss file", async () => {
-    exec("rm ./build/scss/_variables.scss");
-    execSync("npm run build");
+    exec("rm -rf ./build");
+    execSync("npx token-transformer tokens/raw/tokens.json tokens/transformed/tokens.json");
+    execSync("node build.js");
 
-    expect(fs.existsSync("./build/scss/_variables.scss")).toBe(true);
+    expect(fs.existsSync("./build/tailwind/colors.json")).toBe(true);
 
-    exec("rm -rf build/ tokens/dist");
+    exec("rm -rf build/ tokens/transformed");
   });
 });
