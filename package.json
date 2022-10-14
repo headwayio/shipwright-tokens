@@ -1,12 +1,11 @@
 {
   "name": "headway-shipwright-token-style",
   "version": "1.0.0",
-  "description": "to be determine",
+  "description": "to be determined",
   "main": "index.js",
   "scripts": {
     "build-transform": "npx token-transformer tokens/src/tokens.json tokens/dist/tokens.json",
     "build-sd": "style-dictionary build --config configs/all.json",
-    "build-tw": "postcss ./styles.css -o ./tailwind.css",
     "build": "npm run build-transform && npm run build-sd",
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest"
   },

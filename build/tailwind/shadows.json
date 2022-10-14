@@ -1,0 +1,8 @@
+{
+  "base": "0px 1px 3px 0px #0000001a, 0px 1px 2px 0px #0000000f",
+  "medium": "0px 4px 6px 0px #0000001a, 0px 2px 4px 0px #0000000f",
+  "large": "0px 4px 6px 0px #0000000d, 0px 10px 15px 0px #0000001a",
+  "XLarge": "0px 10px 10px 0px #0000000a, 0px 20px 25px 0px #0000001a",
+  "2XLarge": "0px 25px 50px 0px #00000040",
+  "inner": "inset 0px 2px 4px 0px #0000000f"
+}
