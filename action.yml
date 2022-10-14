@@ -17,7 +17,7 @@ inputs:
     description: 'Relative path to your tokens.json file output from the Figma Tokens plugin. Default: "tokens/tokens.json"'
     required: false
     default: "output"
-    styleOutputFolder:
+  styleOutputFolder:
     description: 'Relative path to your styles output directory. Default: "build"'
     required: false
     default: "build"
@@ -32,7 +32,7 @@ runs:
       uses: actions/setup-node@v2.4.0
     - run: node ${{ github.action_path }}/build-config.js ${{ inputs.styleOutputFolder }} ${{ inputs.tokenOutputFolder }}
       shell: bash
-    - run: npx token-transformer ${{ inputs.tokenFile }} ${{ inputs.outputFolder }}/tokens.json --expandTypography=true --expandComposition=true --preserveRawValue=false --resolveReferences=true
+    - run: npx token-transformer ${{ inputs.tokenFile }} ${{ inputs.tokenOutputFolder }}/tokens.json --expandTypography=true --expandComposition=true --preserveRawValue=false --resolveReferences=true
       shell: bash
     - run: node ${{ github.action_path }}/build.js
       shell: bash
