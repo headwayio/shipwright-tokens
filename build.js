@@ -185,7 +185,21 @@ StyleDictionary.registerFormat({
         expandedHeadlines[headline + "-" + variant] = value;
       });
     });
-    return JSON.stringify({ ...formatted, headline: expandedHeadlines });
+
+    const subtitles = Object.entries(formatted?.subtitle);
+    const expandedSubtitles = {};
+    subtitles.forEach(([subtitle, v]) => {
+      const subtitleVariants = Object.entries(v);
+      subtitleVariants.forEach(([variant, styles]) => {
+        expandedSubtitles[subtitle + "-" + variant] = styles;
+      });
+    });
+
+    return JSON.stringify({
+      ...formatted,
+      headline: expandedHeadlines,
+      subtitle: expandedSubtitles,
+    });
   },
 });
 
