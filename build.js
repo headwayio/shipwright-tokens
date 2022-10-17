@@ -6,9 +6,8 @@ const flattenObj = (key, obj) => {
   const getEntries = () =>
     Object.fromEntries(Object.entries(obj)?.map(([k, v]) => flattenObj(k, v)));
 
-  // We're checking for a 'value' key this way, rather than a simple obj.value
-  // check, because we want to avoid a false negative if obj.value resolves to a
-  // falsy value
+  // We're checking for a 'value' key this way, rather than a simple obj.value check
+  // because we want to avoid a false negative if obj.value resolves to a falsy value
   const hasAValueKey = Object.keys(obj).includes("value");
 
   return hasAValueKey ? [key, obj?.value] : [key, getEntries()];
@@ -174,12 +173,20 @@ StyleDictionary.registerFormat({
   },
 });
 
-// StyleDictionary.registerFormat({
-//   name: "muiTypography",
-//   formatter: ({ dictionary }) => {
-//     const formatted = formatEntries(dictionary?.tokens["type set"]);
-//     console.log(formatted);
-//   },
-// });
+StyleDictionary.registerFormat({
+  name: "muiTypography",
+  formatter: ({ dictionary }) => {
+    const formatted = JSON.parse(formatEntries(dictionary?.tokens["type set"]));
+    const headlines = Object.entries(formatted?.headline);
+    const expandedHeadlines = {};
+    headlines.forEach(([headline, v]) => {
+      const headlineVariants = Object.entries(v);
+      headlineVariants.forEach(([variant, value]) => {
+        expandedHeadlines[headline + "-" + variant] = value;
+      });
+    });
+    return JSON.stringify({ ...formatted, headline: expandedHeadlines });
+  },
+});
 
 StyleDictionary.buildAllPlatforms();
