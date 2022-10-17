@@ -174,4 +174,12 @@ StyleDictionary.registerFormat({
   },
 });
 
+// StyleDictionary.registerFormat({
+//   name: "muiTypography",
+//   formatter: ({ dictionary }) => {
+//     const formatted = formatEntries(dictionary?.tokens["type set"]);
+//     console.log(formatted);
+//   },
+// });
+
 StyleDictionary.buildAllPlatforms();
