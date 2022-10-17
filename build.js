@@ -30,10 +30,10 @@ const formatEntries = (entries) =>
 const parseFontWeight = (value) => {
   if (typeof value !== "string") return value;
   const val = value?.toLowerCase().replace(" ", "");
-  switch(val) {
+  switch (val) {
     case "regular":
       return 400;
-    cae "medium":
+    case "medium":
       return 500;
     case "semibold":
       return 600;
@@ -173,5 +173,13 @@ StyleDictionary.registerFormat({
     return JSON.stringify(entries) || "";
   },
 });
+
+// StyleDictionary.registerFormat({
+//   name: "muiTypography",
+//   formatter: ({ dictionary }) => {
+//     const formatted = formatEntries(dictionary?.tokens["type set"]);
+//     console.log(formatted);
+//   },
+// });
 
 StyleDictionary.buildAllPlatforms();

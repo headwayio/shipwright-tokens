@@ -22,6 +22,28 @@
           "format": "twShadows"
         }
       ]
+    },
+    "mui": {
+      "transformGroup": "js/custom",
+      "buildPath": "./build/mui/",
+      "files": [
+        {
+          "destination": "typography.json",
+          "format": "muiTypography"
+        },
+        {
+          "destination": "misc.json",
+          "format": "twMisc"
+        },
+        {
+          "destination": "colors.json",
+          "format": "twColors"
+        },
+        {
+          "destination": "shadows.json",
+          "format": "twShadows"
+        }
+      ]
     }
   }
 }
