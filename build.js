@@ -132,12 +132,12 @@ StyleDictionary.registerTransformGroup({
 });
 
 StyleDictionary.registerFormat({
-  name: "twShadows",
+  name: "jsShadows",
   formatter: ({ dictionary }) => formatEntries(dictionary?.tokens?.shadows),
 });
 
 StyleDictionary.registerFormat({
-  name: "twColors",
+  name: "jsColors",
   formatter: ({ dictionary }) => formatEntries(dictionary?.tokens["color set"]),
 });
 
@@ -147,7 +147,7 @@ StyleDictionary.registerFormat({
 });
 
 StyleDictionary.registerFormat({
-  name: "twMisc",
+  name: "jsMisc",
   formatter: ({ dictionary = {} }) => {
     const { tokens } = dictionary;
     const excluded = ["color set", "shadows", "type set"];
