@@ -173,33 +173,36 @@ StyleDictionary.registerFormat({
   },
 });
 
+const flattenTypographyValues = (obj) => {
+  const items = Object.entries(obj);
+  const expanded = {};
+  items.forEach(([k, v]) => {
+    if (v[k]) return (expanded[k] = v[k]);
+    if (k === "ios") return (expanded.ios = v);
+
+    const innerItems = Object.entries(v);
+
+    innerItems.forEach(([item, v]) => {
+      const variants = Object.entries(v);
+      const firstChild = variants[0][1];
+      if (typeof firstChild === "string" || typeof firstChild === "number") {
+        expanded[item] = v;
+        return;
+      }
+      variants.forEach(([variant, value]) => {
+        expanded[item + "-" + variant] = value;
+      });
+    });
+  });
+  return expanded;
+};
+
 StyleDictionary.registerFormat({
   name: "muiTypography",
   formatter: ({ dictionary }) => {
     const formatted = JSON.parse(formatEntries(dictionary?.tokens["type set"]));
-    const headlines = Object.entries(formatted?.headline);
-    const expandedHeadlines = {};
-    headlines.forEach(([headline, v]) => {
-      const headlineVariants = Object.entries(v);
-      headlineVariants.forEach(([variant, value]) => {
-        expandedHeadlines[headline + "-" + variant] = value;
-      });
-    });
-
-    const subtitles = Object.entries(formatted?.subtitle);
-    const expandedSubtitles = {};
-    subtitles.forEach(([subtitle, v]) => {
-      const subtitleVariants = Object.entries(v);
-      subtitleVariants.forEach(([variant, styles]) => {
-        expandedSubtitles[subtitle + "-" + variant] = styles;
-      });
-    });
-
-    return JSON.stringify({
-      ...formatted,
-      headline: expandedHeadlines,
-      subtitle: expandedSubtitles,
-    });
+    const flattenedValues = flattenTypographyValues(formatted);
+    return JSON.stringify(flattenedValues);
   },
 });
 
