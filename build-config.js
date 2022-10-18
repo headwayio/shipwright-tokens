@@ -4,11 +4,11 @@ const args = process.argv.slice(2);
 
 const buildConfig = (dist = "build", src = "tokens") => {
   const config = {
-    source: [`${src}/*.json`],
+    source: [`${src}/transformed-tokens.json`],
     platforms: {
       tailwind: {
         transformGroup: "js/custom",
-        buildPath: `./${dist}/`,
+        buildPath: `${dist}/`,
         files: [
           {
             destination: "typography.json",
