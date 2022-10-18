@@ -11,15 +11,15 @@
         },
         {
           "destination": "misc.json",
-          "format": "twMisc"
+          "format": "jsMisc"
         },
         {
           "destination": "colors.json",
-          "format": "twColors"
+          "format": "jsColors"
         },
         {
           "destination": "shadows.json",
-          "format": "twShadows"
+          "format": "jsShadows"
         }
       ]
     },
@@ -33,15 +33,15 @@
         },
         {
           "destination": "misc.json",
-          "format": "twMisc"
+          "format": "jsMisc"
         },
         {
           "destination": "colors.json",
-          "format": "twColors"
+          "format": "jsColors"
         },
         {
           "destination": "shadows.json",
-          "format": "twShadows"
+          "format": "jsShadows"
         }
       ]
     }
