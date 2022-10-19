@@ -200,7 +200,7 @@ const flattenTypographyValues = (obj) => {
 StyleDictionary.registerFormat({
   name: "muiTypography",
   formatter: ({ dictionary }) => {
-    const formatted = JSON.parse(formatEntries(dictionary?.tokens["type set"]));
+    const formatted = JSON.parse(formatEntries(dictionary.tokens["type set"]));
     const flattenedValues = flattenTypographyValues(formatted);
     return JSON.stringify(flattenedValues);
   },
