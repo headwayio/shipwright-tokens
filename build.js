@@ -1,5 +1,7 @@
 const StyleDictionary = require("style-dictionary").extend("config.json");
 
+/* ======================= Helpers ======================= */
+
 const flattenObj = (key, obj) => {
   if (obj === undefined) return;
 
@@ -69,6 +71,61 @@ const parseTypography = (obj = {}) => {
     letterSpacing: parseLetterSpacing(letterSpacing),
   };
 };
+
+const formatTwTypographyValues = (obj) => {
+  const items = Object.entries(obj);
+  const expanded = {};
+  items.forEach(([k, v]) => {
+    if (v[k]) return (expanded["." + k] = v[k]);
+    if (k === "ios") return (expanded[".ios"] = v);
+
+    const innerItems = Object.entries(v);
+
+    innerItems.forEach(([item, v]) => {
+      const variants = Object.entries(v);
+      const firstChild = variants[0][1];
+      const itemKey = "." + item;
+      if (typeof firstChild === "string" || typeof firstChild === "number") {
+        expanded[itemKey] = v;
+        return;
+      }
+      variants.forEach(([variant, value]) => {
+        if (variant === "regular") return (expanded[itemKey] = value);
+        expanded[itemKey] = {
+          ...expanded[itemKey],
+          [`&.${item}-${variant}`]: value,
+        };
+      });
+    });
+  });
+  return expanded;
+};
+
+const flattenMuiTypographyValues = (obj) => {
+  const items = Object.entries(obj);
+  const expanded = {};
+  items.forEach(([k, v]) => {
+    if (v[k]) return (expanded[k] = v[k]);
+    if (k === "ios") return (expanded.ios = v);
+
+    const innerItems = Object.entries(v);
+
+    innerItems.forEach(([item, v]) => {
+      const variants = Object.entries(v);
+      const firstChild = variants[0][1];
+      if (typeof firstChild === "string" || typeof firstChild === "number") {
+        expanded[item] = v;
+        return;
+      }
+      variants.forEach(([variant, value]) => {
+        expanded[item + "-" + variant] = value;
+      });
+    });
+  });
+  return expanded;
+};
+
+/* ============================================================= */
 
 StyleDictionary.registerTransform({
   name: "shadows/css",
@@ -143,7 +200,11 @@ StyleDictionary.registerFormat({
 
 StyleDictionary.registerFormat({
   name: "twTypography",
-  formatter: ({ dictionary }) => formatEntries(dictionary?.tokens["type set"]),
+  formatter: ({ dictionary }) => {
+    const formatted = JSON.parse(formatEntries(dictionary?.tokens["type set"]));
+    const flattenedValues = formatTwTypographyValues(formatted);
+    return JSON.stringify(flattenedValues);
+  },
 });
 
 StyleDictionary.registerFormat({
@@ -173,35 +234,11 @@ StyleDictionary.registerFormat({
   },
 });
 
-const flattenTypographyValues = (obj) => {
-  const items = Object.entries(obj);
-  const expanded = {};
-  items.forEach(([k, v]) => {
-    if (v[k]) return (expanded[k] = v[k]);
-    if (k === "ios") return (expanded.ios = v);
-
-    const innerItems = Object.entries(v);
-
-    innerItems.forEach(([item, v]) => {
-      const variants = Object.entries(v);
-      const firstChild = variants[0][1];
-      if (typeof firstChild === "string" || typeof firstChild === "number") {
-        expanded[item] = v;
-        return;
-      }
-      variants.forEach(([variant, value]) => {
-        expanded[item + "-" + variant] = value;
-      });
-    });
-  });
-  return expanded;
-};
-
 StyleDictionary.registerFormat({
   name: "muiTypography",
   formatter: ({ dictionary }) => {
     const formatted = JSON.parse(formatEntries(dictionary?.tokens["type set"]));
-    const flattenedValues = flattenTypographyValues(formatted);
+    const flattenedValues = flattenMuiTypographyValues(formatted);
     return JSON.stringify(flattenedValues);
   },
 });
