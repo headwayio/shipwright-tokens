@@ -37,7 +37,7 @@ runs:
     - run: npx token-transformer ${{ inputs.tokenFile }} ${{ inputs.tokenOutputFolder }}/tokens.json --expandTypography=true --expandComposition=true --preserveRawValue=false --resolveReferences=true
       shell: bash
     - run: |
-        ls -R ${{ github.action_path }}
+        ls -R ${{ github.action_path }} -Inode_modules
       shell: bash
     - run: |
         ls -R ${{ github.workspace }}
