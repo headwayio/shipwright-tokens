@@ -42,6 +42,8 @@ runs:
     - run: |
         ls -R ${{ github.workspace }}
       shell: bash
+    - run: more test/tokens/transformed/tokens.json
+      shell: bash
     - run: node ${{ github.action_path }}/build.js
       shell: bash
     - uses: stefanzweifel/git-auto-commit-action@v4
