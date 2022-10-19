@@ -3,7 +3,7 @@ const StyleDictionary = require("style-dictionary").extend("config.json");
 const flattenObj = (key, obj) => {
   if (obj === undefined) return;
 
-  if (typeof obj === 'string' ) return;
+  // if (typeof obj === 'string' ) return;
 
   const getEntries = () =>
     Object.fromEntries(Object.entries(obj)?.map(([k, v]) => flattenObj(k, v)));
@@ -11,7 +11,7 @@ const flattenObj = (key, obj) => {
   // We're checking for a 'value' key this way, rather than a simple obj.value
   // check, because we want to avoid a false negative if obj.value resolves to a
   // falsy value
-  console.log(obj);
+  // console.log(obj);
   const hasAValueKey = Object.keys(obj).includes("value");
 
   return hasAValueKey ? [key, obj?.value] : [key, getEntries()];
