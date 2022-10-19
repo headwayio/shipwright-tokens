@@ -32,9 +32,9 @@ runs:
       uses: actions/setup-node@v2.4.0
     - run: npm install --prefix ${{ github.action_path }} style-dictionary
       shell: bash
-    - run: node ${{ github.action_path }}/build-config.js ${{ github.workspace }}/${{ inputs.styleOutputFolder }} ${{ github.workspace }}/${{ inputs.tokenOutputFolder }}
+    - run: node ${{ github.action_path }}/build-config.js ${{ inputs.styleOutputFolder }} ${{ inputs.tokenOutputFolder }}
       shell: bash
-    - run: npx token-transformer ${{ github.workspace }}/${{ inputs.tokenFile }} ${{ github.workspace }}/${{ inputs.tokenOutputFolder }}/transformed-tokens.json --expandTypography=true --expandComposition=true --preserveRawValue=false --resolveReferences=true
+    - run: npx token-transformer ${{ inputs.tokenFile }} ${{ inputs.tokenOutputFolder }}/tokens.json --expandTypography=true --expandComposition=true --preserveRawValue=false --resolveReferences=true
       shell: bash
     - run: node ${{ github.action_path }}/build.js
       shell: bash
