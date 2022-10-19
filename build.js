@@ -3,6 +3,8 @@ const StyleDictionary = require("style-dictionary").extend("config.json");
 const flattenObj = (key, obj) => {
   if (obj === undefined) return;
 
+  if (typeof obj === 'string' ) return;
+
   const getEntries = () =>
     Object.fromEntries(Object.entries(obj)?.map(([k, v]) => flattenObj(k, v)));
 

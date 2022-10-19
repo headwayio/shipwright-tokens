@@ -4,7 +4,7 @@ const args = process.argv.slice(2);
 
 const buildConfig = (dist = "build", src = "tokens") => {
   const config = {
-    source: [`${src}/transformed-tokens.json`],
+    source: [`${src}/*.json`],
     platforms: {
       tailwind: {
         transformGroup: "js/custom",
