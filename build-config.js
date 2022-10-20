@@ -13,7 +13,7 @@ const copyThemeFile = async ({ dist, styleSystem, actionPath }) => {
   const themeDest = path.join(dist, styleSystem, themeTemplate);
 
   await fs.copyFile(themeSource, themeDest, (err) =>
-    console.log(`Copy File Error: ${err}`)
+    console.warn(`Copy File Error: ${err}`)
   );
 };
 
