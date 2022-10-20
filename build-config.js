@@ -7,13 +7,9 @@ const copyThemeFile = async ({ dist, styleSystem, actionPath }) => {
   const themeTemplate = {
     tailwind: "tailwind.config.js",
     mui: "muiTheme.js",
-  };
+  }[styleSystem];
 
-  const themeSource = path.join(
-    actionPath,
-    "theme_templates",
-    themeTemplate[styleSystem]
-  );
+  const themeSource = path.join(actionPath, "theme_templates", themeTemplate);
   const themeDest = path.join(dist, styleSystem, themeTemplate);
 
   await fs.copyFile(themeSource, themeDest);
