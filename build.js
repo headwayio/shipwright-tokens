@@ -1,4 +1,6 @@
-const StyleDictionary = require("style-dictionary").extend("config.json");
+const MyDictionary = require("style-dictionary").extend("config.json");
+// import StyleDictionary from "style-dictionary";
+// const MyDictionary = StyleDictionary.extend("config.json");
 
 const flattenObj = (key, obj) => {
   if (obj === undefined) return;
@@ -70,7 +72,7 @@ const parseTypography = (obj = {}) => {
   };
 };
 
-StyleDictionary.registerTransform({
+MyDictionary.registerTransform({
   name: "shadows/css",
   type: "value",
   matcher: ({ type }) => type === "boxShadow",
@@ -88,35 +90,35 @@ StyleDictionary.registerTransform({
   },
 });
 
-StyleDictionary.registerTransform({
+MyDictionary.registerTransform({
   name: "lineHeight/px",
   type: "value",
   matcher: ({ type }) => type === "lineHeights",
   transformer: ({ value }) => parseLineHeight(value),
 });
 
-StyleDictionary.registerTransform({
+MyDictionary.registerTransform({
   name: "letterSpacing/em",
   type: "value",
   matcher: ({ type }) => type === "letterSpacing",
   transformer: ({ value }) => parseLetterSpacing(value),
 });
 
-StyleDictionary.registerTransform({
+MyDictionary.registerTransform({
   name: "fontWeight/lowerCaseOrNum",
   type: "value",
   matcher: ({ type }) => type === "fontWeights",
   transformer: ({ value }) => parseFontWeight(value),
 });
 
-StyleDictionary.registerTransform({
+MyDictionary.registerTransform({
   name: "typography/nested",
   type: "value",
   matcher: ({ type }) => type === "typography",
   transformer: ({ value }) => parseTypography(value),
 });
 
-StyleDictionary.registerTransformGroup({
+MyDictionary.registerTransformGroup({
   name: "js/custom",
   transforms: [
     "attribute/cti",
@@ -131,22 +133,22 @@ StyleDictionary.registerTransformGroup({
   ],
 });
 
-StyleDictionary.registerFormat({
+MyDictionary.registerFormat({
   name: "jsShadows",
   formatter: ({ dictionary }) => formatEntries(dictionary?.tokens?.shadows),
 });
 
-StyleDictionary.registerFormat({
+MyDictionary.registerFormat({
   name: "jsColors",
   formatter: ({ dictionary }) => formatEntries(dictionary?.tokens["color set"]),
 });
 
-StyleDictionary.registerFormat({
+MyDictionary.registerFormat({
   name: "twTypography",
   formatter: ({ dictionary }) => formatEntries(dictionary?.tokens["type set"]),
 });
 
-StyleDictionary.registerFormat({
+MyDictionary.registerFormat({
   name: "jsMisc",
   formatter: ({ dictionary = {} }) => {
     const { tokens } = dictionary;
@@ -197,7 +199,7 @@ const flattenTypographyValues = (obj) => {
   return expanded;
 };
 
-StyleDictionary.registerFormat({
+MyDictionary.registerFormat({
   name: "muiTypography",
   formatter: ({ dictionary }) => {
     const formatted = JSON.parse(formatEntries(dictionary.tokens["type set"]));
@@ -206,4 +208,4 @@ StyleDictionary.registerFormat({
   },
 });
 
-StyleDictionary.buildAllPlatforms();
+MyDictionary.buildAllPlatforms();
