@@ -34,41 +34,40 @@ const buildConfig = async (
         },
         {
           destination: "misc.json",
-          format: "twMisc",
+          format: "jsMisc",
         },
         {
           destination: "colors.json",
-          format: "twColors",
+          format: "jsColors",
         },
         {
           destination: "shadows.json",
-          format: "twShadows",
+          format: "jsShadows",
         },
       ],
     },
-    // Update in MUI branch
-    // mui: {
-    //   transformGroup: "js/custom",
-    //   buildPath: `${dist}/`,
-    //   files: [
-    //     {
-    //       destination: "typography.json",
-    //       format: "twTypography",
-    //     },
-    //     {
-    //       destination: "misc.json",
-    //       format: "twMisc",
-    //     },
-    //     {
-    //       destination: "colors.json",
-    //       format: "twColors",
-    //     },
-    //     {
-    //       destination: "shadows.json",
-    //       format: "twShadows",
-    //     },
-    //   ],
-    // },
+    mui: {
+      transformGroup: "js/custom",
+      buildPath: `${dist}/`,
+      files: [
+        {
+          destination: "typography.json",
+          format: "muiTypography",
+        },
+        {
+          destination: "misc.json",
+          format: "jsMisc",
+        },
+        {
+          destination: "colors.json",
+          format: "jsColors",
+        },
+        {
+          destination: "shadows.json",
+          format: "jsShadows",
+        },
+      ],
+    },
   };
 
   const config = {
