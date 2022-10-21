@@ -1,14 +1,17 @@
-import * as fs from "fs";
-import { exec, execSync } from "child_process";
+const fs = require("fs");
+const { exec, execSync } = require("child_process");
 
 
-describe("npm run build", () => {
-  it("outputs a scss file", async () => {
-    exec("rm ./build/scss/_variables.scss");
-    execSync("npm run build");
+describe("shipwright tokens action", () => {
+  it("outputs style files", async () => {
+    exec("rm -rf build/ tokens/transformed config.json");
 
-    expect(fs.existsSync("./build/scss/_variables.scss")).toBe(true);
+    execSync("node build-config.js build/tailwind tokens/transformed");
+    execSync("npx token-transformer tokens/raw/tokens.json tokens/transformed/tokens.json");
+    execSync("node build.js");
 
-    exec("rm -rf build/ tokens/dist");
+    expect(fs.existsSync("./build/tailwind/colors.json")).toBe(true);
+
+    exec("rm -rf build/ tokens/transformed config.json");
   });
 });
