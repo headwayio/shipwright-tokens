@@ -1,14 +1,15 @@
 const StyleDictionary = require("style-dictionary").extend("config.json");
 
+/* ======================= Helpers ======================= */
+
 const flattenObj = (key, obj) => {
   if (obj === undefined) return;
 
   const getEntries = () =>
     Object.fromEntries(Object.entries(obj)?.map(([k, v]) => flattenObj(k, v)));
 
-  // We're checking for a 'value' key this way, rather than a simple obj.value
-  // check, because we want to avoid a false negative if obj.value resolves to a
-  // falsy value
+  // We're checking for a 'value' key this way, rather than a simple obj.value check
+  // because we want to avoid a false negative if obj.value resolves to a falsy value
   const hasAValueKey = Object.keys(obj).includes("value");
 
   return hasAValueKey ? [key, obj?.value] : [key, getEntries()];
@@ -70,6 +71,61 @@ const parseTypography = (obj = {}) => {
     letterSpacing: parseLetterSpacing(letterSpacing),
   };
 };
+
+const formatTwTypographyValues = (obj) => {
+  const items = Object.entries(obj);
+  const expanded = {};
+  items.forEach(([k, v]) => {
+    if (v[k]) return (expanded["." + k] = v[k]);
+    if (k === "ios") return (expanded[".ios"] = v);
+
+    const innerItems = Object.entries(v);
+
+    innerItems.forEach(([item, v]) => {
+      const variants = Object.entries(v);
+      const firstChild = variants[0][1];
+      const itemKey = "." + item;
+      if (typeof firstChild === "string" || typeof firstChild === "number") {
+        expanded[itemKey] = v;
+        return;
+      }
+      variants.forEach(([variant, value]) => {
+        if (variant === "regular") return (expanded[itemKey] = value);
+        expanded[itemKey] = {
+          ...expanded[itemKey],
+          [`&.${item}-${variant}`]: value,
+        };
+      });
+    });
+  });
+  return expanded;
+};
+
+const formatMuiTypographyValues = (obj) => {
+  const items = Object.entries(obj);
+  const expanded = {};
+  items.forEach(([k, v]) => {
+    if (v[k]) return (expanded[k] = v[k]);
+    if (k === "ios") return (expanded.ios = v);
+
+    const innerItems = Object.entries(v);
+
+    innerItems.forEach(([item, v]) => {
+      const variants = Object.entries(v);
+      const firstChild = variants[0][1];
+      if (typeof firstChild === "string" || typeof firstChild === "number") {
+        expanded[item] = v;
+        return;
+      }
+      variants.forEach(([variant, value]) => {
+        expanded[item + "-" + variant] = value;
+      });
+    });
+  });
+  return expanded;
+};
+
+/* ============================================================= */
 
 StyleDictionary.registerTransform({
   name: "shadows/css",
@@ -133,22 +189,26 @@ StyleDictionary.registerTransformGroup({
 });
 
 StyleDictionary.registerFormat({
-  name: "twShadows",
+  name: "jsShadows",
   formatter: ({ dictionary }) => formatEntries(dictionary?.tokens?.shadows),
 });
 
 StyleDictionary.registerFormat({
-  name: "twColors",
+  name: "jsColors",
   formatter: ({ dictionary }) => formatEntries(dictionary?.tokens["color set"]),
 });
 
 StyleDictionary.registerFormat({
   name: "twTypography",
-  formatter: ({ dictionary }) => formatEntries(dictionary?.tokens["type set"]),
+  formatter: ({ dictionary }) => {
+    const formatted = JSON.parse(formatEntries(dictionary?.tokens["type set"]));
+    const formattedValues = formatTwTypographyValues(formatted);
+    return JSON.stringify(formattedValues);
+  },
 });
 
 StyleDictionary.registerFormat({
-  name: "twMisc",
+  name: "jsMisc",
   formatter: ({ dictionary = {} }) => {
     const { tokens } = dictionary;
     const excluded = ["color set", "shadows", "type set"];
@@ -171,6 +231,15 @@ StyleDictionary.registerFormat({
     });
 
     return JSON.stringify(entries) || "";
+  },
+});
+
+StyleDictionary.registerFormat({
+  name: "muiTypography",
+  formatter: ({ dictionary }) => {
+    const formatted = JSON.parse(formatEntries(dictionary?.tokens["type set"]));
+    const formattedValues = formatMuiTypographyValues(formatted);
+    return JSON.stringify(formattedValues);
   },
 });
 
