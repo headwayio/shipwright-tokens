@@ -101,7 +101,7 @@ const formatTwTypographyValues = (obj) => {
   return expanded;
 };
 
-const flattenMuiTypographyValues = (obj) => {
+const formatMuiTypographyValues = (obj) => {
   const items = Object.entries(obj);
   const expanded = {};
   items.forEach(([k, v]) => {
@@ -202,8 +202,8 @@ StyleDictionary.registerFormat({
   name: "twTypography",
   formatter: ({ dictionary }) => {
     const formatted = JSON.parse(formatEntries(dictionary?.tokens["type set"]));
-    const flattenedValues = formatTwTypographyValues(formatted);
-    return JSON.stringify(flattenedValues);
+    const formattedValues = formatTwTypographyValues(formatted);
+    return JSON.stringify(formattedValues);
   },
 });
 
@@ -238,8 +238,8 @@ StyleDictionary.registerFormat({
   name: "muiTypography",
   formatter: ({ dictionary }) => {
     const formatted = JSON.parse(formatEntries(dictionary?.tokens["type set"]));
-    const flattenedValues = flattenMuiTypographyValues(formatted);
-    return JSON.stringify(flattenedValues);
+    const formattedValues = formatMuiTypographyValues(formatted);
+    return JSON.stringify(formattedValues);
   },
 });
 
