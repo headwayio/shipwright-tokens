@@ -2,6 +2,8 @@
  
 ## Contents
 - [Configure: Filter Actions](#configure-filter-actions)
+- [Integreate Tailwind CSS](#integrate-tailwind-css)
+***
  
 ## Configure: Filter Actions
 Shipwright Tokens is a powerful tool, but you probably don't want it to run for every PR made in your repo. Instead, you likely only want it to run when you've made changes to your design tokens in Figma. This section will show you how to configure your action to run Shipwright Tokens only when you want it.
@@ -35,4 +37,61 @@ on:
      - 'main'
 ```
 ### Default Behavior
-Using the provided template, without configuring the filter actions, will cause the Shipwright Tokens action to run on any PR opened against `main`.
+Using the provided template, without configuring the filter actions, will cause the Shipwright Tokens action to run on any PR opened against `main`. 
+***
+
+## Integrate Tailwind CSS
+This section will show you how to configure your Shipwright Tokens action to output a custom Tailwind CSS theme.
+
+### Generate a Custom Theme
+Ensure that the `.yml` file that calls Shipwright Tokens includes `tailwind` as the value for the `styleSystem` property:
+```
+    steps:
+      - name: Shipwright Tokens
+        uses: headwayio/shipwright-tokens@(release/version)
+        with:
+          styleSystem: tailwind
+```
+With this configuration option set, Shipwright Tokens will generate 4 files that will be used in your theme: `colors.json`, `misc.json`, `shadows.json`, and `typography.json`. These files will be generated in the directory that you specify for the `outputFolder` property.
+
+### Using the Custom Theme
+With your theme files generated, you will need to configure your `tailwind.config.js` file to use your theme files - [Example Here](./theme_templates/tailwind.config.js)
+
+### Colors, Shadows, and Misc styles:
+- Ensure the contents of the generate files are available in `tailwind.config.js`:
+```
+const colors = require("./yourOutputDirectory/colors");
+const shadows = require("./yourOutputDirectory/shadows");
+const misc = require("./yourOutputDirectory/misc");
+```
+- Ensure your config is extending these values:
+```
+  theme: {
+    extend: {
+      colors,
+      shadows,
+      ...misc,
+    },
+  },
+```
+
+### Typography:
+- Ensure the contents of the generated typography file is available n `tailwind.config.js`:
+```
+const typography = require("./yourOutputDirectory/typography");
+```
+- Import Tailwind CSS's built-in plugin function:
+```
+const plugin = require("tailwindcss/plugin");
+```
+- Add this custom plugin, utilizing the `addComponents` function:
+```
+plugins: [
+    plugin(function ({ addBase, addComponents }) {
+      addComponents({
+        ...typography,
+      });
+    }),
+  ],
+```
+***
