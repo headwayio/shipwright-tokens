@@ -52,10 +52,18 @@ Ensure that the `.yml` file that calls Shipwright Tokens includes `tailwind` as 
         with:
           styleSystem: tailwind
 ```
-With this configuration option set, Shipwright Tokens will generate 4 files that will be used in your theme: `colors.json`, `misc.json`, `shadows.json`, and `typography.json`. These files will be generated in the directory that you specify for the `outputFolder` property.
+With this configuration option set, Shipwright Tokens will generate 5 files that will be used for your custom theme: `tailwind.config.js`, `colors.json`, `misc.json`, `shadows.json`, and `typography.json`. These files will be generated in the directory that you specify for the `outputFolder` property.
 
 ### Using the Custom Theme
-With your theme files generated, you will need to configure your `tailwind.config.js` file to use your theme files - [Example Here](./theme_templates/tailwind.config.js)
+By default, the generated `tailwind.config.js` file will import and extend the 4 generated `.json` files, making your all styles in your custom theme available as a base for your existing tailwing config. To incorporate the generated theme with your existing tailwind config, add the following snippet to `module.exports` within your projects existing `tailwind.config.js` file:
+```
+  presets: [
+    require('yourOutputDirectory/tailwind.config.js')
+  ],
+```
+If your project does not have an existing tailwind config, move the generated `tailwing.config.js` file to the root directory of your project and update the import paths to the genrated `.json` files.
+
+You can pick and choose which styles are availble in your project by editing the generated `tailwind.config.js` to only include the styles you want, the two sections below will show you how to do this.
 
 ### Colors, Shadows, and Misc styles:
 - Ensure the contents of the generate files are available in `tailwind.config.js`:
