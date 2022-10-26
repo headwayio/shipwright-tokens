@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Image from "next/image";
 import Logo from "../public/images/Headway_White_Outline_Logo.png";
 
@@ -14,9 +13,9 @@ const Header = () => {
           priority
         />
       </div>
-      <h1 className="h4 text-type-black-secondary">
+      <h4 className="h4 text-type-black-secondary">
         Shipwright Tokens - Next JS / Tailwind CSS
-      </h1>
+      </h4>
     </div>
   );
 };

@@ -1,9 +1,9 @@
 const Colors = () => {
   return (
     <div className="flex flex-col items-center w-3/4 pb-3 mb-5 border-b-2">
-      <p className="mb-3 h4 text-type-black-secondary">Colors</p>
+      <h4 className="mb-3 h4 text-type-black-secondary">Colors</h4>
       <div className="flex flex-col items-center mb-3">
-        <p className="h5">Primary</p>
+        <h5 className="h5">Primary</h5>
         <div className="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
           <div>
             <p>Main:</p>
@@ -20,7 +20,7 @@ const Colors = () => {
         </div>
       </div>
       <div className="flex flex-col items-center mb-3">
-        <p className="h5">Secondary</p>
+        <h5 className="h5">Secondary</h5>
         <div className="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
           <div>
             <p>Main:</p>
@@ -37,7 +37,7 @@ const Colors = () => {
         </div>
       </div>
       <div className="flex flex-col items-center mb-3">
-        <p className="h5">Grey</p>
+        <h5 className="h5">Grey</h5>
         <div className="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
           <div>
             <p>Main:</p>
@@ -54,7 +54,7 @@ const Colors = () => {
         </div>
       </div>
       <div className="flex flex-col items-center mb-3">
-        <p className="h5">Warning</p>
+        <h5 className="h5">Warning</h5>
         <div className="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
           <div>
             <p>Main:</p>
@@ -71,7 +71,7 @@ const Colors = () => {
         </div>
       </div>
       <div className="flex flex-col items-center mb-3">
-        <p className="h5">Info</p>
+        <h5 className="h5">Info</h5>
         <div className="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
           <div>
             <p>Main:</p>
@@ -88,7 +88,7 @@ const Colors = () => {
         </div>
       </div>
       <div className="flex flex-col items-center mb-3">
-        <p className="h5">Success</p>
+        <h5 className="h5">Success</h5>
         <div className="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
           <div>
             <p>Main:</p>
@@ -105,7 +105,7 @@ const Colors = () => {
         </div>
       </div>
       <div className="flex flex-col items-center mb-3">
-        <p className="h5">Error</p>
+        <h5 className="h5">Error</h5>
         <div className="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
           <div>
             <p>Main:</p>
@@ -122,7 +122,7 @@ const Colors = () => {
         </div>
       </div>
       <div className="flex flex-col items-center mb-3">
-        <p className="h5">Button</p>
+        <h5 className="h5">Button</h5>
         <div className="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
           <div>
             <p>Active:</p>
@@ -147,9 +147,9 @@ const Colors = () => {
         </div>
       </div>
       <div className="flex flex-col items-center mb-3">
-        <p className="h5">Type</p>
+        <h5 className="h5">Type</h5>
         <div className="flex flex-col flex-wrap items-center justify-center pb-3 mt-1 space-x-2">
-          <p className="h6">Black</p>
+          <h6 className="h6">Black</h6>
           <div className="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
             <div>
               <p>Primary:</p>
@@ -170,7 +170,7 @@ const Colors = () => {
           </div>
         </div>
         <div className="flex flex-col flex-wrap items-center justify-center pb-3 space-x-2">
-          <p className="h6">White</p>
+          <h6 className="h6">White</h6>
           <div className="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
             <div>
               <p>Primary:</p>
@@ -192,9 +192,9 @@ const Colors = () => {
         </div>
       </div>
       <div className="flex flex-col items-center mb-3">
-        <p className="h5">Background</p>
+        <h5 className="h5">Background</h5>
         <div className="flex flex-col flex-wrap items-center justify-center pb-3 mt-1 space-x-2">
-          <p className="h6">Black</p>
+          <h6 className="h6">Black</h6>
           <div className="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
             <div>
               <p>Base:</p>
@@ -215,7 +215,7 @@ const Colors = () => {
           </div>
         </div>
         <div className="flex flex-col flex-wrap items-center justify-center pb-3 space-x-2">
-          <p className="h6">White</p>
+          <h6 className="h6">White</h6>
           <div className="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
             <div>
               <p>Base:</p>
