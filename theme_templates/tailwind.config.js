@@ -1,7 +1,7 @@
 const plugin = require("tailwindcss/plugin");
 
 const colors = require("./colors");
-const boxShadow = require("./shadows");
+const shadows = require("./shadows");
 const typography = require("./typography");
 const misc = require("./misc");
 
@@ -12,7 +12,7 @@ module.exports = {
   theme: {
     extend: {
       colors,
-      boxShadow,
+      shadows,
       ...misc,
     },
   },
