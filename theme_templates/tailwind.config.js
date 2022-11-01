@@ -23,7 +23,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    plugin(function ({ addBase, addComponents }) {
+    plugin(function ({ addComponents }) {
       addComponents({
         ...typography,
       });
