@@ -1,5 +1,5 @@
 const { buildConfig } = require("./action-scripts/build-config.js");
-const { build } = require("./action-scripts/build.js");
+
 const { copyThemeFile } = require("./action-scripts/copy-theme.js");
 const { exec } = require("child_process");
 
@@ -18,6 +18,7 @@ const shipwrightScript = ({
   buildConfig({ transformedTokenPath, outputFolder, styleSystem });
 
   // execute the style-dictionary transformations
+  const { build } = require("./action-scripts/build.js");
   build();
 
   // copy themeFile

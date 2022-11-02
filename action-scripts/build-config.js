@@ -1,8 +1,8 @@
 const fs = require("fs");
 
-const buildConfig = async ({
-  outputFolder = "build",
+const buildConfig = ({
   transformedTokenPath,
+  outputFolder = "build",
   styleSystem,
 }) => {
   const platforms = {
@@ -57,11 +57,7 @@ const buildConfig = async ({
     platforms: { [styleSystem]: platforms[styleSystem] },
   };
 
-  await fs.writeFile("config.json", JSON.stringify(config), (err) => {
-    if (err) {
-      console.error(err);
-    }
-  });
+   fs.writeFileSync("config.json", JSON.stringify(config));
 };
 
 module.exports = { buildConfig };
