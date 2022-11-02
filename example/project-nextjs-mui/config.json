@@ -1,0 +1,1 @@
+{"source":["styles/mui/style-dictionary/*.json"],"platforms":{"mui":{"transformGroup":"js/custom","buildPath":"styles/mui/","files":[{"destination":"typography.json","format":"muiTypography"},{"destination":"misc.json","format":"jsMisc"},{"destination":"colors.json","format":"jsColors"},{"destination":"shadows.json","format":"jsShadows"}]}}}
