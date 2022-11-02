@@ -135,12 +135,12 @@ You can pick and choose which styles are availble in your project by editing the
 ### Colors:
 - Import your generated `colors.json` file:
 ```
-const colors = require("./yourOutputDirectory/colors");
+const palette = require("./yourOutputDirectory/colors");
 ```
-- Include `palette: colors` as a key/value pair in the object passed to the `createTheme` function:
+- Include `palette` in the object passed to the `createTheme` function:
 ```
 const theme = createTheme({
-  palette: colors,
+  palette,
 });
 ```
 
