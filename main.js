@@ -9,8 +9,6 @@ const shipwrightScript = ({
   actionPath = "./",
 }) => {
   const transformedTokenPath = `${outputFolder}/style-dictionary/tokens.json`;
-  console.log(figmaTokenFile);
-  console.log(transformedTokenPath);
 
   // transform figma token file to style-dictionary ready JSON
   execSync(`npx token-transformer ${figmaTokenFile} ${transformedTokenPath}`);
