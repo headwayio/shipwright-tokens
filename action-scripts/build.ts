@@ -2,14 +2,17 @@ const StyleDictionary = require("style-dictionary").extend("config.json");
 
 const build = () => {
   /* ======================= Helpers ======================= */
+  type FlattenObjReturn =
+    | [PropertyKey, string | number | undefined]
+    | undefined;
 
   const flattenObj = <T extends { value?: string | number }>(
     key: PropertyKey,
-    obj: T
-  ): [PropertyKey, string | number | undefined] | undefined => {
+    obj: T | undefined
+  ): FlattenObjReturn | T => {
     if (obj === undefined) return;
 
-    const getEntries = () =>
+    const getEntries = (): T =>
       Object.fromEntries(
         Object.entries(obj)?.map(([k, v]) => flattenObj(k, v))
       );
@@ -17,12 +20,8 @@ const build = () => {
     // We're checking for a 'value' key this way, rather than a simple obj.value check
     // because we want to avoid a false negative if obj.value resolves to a falsy value
     const hasAValueKey = Object.keys(obj).includes("value");
-    const value =
-      key === "lineHeight" || key === "fontSize"
-        ? parseLineHeight(obj?.value)
-        : obj?.value;
 
-    return hasAValueKey ? [key, value] : [key, getEntries()];
+    return hasAValueKey ? [key, obj?.value] : [key, getEntries()];
   };
 
   const formatEntries = (entries) =>
@@ -38,7 +37,7 @@ const build = () => {
           )
         );
 
-  const parseFontWeight = (value) => {
+  const parseFontWeight = (value: string | number) => {
     if (typeof value !== "string") return value;
     const val = value?.toLowerCase().replace(" ", "");
     switch (val) {
@@ -57,7 +56,7 @@ const build = () => {
     }
   };
 
-  const parseLetterSpacing = (value) => {
+  const parseLetterSpacing = (value: string | number) => {
     if (typeof value === "string") {
       const lastChar = value.slice(-1);
       if (lastChar === "%") {
@@ -69,10 +68,10 @@ const build = () => {
     return `${value}px`;
   };
 
-  const parseLineHeight = (value) =>
+  const parseLineHeight = (value: string | number) =>
     typeof value === "string" ? value : `${value}px`;
 
-  const parseTypography = (obj = {}) => {
+  const parseTypography = (obj: Record<string, string | number> = {}) => {
     const { fontWeight, lineHeight, letterSpacing } = obj;
     return {
       ...obj,
@@ -82,7 +81,7 @@ const build = () => {
     };
   };
 
-  const formatTwTypographyValues = (obj) => {
+  const formatTwTypographyValues = (obj: Record<string, string | number>) => {
     const items = Object.entries(obj);
     const expanded = {};
     items.forEach(([k, v]) => {
@@ -111,12 +110,12 @@ const build = () => {
     return expanded;
   };
 
-  const formatMuiTypographyValues = (obj) => {
+  const formatMuiTypographyValues = (obj: Record<string, string | number>) => {
     const items = Object.entries(obj);
     const expanded = {};
     items.forEach(([k, v]) => {
       if (v[k]) return (expanded[k] = v[k]);
-      if (k === "ios") return (expanded.ios = v);
+      if (k === "ios") return (expanded["ios"] = v);
 
       const innerItems = Object.entries(v);
 
@@ -260,5 +259,7 @@ const build = () => {
 
   StyleDictionary.buildAllPlatforms();
 };
+
+/* ============================================================= */
 
 module.exports = { build };
