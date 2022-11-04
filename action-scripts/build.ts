@@ -1,27 +1,43 @@
 const StyleDictionary = require("style-dictionary").extend("config.json");
 
 const build = () => {
-  /* ======================= Helpers ======================= */
+  /* ======================= Types / Typeguards ======================= */
+
+  type Value = { value?: string | number };
+  type ObjInput = Value | Record<string, Value | Record<string, unknown>>;
   type FlattenObjReturn =
-    | [PropertyKey, string | number | undefined]
+    | [PropertyKey, string | number | undefined | ObjInput]
     | undefined;
+  const isValue = (obj: ObjInput): obj is Value => "value" in obj;
 
-  const flattenObj = <T extends { value?: string | number }>(
-    key: PropertyKey,
-    obj: T | undefined
-  ): FlattenObjReturn | T => {
+  /* ===================================================== */
+
+  /* ======================= Helpers ======================= */
+
+  const flattenObj = (key: PropertyKey, obj: ObjInput): FlattenObjReturn => {
     if (obj === undefined) return;
+    if (isValue(obj)) {
+      return [key, obj.value];
+    }
 
-    const getEntries = (): T =>
-      Object.fromEntries(
-        Object.entries(obj)?.map(([k, v]) => flattenObj(k, v))
-      );
+    const entries = Object.entries(obj);
 
-    // We're checking for a 'value' key this way, rather than a simple obj.value check
-    // because we want to avoid a false negative if obj.value resolves to a falsy value
-    const hasAValueKey = Object.keys(obj).includes("value");
+    const mapped = entries.map(([k, v]) => flattenObj(k, v));
 
-    return hasAValueKey ? [key, obj?.value] : [key, getEntries()];
+    return [
+      key,
+      mapped.reduce<ObjInput>((prev, curr) => {
+        if (curr) {
+          const [k, v] = curr;
+          return {
+            ...prev,
+            [k]: v,
+          };
+        } else {
+          return prev;
+        }
+      }, {}),
+    ];
   };
 
   const formatEntries = (entries) =>
