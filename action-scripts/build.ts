@@ -5,6 +5,8 @@ const build = () => {
 
   type Value = { value?: string | number };
   type ObjInput = Value | Record<string, Value | Record<string, unknown>>;
+  type Entry = [PropertyKey, ObjInput];
+  type EntryInput = Record<PropertyKey, Value | Record<PropertyKey, unknown>>;
   type FlattenObjReturn =
     | [PropertyKey, string | number | undefined | ObjInput]
     | undefined;
@@ -40,18 +42,31 @@ const build = () => {
     ];
   };
 
-  const formatEntries = (entries) =>
-    !entries
-      ? ""
-      : JSON.stringify(
-          Object.fromEntries(
-            Object.entries(entries)?.map(([k, v]) => {
-              const isStringOrNum =
-                typeof v === "string" || typeof v === "number";
-              return isStringOrNum ? [k, v] : flattenObj(k, v);
-            })
-          )
-        );
+  const formatEntries = (obj: EntryInput): string => {
+    if (!obj) return "";
+
+    const entries: Entry[] = Object.entries(obj);
+    const mapped: FlattenObjReturn[] = entries[0]?.length
+      ? entries.map(([k, v]: Entry) => {
+          const isStringOrNum = typeof v === "string" || typeof v === "number";
+          return isStringOrNum ? [k, v] : flattenObj(k, v);
+        })
+      : [];
+
+    const reduced = mapped.reduce((prev, curr) => {
+      if (curr?.length) {
+        const [k, v] = curr;
+        return {
+          ...prev,
+          [k]: v,
+        };
+      } else {
+        return prev;
+      }
+    }, {});
+
+    return JSON.stringify(reduced);
+  };
 
   const parseFontWeight = (value: string | number) => {
     if (typeof value !== "string") return value;
