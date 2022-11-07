@@ -3,6 +3,7 @@
 ## Contents
 - [Configure: Filter Actions](#configure-filter-actions)
 - [Integreate Tailwind CSS](#integrate-tailwind-css)
+- [Integreate MUI](#integrate-mui)
 ***
  
 ## Configure: Filter Actions
@@ -101,5 +102,73 @@ plugins: [
       });
     }),
   ],
+```
+***
+## Integrate MUI
+This section will show you how to configure your Shipwright Tokens action to output a custom MUI theme.
+### Generate a Custom Theme
+Ensure that the `.yml` file that calls Shipwright Tokens includes `mui` as the value for the `styleSystem` property:
+```
+    steps:
+      - name: Shipwright Tokens
+        uses: headwayio/shipwright-tokens@(release/version)
+        with:
+          styleSystem: mui
+```
+With this configuration option set, Shipwright Tokens will generate 5 files that will be used for your custom theme: `muiTheme.js`, `colors.json`, `misc.json`, `shadows.json`, and `typography.json`. These files will be generated in the directory that you specify for the `outputFolder` property.
+
+### Using the Custom Theme
+By default, the generated `muiTheme.js` file will import and extend the 4 generated `.json` files, making your all styles in your custom theme available for use. To start using your custom theme, you simply need to pass your custom theme to MUI's `ThemeProvider` component by doing the following:
+- Import your custom theme:
+```
+import theme from "./yourOutputDirectory/muiTheme";
+```
+- Provde your theme to the `ThemeProvider`
+```
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+```
+### Pick and Choose Styles
+You can pick and choose which styles are availble in your project by editing the generated `muiTheme.js` to only include the styles you want by adding/removing the following snippets:
+
+### Colors:
+- Import your generated `colors.json` file:
+```
+const palette = require("./yourOutputDirectory/colors");
+```
+- Include `palette` in the object passed to the `createTheme` function:
+```
+const theme = createTheme({
+  palette,
+});
+```
+
+### Shadows:
+- Import your generated `shadows.json` file:
+```
+const shadows = require("./yourOutputDirectory/shadows");
+```
+- Include `shadows` in the object passed to the `createTheme` function:
+```
+const theme = createTheme({
+  shadows,
+});
+```
+
+### Typography:
+- Import your generated `typography.json` & `misc.json` files:
+```
+const typography = require("./typography");
+const misc = require("./misc");
+```
+- Spread the values of `typography` and `misc` in the object passed to the `createTheme` function:
+```
+const theme = createTheme({
+  typography: {
+    ...typography,
+    ...misc,
+  },
+});
 ```
 ***
