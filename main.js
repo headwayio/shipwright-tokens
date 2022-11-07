@@ -1,7 +1,6 @@
 const { buildConfig } = require("./action-scripts/build-config.js");
-const { build } = require("./action-scripts/build.js");
 const { copyThemeFile } = require("./action-scripts/copy-theme.js");
-const { exec } = require("child_process");
+const { execSync } = require("child_process");
 
 const shipwrightScript = ({
   figmaTokenFile = "token/token.json",
@@ -12,12 +11,13 @@ const shipwrightScript = ({
   const transformedTokenPath = `${outputFolder}/style-dictionary/tokens.json`;
 
   // transform figma token file to style-dictionary ready JSON
-  exec(`node token-transformer ${figmaTokenFile} ${transformedTokenPath}`);
+  execSync(`npx token-transformer ${figmaTokenFile} ${transformedTokenPath} --expandTypography=true`);
 
   // create the style-dictionary build config based on action config
   buildConfig({ transformedTokenPath, outputFolder, styleSystem });
 
   // execute the style-dictionary transformations
+  const { build } = require("./action-scripts/build.js");
   build();
 
   // copy themeFile
