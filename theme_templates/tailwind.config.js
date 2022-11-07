@@ -6,8 +6,11 @@ const typography = require("./typography");
 const misc = require("./misc");
 
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  purge: [],
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
   darkMode: false,
   theme: {
     extend: {
@@ -26,4 +29,5 @@ module.exports = {
       });
     }),
   ],
+  mode: "jit",
 };
