@@ -14,8 +14,9 @@ const build = () => {
     // We're checking for a 'value' key this way, rather than a simple obj.value check
     // because we want to avoid a false negative if obj.value resolves to a falsy value
     const hasAValueKey = Object.keys(obj).includes("value");
+    const value = key === 'lineHeight' ? parseLineHeight(obj?.value) : obj?.value;
 
-    return hasAValueKey ? [key, obj?.value] : [key, getEntries()];
+    return hasAValueKey ? [key, value] : [key, getEntries()];
   };
 
   const formatEntries = (entries) =>
