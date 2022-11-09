@@ -13,7 +13,7 @@ const Header = () => {
           priority
         />
       </div>
-      <h4 className="h4 text-type-black-secondary">
+      <h4 className="h4 h4-700 text-type-black-secondary">
         Shipwright Tokens - Next JS / Tailwind CSS
       </h4>
     </div>
