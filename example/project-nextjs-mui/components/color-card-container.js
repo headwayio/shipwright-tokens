@@ -12,7 +12,7 @@ const ColorCardContainer = ({ title, children }) => {
         margin: "15px 0",
       }}
     >
-      <Typography variant="h5-regular">{title}</Typography>
+      <Typography variant="h5-400">{title}</Typography>
       <Box
         sx={{
           display: "flex",
