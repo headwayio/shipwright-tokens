@@ -10,6 +10,11 @@ const build = () => {
   type FlattenObjReturn =
     | [PropertyKey, string | number | undefined | ObjInput]
     | undefined;
+  type TokensObj = {
+    shadows?: Record<string, EntryInput>;
+    "color set"?: Record<string, EntryInput>;
+    "type set"?: Record<string, EntryInput>;
+  };
   const isValue = (obj: ObjInput): obj is Value => "value" in obj;
 
   /* ===================================================== */
@@ -42,7 +47,7 @@ const build = () => {
     ];
   };
 
-  const formatEntries = (obj: EntryInput): string => {
+  const formatEntries = (obj: EntryInput | undefined): string => {
     if (!obj) return "";
 
     const entries: Entry[] = Object.entries(obj);
@@ -113,7 +118,7 @@ const build = () => {
   };
 
   const formatTwTypographyValues = (obj: Record<string, string | number>) => {
-    const items = Object.entries(obj);
+    const items: Entry[] = Object.entries(obj);
     const expanded = {};
     items.forEach(([k, v]) => {
       if (v[k]) return (expanded["." + k] = v[k]);
