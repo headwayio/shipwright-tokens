@@ -226,5 +226,22 @@ const theme = createTheme({
   },
 });
 ```
+---
+
+## Integrate Restyle
+
+This section will show you how to configure your Shipwright Tokens action to output a custom React Native Restyle theme.
+
+### Generate a Custom Theme
+
+### Using the Custom Theme
+
+### Pick and Choose Styles
+
+### Colors:
+
+### Shadows:
+
+### Typography:
 
 ---
