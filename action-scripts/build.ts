@@ -234,9 +234,64 @@ const build = () => {
     return expanded;
   };
 
-  /* =================================================================== */
+  const formatRestyleTypographyValues = (obj) => {
+    const items = Object.entries(obj);
+    const expanded = {};
+    items.forEach(([k, v]) => {
+      if (v[k]) return (expanded[k] = v[k]);
+      if (k === "ios") return (expanded.ios = v);
 
-  /* ===================== StyleDictionary Registers ===================== */
+      const innerItems = Object.entries(v);
+
+      innerItems.forEach(([item, v]) => {
+        const variants = Object.entries(v);
+        const firstChild = variants[0][1];
+        if (typeof firstChild === "string" || typeof firstChild === "number") {
+          const transformedVal = Object.entries(v).reduce(
+            (transformed, [key, value]) => {
+              if (key === "paragraphSpacing") return transformed;
+              if (key === "textCase") {
+                if (value === "none") return transformed;
+                return { ...transformed, textTransform: value };
+              }
+              if (key === "textDecoration") {
+                if (value === "none") return transformed;
+                return { ...transformed, textDecorationLine: value };
+              }
+              return { ...transformed, [key]: value };
+            },
+            {}
+          );
+          expanded[item] = transformedVal;
+          // expanded[item] = v;
+          return;
+        }
+        variants.forEach(([variant, value]) => {
+          const transformedVal = Object.entries(value).reduce(
+            (transformed, [key, value]) => {
+              if (key === "paragraphSpacing") return transformed;
+              if (key === "textCase") {
+                if (value === "none") return transformed;
+                return { ...transformed, textTransform: value };
+              }
+              if (key === "textDecoration") {
+                if (value === "none") return transformed;
+                return { ...transformed, textDecorationLine: value };
+              }
+              return { ...transformed, [key]: value };
+            },
+            {}
+          );
+
+          expanded[item + "-" + variant] = transformedVal;
+          // expanded[item] = value;
+        });
+      });
+    });
+    return expanded;
+  };
+
+  /* ============================================================= */
 
   StyleDictionary.registerTransform({
     name: "shadows/css",
