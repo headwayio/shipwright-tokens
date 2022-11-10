@@ -35,7 +35,14 @@ const build = () => {
 
     const entries = Object.entries(obj);
 
-    const mapped = entries.map(([k, v]) => flattenObj(k, v));
+    // We're checking for a 'value' key this way, rather than a simple obj.value check
+    // because we want to avoid a false negative if obj.value resolves to a falsy value
+    const hasAValueKey = Object.keys(obj).includes("value");
+    const value =
+      key === "lineHeight" || key === "fontSize"
+        ? parseNumberToPixel(obj?.value)
+        : obj?.value;
+
 
     return [
       key,
