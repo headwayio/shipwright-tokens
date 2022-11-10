@@ -117,7 +117,7 @@ const build = () => {
     };
   };
 
-  const formatTwTypographyValues = (obj: Record<string, string | number>) => {
+  const formatTwTypographyValues = (obj: Record<PropertyKey, ObjInput>) => {
     const items: Entry[] = Object.entries(obj);
     const expanded = {};
     items.forEach(([k, v]) => {
@@ -175,8 +175,8 @@ const build = () => {
   StyleDictionary.registerTransform({
     name: "shadows/css",
     type: "value",
-    matcher: ({ type }) => type === "boxShadow",
-    transformer: ({ value }) => {
+    matcher: ({ type }: { type: string }) => type === "boxShadow",
+    transformer: ({ value }: { value: unknown | [] }) => {
       const values = Array.isArray(value) ? value : [value];
       const finalValues = values
         .map(
@@ -193,29 +193,33 @@ const build = () => {
   StyleDictionary.registerTransform({
     name: "lineHeight/px",
     type: "value",
-    matcher: ({ type }) => type === "lineHeights",
-    transformer: ({ value }) => parseLineHeight(value),
+    matcher: ({ type }: { type: string }) => type === "lineHeights",
+    transformer: ({ value }: { value: string | number }) =>
+      parseLineHeight(value),
   });
 
   StyleDictionary.registerTransform({
     name: "letterSpacing/em",
     type: "value",
-    matcher: ({ type }) => type === "letterSpacing",
-    transformer: ({ value }) => parseLetterSpacing(value),
+    matcher: ({ type }: { type: string }) => type === "letterSpacing",
+    transformer: ({ value }: { value: string | number }) =>
+      parseLetterSpacing(value),
   });
 
   StyleDictionary.registerTransform({
     name: "fontWeight/lowerCaseOrNum",
     type: "value",
-    matcher: ({ type }) => type === "fontWeights",
-    transformer: ({ value }) => parseFontWeight(value),
+    matcher: ({ type }: { type: string }) => type === "fontWeights",
+    transformer: ({ value }: { value: string | number }) =>
+      parseFontWeight(value),
   });
 
   StyleDictionary.registerTransform({
     name: "typography/nested",
     type: "value",
-    matcher: ({ type }) => type === "typography",
-    transformer: ({ value }) => parseTypography(value),
+    matcher: ({ type }: { type: string }) => type === "typography",
+    transformer: ({ value }: { value: Record<string, string | number> }) =>
+      parseTypography(value),
   });
 
   StyleDictionary.registerTransformGroup({
@@ -235,18 +239,19 @@ const build = () => {
 
   StyleDictionary.registerFormat({
     name: "jsShadows",
-    formatter: ({ dictionary }) => formatEntries(dictionary?.tokens?.shadows),
+    formatter: ({ dictionary }: { dictionary: { tokens: TokensObj } }) =>
+      formatEntries(dictionary?.tokens?.shadows),
   });
 
   StyleDictionary.registerFormat({
     name: "jsColors",
-    formatter: ({ dictionary }) =>
+    formatter: ({ dictionary }: { dictionary: { tokens: TokensObj } }) =>
       formatEntries(dictionary?.tokens["color set"]),
   });
 
   StyleDictionary.registerFormat({
     name: "twTypography",
-    formatter: ({ dictionary }) => {
+    formatter: ({ dictionary }: { dictionary: { tokens: TokensObj } }) => {
       const formatted = JSON.parse(
         formatEntries(dictionary?.tokens["type set"])
       );
@@ -257,7 +262,7 @@ const build = () => {
 
   StyleDictionary.registerFormat({
     name: "jsMisc",
-    formatter: ({ dictionary = {} }) => {
+    formatter: ({ dictionary = {} }: Record<string, any>) => {
       const { tokens } = dictionary;
       const excluded = ["color set", "shadows", "type set"];
 
@@ -284,7 +289,7 @@ const build = () => {
 
   StyleDictionary.registerFormat({
     name: "muiTypography",
-    formatter: ({ dictionary }) => {
+    formatter: ({ dictionary }: { dictionary: { tokens: TokensObj } }) => {
       const formatted = JSON.parse(
         formatEntries(dictionary?.tokens["type set"])
       );
