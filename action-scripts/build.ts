@@ -43,6 +43,7 @@ const build = () => {
         ? parseNumberToPixel(obj?.value)
         : obj?.value;
 
+    // TODO make switch to parse fontWeight
 
     return [
       key,
