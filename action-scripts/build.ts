@@ -419,6 +419,18 @@ const build = () => {
     },
   });
 
+  StyleDictionary.registerFormat({
+    name: "restyleTypography",
+    formatter: ({ dictionary }) => {
+      const formatted = JSON.parse(
+        formatEntries(dictionary?.tokens["type set"])
+      );
+      console.log(dictionary.tokens["fontWeights"]);
+      const formattedValues = formatRestyleTypographyValues(formatted);
+      return JSON.stringify(formattedValues);
+    },
+  });
+
   StyleDictionary.buildAllPlatforms();
 };
 
