@@ -6,7 +6,7 @@ import ColorCard from "./color-card";
 const Colors = () => {
   return (
     <Container>
-      <Typography variant="h4-regular" sx={{ color: "type.black.secondary" }}>
+      <Typography variant="h4-400" sx={{ color: "type.black.secondary" }}>
         Colors
       </Typography>
       <ColorCardContainer title="Primary">
