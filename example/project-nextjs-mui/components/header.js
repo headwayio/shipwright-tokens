@@ -13,7 +13,7 @@ const Header = () => {
         layout="fill"
         priority
       />
-      <Typography variant="h4-regular" sx={{ color: "type.black.secondary" }}>
+      <Typography variant="h4-400" sx={{ color: "type.black.secondary" }}>
         Shipwright Tokens - Next JS / MUI
       </Typography>
     </Container>
