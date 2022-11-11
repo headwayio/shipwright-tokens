@@ -1,12 +1,23 @@
-const fs = require("fs");
+import fs from "fs";
+
+enum StyleSystems {
+  Tailwind = "tailwind",
+  Mui = "mui",
+}
+
+type Props = {
+  transformedTokenPath: string;
+  outputFolder: string;
+  styleSystem: StyleSystems;
+};
 
 const buildConfig = ({
   transformedTokenPath,
   outputFolder = "build",
   styleSystem,
-}) => {
+}: Props) => {
   const platforms = {
-    tailwind: {
+    [StyleSystems.Tailwind]: {
       transformGroup: "js/custom",
       buildPath: `${outputFolder}/`,
       files: [
@@ -28,7 +39,7 @@ const buildConfig = ({
         },
       ],
     },
-    mui: {
+    [StyleSystems.Mui]: {
       transformGroup: "js/custom",
       buildPath: `${outputFolder}/`,
       files: [
@@ -57,7 +68,7 @@ const buildConfig = ({
     platforms: { [styleSystem]: platforms[styleSystem] },
   };
 
-   fs.writeFileSync("config.json", JSON.stringify(config));
+  fs.writeFileSync("config.json", JSON.stringify(config));
 };
 
-module.exports = { buildConfig };
+export { StyleSystems, buildConfig };

@@ -1,4 +1,5 @@
-const StyleDictionary = require("style-dictionary").extend("config.json");
+import SD from "style-dictionary";
+const StyleDictionary = SD.extend("config.json");
 
 const build = () => {
   /* ======================= Types / Typeguards ======================= */
@@ -303,4 +304,4 @@ const build = () => {
 
 /* ============================================================= */
 
-module.exports = { build };
+export default build;

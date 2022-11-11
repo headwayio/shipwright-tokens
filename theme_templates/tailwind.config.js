@@ -1,9 +1,8 @@
-const plugin = require("tailwindcss/plugin");
-
-const colors = require("./colors");
-const shadows = require("./shadows");
-const typography = require("./typography");
-const misc = require("./misc");
+import plugin from "tailwindcss/plugin";
+import colors from "./colors";
+import shadows from "./shadows";
+import typography from "./typography";
+import misc from "./misc";
 
 module.exports = {
   content: [

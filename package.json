@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "to be determined",
   "main": "index.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest"
   },

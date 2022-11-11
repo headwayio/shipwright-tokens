@@ -1,8 +1,12 @@
-"use strict";
-const fs = require("fs");
-const buildConfig = async ({ outputFolder = "build", transformedTokenPath, styleSystem, }) => {
+import fs from "fs";
+var StyleSystems;
+(function (StyleSystems) {
+    StyleSystems["Tailwind"] = "tailwind";
+    StyleSystems["Mui"] = "mui";
+})(StyleSystems || (StyleSystems = {}));
+const buildConfig = ({ transformedTokenPath, outputFolder = "build", styleSystem, }) => {
     const platforms = {
-        tailwind: {
+        [StyleSystems.Tailwind]: {
             transformGroup: "js/custom",
             buildPath: `${outputFolder}/`,
             files: [
@@ -24,7 +28,7 @@ const buildConfig = async ({ outputFolder = "build", transformedTokenPath, style
                 },
             ],
         },
-        mui: {
+        [StyleSystems.Mui]: {
             transformGroup: "js/custom",
             buildPath: `${outputFolder}/`,
             files: [
@@ -51,10 +55,6 @@ const buildConfig = async ({ outputFolder = "build", transformedTokenPath, style
         source: [transformedTokenPath],
         platforms: { [styleSystem]: platforms[styleSystem] },
     };
-    await fs.writeFile("config.json", JSON.stringify(config), (err) => {
-        if (err) {
-            console.error(err);
-        }
-    });
+    fs.writeFileSync("config.json", JSON.stringify(config));
 };
-module.exports = { buildConfig };
+export { StyleSystems, buildConfig };
