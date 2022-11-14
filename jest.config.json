@@ -1,7 +1,7 @@
 {
   "projects": [
-    "<rootDir>/example/project-nextjs-tailwind/jest.config.js",
-    "<rootDir>/example/project-nextjs-mui/jest.config.js",
+    "<rootDir>/example/project-nextjs-tailwind/",
+    "<rootDir>/example/project-nextjs-mui/",
     {
       "rootDir": "<rootDir>",
       "testPathIgnorePatterns": ["example"]
