@@ -1,7 +1,6 @@
 import { execSync } from "child_process";
 import copyThemeFile from "./action-scripts/copy-theme.js";
 import { buildConfig, StyleSystems } from "./action-scripts/build-config.js";
-import build from "./action-scripts/build.js";
 
 type Props = {
   figmaTokenFile: string;
@@ -10,7 +9,7 @@ type Props = {
   styleSystem: StyleSystems;
 };
 
-const shipwrightScript = ({
+const shipwrightScript = async ({
   figmaTokenFile = "token/token.json",
   outputFolder = "build",
   styleSystem = StyleSystems.Mui,
@@ -27,7 +26,10 @@ const shipwrightScript = ({
   buildConfig({ transformedTokenPath, outputFolder, styleSystem });
 
   // execute the style-dictionary transformations
-  build();
+  import("./action-scripts/build.js").then((module) => {
+    const build = module.default;
+    build();
+  });
 
   // copy themeFile
   copyThemeFile({ outputFolder, styleSystem, actionPath });

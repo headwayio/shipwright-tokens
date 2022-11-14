@@ -71,4 +71,4 @@ const buildConfig = ({
   fs.writeFileSync("config.json", JSON.stringify(config));
 };
 
-export { StyleSystems, buildConfig };
+export { buildConfig, StyleSystems };

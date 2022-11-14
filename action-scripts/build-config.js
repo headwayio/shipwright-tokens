@@ -57,4 +57,4 @@ const buildConfig = ({ transformedTokenPath, outputFolder = "build", styleSystem
     };
     fs.writeFileSync("config.json", JSON.stringify(config));
 };
-export { StyleSystems, buildConfig };
+export { buildConfig, StyleSystems };
