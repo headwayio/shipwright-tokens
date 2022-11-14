@@ -5,8 +5,10 @@ const build = () => {
   /* ======================= Types / Typeguards ======================= */
 
   type Value = { value?: string | number };
-  type ObjInput = Value | Record<string, Value | Record<string, unknown>>;
-  type Entry = [PropertyKey, ObjInput];
+  type ObjInput =
+    | Value
+    | Record<PropertyKey, Value | Record<PropertyKey, unknown>>;
+  type Entry = [string | number, ObjInput];
   type EntryInput = Record<PropertyKey, Value | Record<PropertyKey, unknown>>;
   type FlattenObjReturn =
     | [PropertyKey, string | number | undefined | ObjInput]
@@ -18,9 +20,9 @@ const build = () => {
   };
   const isValue = (obj: ObjInput): obj is Value => "value" in obj;
 
-  /* ===================================================== */
+  /* ================================================================= */
 
-  /* ======================= Helpers ======================= */
+  /* ============================ Helpers ============================ */
 
   const flattenObj = (key: PropertyKey, obj: ObjInput): FlattenObjReturn => {
     if (obj === undefined) return;
@@ -118,10 +120,10 @@ const build = () => {
     };
   };
 
-  const formatTwTypographyValues = (obj: Record<PropertyKey, ObjInput>) => {
+  const formatTwTypographyValues = (obj: Record<string | number, ObjInput>) => {
     const items: Entry[] = Object.entries(obj);
-    const expanded = {};
-    items.forEach(([k, v]) => {
+    const expanded: Record<string | number, any> = {};
+    items.forEach(([k, v]: Entry) => {
       if (v[k]) return (expanded["." + k] = v[k]);
       if (k === "ios") return (expanded[".ios"] = v);
 
@@ -147,9 +149,11 @@ const build = () => {
     return expanded;
   };
 
-  const formatMuiTypographyValues = (obj: Record<string, string | number>) => {
+  const formatMuiTypographyValues = (
+    obj: Record<PropertyKey, string | number>
+  ) => {
     const items = Object.entries(obj);
-    const expanded = {};
+    const expanded: Record<PropertyKey, any> = {};
     items.forEach(([k, v]) => {
       if (v[k]) return (expanded[k] = v[k]);
       if (k === "ios") return (expanded["ios"] = v);
@@ -171,12 +175,14 @@ const build = () => {
     return expanded;
   };
 
-  /* ============================================================= */
+  /* =================================================================== */
+
+  /* ===================== StyleDictionary Registers ===================== */
 
   StyleDictionary.registerTransform({
     name: "shadows/css",
     type: "value",
-    matcher: ({ type }: { type: string }) => type === "boxShadow",
+    matcher: ({ type }: SD.TransformedToken) => type === "boxShadow",
     transformer: ({ value }: { value: unknown | [] }) => {
       const values = Array.isArray(value) ? value : [value];
       const finalValues = values
@@ -194,7 +200,7 @@ const build = () => {
   StyleDictionary.registerTransform({
     name: "lineHeight/px",
     type: "value",
-    matcher: ({ type }: { type: string }) => type === "lineHeights",
+    matcher: ({ type }: SD.TransformedToken) => type === "lineHeights",
     transformer: ({ value }: { value: string | number }) =>
       parseLineHeight(value),
   });
@@ -202,7 +208,7 @@ const build = () => {
   StyleDictionary.registerTransform({
     name: "letterSpacing/em",
     type: "value",
-    matcher: ({ type }: { type: string }) => type === "letterSpacing",
+    matcher: ({ type }: SD.TransformedToken) => type === "letterSpacing",
     transformer: ({ value }: { value: string | number }) =>
       parseLetterSpacing(value),
   });
@@ -210,7 +216,7 @@ const build = () => {
   StyleDictionary.registerTransform({
     name: "fontWeight/lowerCaseOrNum",
     type: "value",
-    matcher: ({ type }: { type: string }) => type === "fontWeights",
+    matcher: ({ type }: SD.TransformedToken) => type === "fontWeights",
     transformer: ({ value }: { value: string | number }) =>
       parseFontWeight(value),
   });
@@ -218,7 +224,7 @@ const build = () => {
   StyleDictionary.registerTransform({
     name: "typography/nested",
     type: "value",
-    matcher: ({ type }: { type: string }) => type === "typography",
+    matcher: ({ type }: SD.TransformedToken) => type === "typography",
     transformer: ({ value }: { value: Record<string, string | number> }) =>
       parseTypography(value),
   });
@@ -267,7 +273,7 @@ const build = () => {
       const { tokens } = dictionary;
       const excluded = ["color set", "shadows", "type set"];
 
-      const entries = {};
+      const entries: Record<PropertyKey, any> = {};
       const keys = Object.keys(tokens)?.filter(
         (k = "") => k[0] !== "_" && !excluded.includes(k)
       );
@@ -302,6 +308,6 @@ const build = () => {
   StyleDictionary.buildAllPlatforms();
 };
 
-/* ============================================================= */
+/* ======================================================================= */
 
 export default build;
