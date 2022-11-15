@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "test": "NODE_OPTIONS='--experimental-vm-modules' jest; cd example/project-elixir-tailwind && mix test"
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
+    "test-all": "NODE_OPTIONS='--experimental-vm-modules' jest; cd example/project-elixir-tailwind && mix test"
   },
   "repository": {
     "type": "git",

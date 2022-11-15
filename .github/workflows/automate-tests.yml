@@ -18,5 +18,4 @@ jobs:
       - run: npm install 
       - run: npm install --prefix example/project-nextjs-tailwind
       - run: npm install --prefix example/project-nextjs-mui
-      - run: cd example/project-elixir-tailwind && mix deps.get
       - run: npm test
