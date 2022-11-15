@@ -1,10 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# npm test
-if git diff --cached --quiet -- "*"; then
-    echo "main"
-fi
+npm test
 
 if git diff --cached --quiet -- "example/project-nextjs-tailwind/*"; then
     echo "nextjs / tailwind"
