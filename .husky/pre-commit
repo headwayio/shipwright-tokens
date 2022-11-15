@@ -4,14 +4,16 @@
 npm test
 
 if git diff --cached --quiet -- "example/project-nextjs-tailwind/*"; then
-    echo "nextjs / tailwind"
+    echo "example project changed: next / tailwind"
+    cd example/project-next-tailwind && npm test
 fi
 
 if git diff --cached --quiet -- "example/project-nextjs-mui/*"; then
-    echo "nextjs / mui"
+    echo "example project changed: next / mui"
+    cd example/project-next-mui && npm test
 fi
 
 if git diff --cached --quiet -- "example/project-elixir-tailwind/*"; then
-    echo "elixir / tailwind"
+    echo "example project changed: elixir / tailwind"
 fi
 
