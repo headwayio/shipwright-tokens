@@ -1,19 +1,20 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
-
+# --------- Run tests at root level for all pushes 
 npm test
 
-if [[git diff --name-only --quiet main == *"/example/project-nextjs-tailwind/"*]]; then
-    echo "example project changed: next / tailwind"
+# --------- If changes are made to example projects, run their individual tests
+if git diff --name-only main -- "example/project-nextjs-tailwind"; then
     cd example/project-nextjs-tailwind && npm test
+    cd ../..
 fi
 
-if [[git diff --name-only --quiet main == *"/example/project-nextjs-mui/"*]]; then
-    echo "example project changed: next / mui"
-    cd example/project-next-mui && npm test
+if git diff --name-only main -- "example/project-nextjs-mui"; then
+    cd example/project-nextjs-mui && npm test
+    cd ../..
 fi
 
-if [[git diff --name-only --quiet main == *"/example/project-elixir-tailwind/"*]]; then
-    echo "example project changed: elixir / tailwind"
+if git diff --name-only main -- "example/project-elixir-tailwind"; then
+    cd example/project-elixir-tailwind && mix test
+    cd ../..
 fi
-
