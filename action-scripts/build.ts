@@ -8,7 +8,9 @@ const build = () => {
   type ObjInput =
     | Value
     | Record<PropertyKey, Value | Record<PropertyKey, unknown>>;
-  type Entry = [string | number, ObjInput];
+  type StringEntry = [string, ObjInput];
+  type NumEntry = [number, ObjInput];
+  type Entry = StringEntry | NumEntry;
   type EntryInput = Record<PropertyKey, Value | Record<PropertyKey, unknown>>;
   type FlattenObjReturn =
     | [PropertyKey, string | number | undefined | ObjInput]
@@ -121,10 +123,14 @@ const build = () => {
   };
 
   const formatTwTypographyValues = (obj: Record<string | number, ObjInput>) => {
-    const items: Entry[] = Object.entries(obj);
+    const items = Object.entries(obj);
     const expanded: Record<string | number, any> = {};
     items.forEach(([k, v]: Entry) => {
-      if (v[k]) return (expanded["." + k] = v[k]);
+      if (isValue(v)) {
+        if (k === "value") return (expanded["." + k] = v.value);
+      } else {
+        if (v[k]) return (expanded["." + k] = v[k]);
+      }
       if (k === "ios") return (expanded[".ios"] = v);
 
       const innerItems = Object.entries(v);
@@ -149,13 +155,15 @@ const build = () => {
     return expanded;
   };
 
-  const formatMuiTypographyValues = (
-    obj: Record<PropertyKey, string | number>
-  ) => {
+  const formatMuiTypographyValues = (obj: Record<PropertyKey, ObjInput>) => {
     const items = Object.entries(obj);
     const expanded: Record<PropertyKey, any> = {};
     items.forEach(([k, v]) => {
-      if (v[k]) return (expanded[k] = v[k]);
+      if (isValue(v)) {
+        if (k === "value") return (expanded[k] = v.value);
+      } else {
+        if (v[k]) return (expanded[k] = v[k]);
+      }
       if (k === "ios") return (expanded["ios"] = v);
 
       const innerItems = Object.entries(v);
