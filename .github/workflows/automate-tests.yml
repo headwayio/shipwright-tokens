@@ -16,6 +16,4 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.4.0
       - run: npm install 
-      - run: npm install --prefix example/project-nextjs-tailwind
-      - run: npm install --prefix example/project-nextjs-mui
       - run: npm test
