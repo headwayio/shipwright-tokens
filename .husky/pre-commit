@@ -3,17 +3,17 @@
 
 npm test
 
-if git diff --cached --quiet -- "example/project-nextjs-tailwind/*"; then
+if [[git diff --name-only --quiet main == *"/example/project-nextjs-tailwind/"*]]; then
     echo "example project changed: next / tailwind"
-    cd example/project-next-tailwind && npm test
+    cd example/project-nextjs-tailwind && npm test
 fi
 
-if git diff --cached --quiet -- "example/project-nextjs-mui/*"; then
+if [[git diff --name-only --quiet main == *"/example/project-nextjs-mui/"*]]; then
     echo "example project changed: next / mui"
     cd example/project-next-mui && npm test
 fi
 
-if git diff --cached --quiet -- "example/project-elixir-tailwind/*"; then
+if [[git diff --name-only --quiet main == *"/example/project-elixir-tailwind/"*]]; then
     echo "example project changed: elixir / tailwind"
 fi
 
