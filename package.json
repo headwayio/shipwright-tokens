@@ -6,7 +6,8 @@
   "type": "commonjs",
   "scripts": {
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
-    "test-all": "NODE_OPTIONS='--experimental-vm-modules' jest; cd example/project-elixir-tailwind && mix test"
+    "test-all": "NODE_OPTIONS='--experimental-vm-modules' jest; cd example/project-elixir-tailwind && mix test",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "@babel/preset-env": "^7.19.4",
     "autoprefixer": "^10.4.12",
     "eslint": "^8.25.0",
+    "husky": "^8.0.2",
     "jest": "^29.1.1",
     "postcss": "^8.4.16",
     "postcss-cli": "^10.0.0",
