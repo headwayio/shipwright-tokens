@@ -3,7 +3,7 @@ import { execSync } from "child_process";
 
 describe("shipwright tokens action", () => {
   const shipwrightCommand =
-    "ts-node/esm main.ts tokens/raw/tokens.json build/tailwind tailwind";
+    "npx ts-node/esm main.ts tokens/raw/tokens.json build/tailwind tailwind";
 
   beforeEach(() => {
     execSync("rm -rf build/ config.json");
