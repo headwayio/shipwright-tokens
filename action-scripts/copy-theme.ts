@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { StyleSystems } from "./build-config.js";
 
 const copyThemeFile = async ({
   outputFolder,
@@ -8,8 +9,8 @@ const copyThemeFile = async ({
 }: Record<string, string>) => {
   const themeTemplate =
     {
-      tailwind: "tailwind.config.js",
-      mui: "muiTheme.js",
+      [StyleSystems.Tailwind]: "tailwind.config.js",
+      [StyleSystems.Mui]: "muiTheme.js",
     }[styleSystem] || "muiTheme.js";
 
   const themeSource = path.join(actionPath, "theme_templates", themeTemplate);

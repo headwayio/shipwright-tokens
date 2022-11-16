@@ -1,12 +1,20 @@
 import fs from "fs";
 import { execSync } from "child_process";
+import { shipwrightScript } from "../main";
+import { StyleSystems } from "../action-scripts/build-config.js";
 
 describe("shipwright tokens action", () => {
-  const shipwrightCommand =
-    "npx ts-node/esm main.ts tokens/raw/tokens.json build/tailwind tailwind";
+  // const shipwrightCommand =
+  //   "ts-node main.ts tokens/raw/tokens.json build/tailwind tailwind";
 
-  beforeEach(() => {
+  beforeEach(async () => {
     execSync("rm -rf build/ config.json");
+
+    await shipwrightScript({
+      figmaTokenFile: "tokens/raw/tokens.json",
+      outputFolder: "build/tailwind",
+      styleSystem: StyleSystems.Tailwind,
+    });
   });
 
   afterEach(() => {
@@ -14,24 +22,20 @@ describe("shipwright tokens action", () => {
   });
 
   it("transforms tokens for style-dictionary", async () => {
-    execSync(`${shipwrightCommand}`);
     expect(fs.existsSync("./build/tailwind/style-dictionary/tokens.json")).toBe(
       true
     );
   });
 
   it("builds a config.js file for style-dictionary", async () => {
-    execSync(`${shipwrightCommand}`);
     expect(fs.existsSync("./config.json")).toBe(true);
   });
 
   it("outputs style files", async () => {
-    execSync(`${shipwrightCommand}`);
     expect(fs.existsSync("./build/tailwind/colors.json")).toBe(true);
   });
 
   it("outputs a theme config file", async () => {
-    execSync(`${shipwrightCommand}`);
     expect(fs.existsSync("./build/tailwind/tailwind.config.js")).toBe(true);
   });
 });

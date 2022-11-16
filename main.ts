@@ -5,7 +5,7 @@ import { buildConfig, StyleSystems } from "./action-scripts/build-config.js";
 type Props = {
   figmaTokenFile: string;
   outputFolder: string;
-  actionPath: string;
+  actionPath?: string;
   styleSystem: StyleSystems;
 };
 
@@ -45,3 +45,5 @@ shipwrightScript({
   styleSystem: styleSystem as StyleSystems,
   actionPath,
 });
+
+export { shipwrightScript };
