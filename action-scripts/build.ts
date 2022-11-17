@@ -1,38 +1,84 @@
-const StyleDictionary = require("style-dictionary").extend("config.json");
+import SD from "style-dictionary";
+const StyleDictionary = SD.extend("config.json");
 
 const build = () => {
-  /* ======================= Helpers ======================= */
+  /* ======================= Types / Typeguards ======================= */
 
-  const flattenObj = (key, obj) => {
+  type Value = { value?: string | number };
+  type ObjInput =
+    | Value
+    | Record<PropertyKey, Value | Record<PropertyKey, unknown>>;
+  type StringEntry = [string, ObjInput];
+  type NumEntry = [number, ObjInput];
+  type Entry = StringEntry | NumEntry;
+  type EntryInput = Record<PropertyKey, Value | Record<PropertyKey, unknown>>;
+  type FlattenObjReturn =
+    | [PropertyKey, string | number | undefined | ObjInput]
+    | undefined;
+  type TokensObj = {
+    shadows?: Record<string, EntryInput>;
+    "color set"?: Record<string, EntryInput>;
+    "type set"?: Record<string, EntryInput>;
+  };
+  const isValue = (obj: ObjInput): obj is Value => "value" in obj;
+
+  /* ================================================================= */
+
+  /* ============================ Helpers ============================ */
+
+  const flattenObj = (key: PropertyKey, obj: ObjInput): FlattenObjReturn => {
     if (obj === undefined) return;
+    if (isValue(obj)) {
+      return [key, obj.value];
+    }
 
-    const getEntries = () =>
-      Object.fromEntries(
-        Object.entries(obj)?.map(([k, v]) => flattenObj(k, v))
-      );
+    const entries = Object.entries(obj);
 
-    // We're checking for a 'value' key this way, rather than a simple obj.value check
-    // because we want to avoid a false negative if obj.value resolves to a falsy value
-    const hasAValueKey = Object.keys(obj).includes("value");
-    const value = (key === 'lineHeight' || key === 'fontSize') ? parseLineHeight(obj?.value) : obj?.value;
+    const mapped = entries.map(([k, v]) => flattenObj(k, v));
 
-    return hasAValueKey ? [key, value] : [key, getEntries()];
+    return [
+      key,
+      mapped.reduce<ObjInput>((prev, curr) => {
+        if (curr) {
+          const [k, v] = curr;
+          return {
+            ...prev,
+            [k]: v,
+          };
+        } else {
+          return prev;
+        }
+      }, {}),
+    ];
   };
 
-  const formatEntries = (entries) =>
-    !entries
-      ? ""
-      : JSON.stringify(
-          Object.fromEntries(
-            Object.entries(entries)?.map(([k, v]) => {
-              const isStringOrNum =
-                typeof v === "string" || typeof v === "number";
-              return isStringOrNum ? [k, v] : flattenObj(k, v);
-            })
-          )
-        );
+  const formatEntries = (obj: EntryInput | undefined): string => {
+    if (!obj) return "";
 
-  const parseFontWeight = (value) => {
+    const entries: Entry[] = Object.entries(obj);
+    const mapped: FlattenObjReturn[] = entries[0]?.length
+      ? entries.map(([k, v]: Entry) => {
+          const isStringOrNum = typeof v === "string" || typeof v === "number";
+          return isStringOrNum ? [k, v] : flattenObj(k, v);
+        })
+      : [];
+
+    const reduced = mapped.reduce((prev, curr) => {
+      if (curr?.length) {
+        const [k, v] = curr;
+        return {
+          ...prev,
+          [k]: v,
+        };
+      } else {
+        return prev;
+      }
+    }, {});
+
+    return JSON.stringify(reduced);
+  };
+
+  const parseFontWeight = (value: string | number) => {
     if (typeof value !== "string") return value;
     const val = value?.toLowerCase().replace(" ", "");
     switch (val) {
@@ -51,7 +97,7 @@ const build = () => {
     }
   };
 
-  const parseLetterSpacing = (value) => {
+  const parseLetterSpacing = (value: string | number) => {
     if (typeof value === "string") {
       const lastChar = value.slice(-1);
       if (lastChar === "%") {
@@ -63,10 +109,10 @@ const build = () => {
     return `${value}px`;
   };
 
-  const parseLineHeight = (value) =>
+  const parseLineHeight = (value: string | number) =>
     typeof value === "string" ? value : `${value}px`;
 
-  const parseTypography = (obj = {}) => {
+  const parseTypography = (obj: Record<string, string | number> = {}) => {
     const { fontWeight, lineHeight, letterSpacing } = obj;
     return {
       ...obj,
@@ -76,11 +122,15 @@ const build = () => {
     };
   };
 
-  const formatTwTypographyValues = (obj) => {
+  const formatTwTypographyValues = (obj: Record<string | number, ObjInput>) => {
     const items = Object.entries(obj);
-    const expanded = {};
-    items.forEach(([k, v]) => {
-      if (v[k]) return (expanded["." + k] = v[k]);
+    const expanded: Record<string | number, any> = {};
+    items.forEach(([k, v]: Entry) => {
+      if (isValue(v)) {
+        if (k === "value") return (expanded["." + k] = v.value);
+      } else {
+        if (v[k]) return (expanded["." + k] = v[k]);
+      }
       if (k === "ios") return (expanded[".ios"] = v);
 
       const innerItems = Object.entries(v);
@@ -105,12 +155,16 @@ const build = () => {
     return expanded;
   };
 
-  const formatMuiTypographyValues = (obj) => {
+  const formatMuiTypographyValues = (obj: Record<PropertyKey, ObjInput>) => {
     const items = Object.entries(obj);
-    const expanded = {};
+    const expanded: Record<PropertyKey, any> = {};
     items.forEach(([k, v]) => {
-      if (v[k]) return (expanded[k] = v[k]);
-      if (k === "ios") return (expanded.ios = v);
+      if (isValue(v)) {
+        if (k === "value") return (expanded[k] = v.value);
+      } else {
+        if (v[k]) return (expanded[k] = v[k]);
+      }
+      if (k === "ios") return (expanded["ios"] = v);
 
       const innerItems = Object.entries(v);
 
@@ -129,13 +183,15 @@ const build = () => {
     return expanded;
   };
 
-  /* ============================================================= */
+  /* =================================================================== */
+
+  /* ===================== StyleDictionary Registers ===================== */
 
   StyleDictionary.registerTransform({
     name: "shadows/css",
     type: "value",
-    matcher: ({ type }) => type === "boxShadow",
-    transformer: ({ value }) => {
+    matcher: ({ type }: SD.TransformedToken) => type === "boxShadow",
+    transformer: ({ value }: { value: unknown | [] }) => {
       const values = Array.isArray(value) ? value : [value];
       const finalValues = values
         .map(
@@ -152,29 +208,33 @@ const build = () => {
   StyleDictionary.registerTransform({
     name: "lineHeight/px",
     type: "value",
-    matcher: ({ type }) => type === "lineHeights",
-    transformer: ({ value }) => parseLineHeight(value),
+    matcher: ({ type }: SD.TransformedToken) => type === "lineHeights",
+    transformer: ({ value }: { value: string | number }) =>
+      parseLineHeight(value),
   });
 
   StyleDictionary.registerTransform({
     name: "letterSpacing/em",
     type: "value",
-    matcher: ({ type }) => type === "letterSpacing",
-    transformer: ({ value }) => parseLetterSpacing(value),
+    matcher: ({ type }: SD.TransformedToken) => type === "letterSpacing",
+    transformer: ({ value }: { value: string | number }) =>
+      parseLetterSpacing(value),
   });
 
   StyleDictionary.registerTransform({
     name: "fontWeight/lowerCaseOrNum",
     type: "value",
-    matcher: ({ type }) => type === "fontWeights",
-    transformer: ({ value }) => parseFontWeight(value),
+    matcher: ({ type }: SD.TransformedToken) => type === "fontWeights",
+    transformer: ({ value }: { value: string | number }) =>
+      parseFontWeight(value),
   });
 
   StyleDictionary.registerTransform({
     name: "typography/nested",
     type: "value",
-    matcher: ({ type }) => type === "typography",
-    transformer: ({ value }) => parseTypography(value),
+    matcher: ({ type }: SD.TransformedToken) => type === "typography",
+    transformer: ({ value }: { value: Record<string, string | number> }) =>
+      parseTypography(value),
   });
 
   StyleDictionary.registerTransformGroup({
@@ -194,18 +254,19 @@ const build = () => {
 
   StyleDictionary.registerFormat({
     name: "jsShadows",
-    formatter: ({ dictionary }) => formatEntries(dictionary?.tokens?.shadows),
+    formatter: ({ dictionary }: { dictionary: { tokens: TokensObj } }) =>
+      formatEntries(dictionary?.tokens?.shadows),
   });
 
   StyleDictionary.registerFormat({
     name: "jsColors",
-    formatter: ({ dictionary }) =>
+    formatter: ({ dictionary }: { dictionary: { tokens: TokensObj } }) =>
       formatEntries(dictionary?.tokens["color set"]),
   });
 
   StyleDictionary.registerFormat({
     name: "twTypography",
-    formatter: ({ dictionary }) => {
+    formatter: ({ dictionary }: { dictionary: { tokens: TokensObj } }) => {
       const formatted = JSON.parse(
         formatEntries(dictionary?.tokens["type set"])
       );
@@ -216,11 +277,11 @@ const build = () => {
 
   StyleDictionary.registerFormat({
     name: "jsMisc",
-    formatter: ({ dictionary = {} }) => {
+    formatter: ({ dictionary = {} }: Record<string, any>) => {
       const { tokens } = dictionary;
       const excluded = ["color set", "shadows", "type set"];
 
-      const entries = {};
+      const entries: Record<PropertyKey, any> = {};
       const keys = Object.keys(tokens)?.filter(
         (k = "") => k[0] !== "_" && !excluded.includes(k)
       );
@@ -243,7 +304,7 @@ const build = () => {
 
   StyleDictionary.registerFormat({
     name: "muiTypography",
-    formatter: ({ dictionary }) => {
+    formatter: ({ dictionary }: { dictionary: { tokens: TokensObj } }) => {
       const formatted = JSON.parse(
         formatEntries(dictionary?.tokens["type set"])
       );
@@ -255,4 +316,6 @@ const build = () => {
   StyleDictionary.buildAllPlatforms();
 };
 
-module.exports = { build };
+/* ======================================================================= */
+
+export default build;
