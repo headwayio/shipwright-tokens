@@ -4,8 +4,6 @@ import { shipwrightScript } from "../main";
 import { StyleSystems } from "../action-scripts/build-config.js";
 
 describe("shipwright tokens action", () => {
-  // const shipwrightCommand =
-  //   "ts-node main.ts tokens/raw/tokens.json build/tailwind tailwind";
 
   beforeEach(async () => {
     execSync("rm -rf build/ config.json");
