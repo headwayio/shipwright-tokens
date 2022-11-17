@@ -1,4 +1,4 @@
-const fs = require("fs");
+import fs from "fs";
 
 describe("example projects", () => {
   const tailwindThemeTemplate = fs.readFileSync(
