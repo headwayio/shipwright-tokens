@@ -1,8 +1,8 @@
 import { createTheme } from "@mui/material/styles";
-const palette = require("./colors");
-const shadows = require("./shadows");
-const typography = require("./typography");
-const misc = require("./misc");
+import palette from "./colors";
+import shadows from "./shadows";
+import typography from "./typography";
+import misc from "./misc";
 
 const theme = createTheme({
   palette,
