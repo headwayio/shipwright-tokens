@@ -1,4 +1,4 @@
-import SD from "style-dictionary";
+import SD, { TransformedToken } from "style-dictionary";
 const StyleDictionary = SD.extend("config.json");
 
 const build = () => {
@@ -238,10 +238,75 @@ const build = () => {
 
   /* ===================== StyleDictionary Registers ===================== */
 
+  /* ============================= Font-Faces ============================= */
+
+  // https://github.com/amzn/style-dictionary/blob/main/examples/advanced/font-face-rules/sd.config.js
+
+  // Register an "attribute" transform to codify the font's details
+  // as named attributes.
+  StyleDictionary.registerTransform({
+    name: "attribute/font",
+    type: "attribute",
+    transformer: ({ path }) => ({
+      category: path[0],
+      type: path[1],
+      family: path[2],
+      weight: path[3],
+      style: path[4],
+    }),
+  });
+
+  // Register a custom format to generate @font-face rules.
+  StyleDictionary.registerFormat({
+    name: "font-face",
+    formatter: ({ dictionary: { allTokens }, options }) => {
+      const fontPathPrefix = options.fontPathPrefix || "../";
+
+      // https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/src
+      enum FormatsMap {
+        woff2 = "woff2",
+        woff = "woff",
+        ttf = "truetype",
+        otf = "opentype",
+        svg = "svg",
+        eot = "embedded-opentype",
+      }
+
+      return allTokens
+        .reduce((fontList: string[], prop: TransformedToken) => {
+          const { attributes, formats, value: path } = prop;
+
+          const { family, weight, style } = attributes || {};
+
+          const urls = formats.map(
+            (extension: keyof typeof FormatsMap) =>
+              `url("${fontPathPrefix}${path}.${extension}") format("${FormatsMap[extension]}")`
+          );
+
+          const fontCss = [
+            "@font-face {",
+            `\n\tfont-family: "${family}";`,
+            `\n\tfont-style: ${style};`,
+            `\n\tfont-weight: ${weight};`,
+            `\n\tsrc: ${urls.join(",\n\t\t\t ")};`,
+            "\n\tfont-display: fallback;",
+            "\n}\n",
+          ].join("");
+
+          fontList.push(fontCss);
+
+          return fontList;
+        }, [])
+        .join("\n");
+    },
+  });
+
+  /* ====================================================================== */
+
   StyleDictionary.registerTransform({
     name: "shadows/css",
     type: "value",
-    matcher: ({ type }: SD.TransformedToken) => type === "boxShadow",
+    matcher: ({ type }: TransformedToken) => type === "boxShadow",
     transformer: ({ value }: { value: unknown | [] }) => {
       const values = Array.isArray(value) ? value : [value];
       const finalValues = values
@@ -259,7 +324,7 @@ const build = () => {
   StyleDictionary.registerTransform({
     name: "lineHeight/px",
     type: "value",
-    matcher: ({ type }: SD.TransformedToken) => type === "lineHeights",
+    matcher: ({ type }: TransformedToken) => type === "lineHeights",
     transformer: ({ value }: { value: string | number }) =>
       parseLineHeight(value),
   });
@@ -267,7 +332,7 @@ const build = () => {
   StyleDictionary.registerTransform({
     name: "letterSpacing/em",
     type: "value",
-    matcher: ({ type }: SD.TransformedToken) => type === "letterSpacing",
+    matcher: ({ type }: TransformedToken) => type === "letterSpacing",
     transformer: ({ value }: { value: string | number }) =>
       parseLetterSpacing(value),
   });
@@ -275,7 +340,7 @@ const build = () => {
   StyleDictionary.registerTransform({
     name: "fontWeight/lowerCaseOrNum",
     type: "value",
-    matcher: ({ type }: SD.TransformedToken) => type === "fontWeights",
+    matcher: ({ type }: TransformedToken) => type === "fontWeights",
     transformer: ({ value }: { value: string | number }) =>
       parseFontWeight(value),
   });
@@ -283,7 +348,7 @@ const build = () => {
   StyleDictionary.registerTransform({
     name: "typography/nested",
     type: "value",
-    matcher: ({ type }: SD.TransformedToken) => type === "typography",
+    matcher: ({ type }: TransformedToken) => type === "typography",
     transformer: ({ value }: { value: Record<string, string | number> }) =>
       parseTypography(value),
   });

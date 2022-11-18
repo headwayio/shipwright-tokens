@@ -3,6 +3,8 @@ import fs from "fs";
 enum StyleSystems {
   Tailwind = "tailwind",
   Mui = "mui",
+  CSSFontFace = "css-font-face",
+  SCSSFontFace = "scss-font-face",
 }
 
 type Props = {
@@ -58,6 +60,44 @@ const buildConfig = ({
         {
           destination: "shadows.json",
           format: "jsShadows",
+        },
+      ],
+    },
+    [StyleSystems.CSSFontFace]: {
+      transforms: ["attribute/font"],
+      buildPath: "build/css/",
+      files: [
+        {
+          destination: "fonts.css",
+          format: "font-face",
+          filter: {
+            attributes: {
+              category: "asset",
+              type: "font",
+            },
+          },
+          options: {
+            fontPathPrefix: "../",
+          },
+        },
+      ],
+    },
+    [StyleSystems.SCSSFontFace]: {
+      transforms: ["attribute/font"],
+      buildPath: "build/scss/",
+      files: [
+        {
+          destination: "_fonts.scss",
+          format: "font-face",
+          filter: {
+            attributes: {
+              category: "asset",
+              type: "font",
+            },
+          },
+          options: {
+            fontPathPrefix: "#{$font-path}/",
+          },
         },
       ],
     },
