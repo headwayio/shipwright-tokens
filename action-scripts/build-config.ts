@@ -3,6 +3,7 @@ import fs from "fs";
 enum StyleSystems {
   Tailwind = "tailwind",
   Mui = "mui",
+  Restyle = "restyle",
 }
 
 type Props = {
@@ -61,7 +62,7 @@ const buildConfig = ({
         },
       ],
     },
-    restyle: {
+    [StyleSystems.Restyle]: {
       transformGroup: "js/custom",
       buildPath: `${outputFolder}/`,
       files: [

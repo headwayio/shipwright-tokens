@@ -19,6 +19,7 @@ const build = () => {
     shadows?: Record<string, EntryInput>;
     "color set"?: Record<string, EntryInput>;
     "type set"?: Record<string, EntryInput>;
+    fontWeights?: Record<string, EntryInput>;
   };
   const isValue = (obj: ObjInput): obj is Value => "value" in obj;
 
@@ -27,22 +28,18 @@ const build = () => {
   /* ============================ Helpers ============================ */
 
   const flattenObj = (key: PropertyKey, obj: ObjInput): FlattenObjReturn => {
-    if (obj === undefined) return;
+    if (obj === undefined || obj.value === undefined) return;
     if (isValue(obj)) {
-      return [key, obj.value];
+      const value =
+        key === "lineHeight" || key === "fontSize"
+          ? parseNumberToPixel(obj.value)
+          : obj.value;
+      // TODO make switch to parse fontWeight
+      return [key, value];
     }
 
     const entries = Object.entries(obj);
-
-    // We're checking for a 'value' key this way, rather than a simple obj.value check
-    // because we want to avoid a false negative if obj.value resolves to a falsy value
-    const hasAValueKey = Object.keys(obj).includes("value");
-    const value =
-      key === "lineHeight" || key === "fontSize"
-        ? parseNumberToPixel(obj?.value)
-        : obj?.value;
-
-    // TODO make switch to parse fontWeight
+    const mapped = entries.map(([k, v]) => flattenObj(k, v));
 
     return [
       key,
@@ -117,8 +114,9 @@ const build = () => {
     return `${value}px`;
   };
 
-  const parseLineHeight = (value: string | number) =>
+  const parseNumberToPixel = (value: string | number) =>
     typeof value === "string" ? value : `${value}px`;
+  const parseLineHeight = (value: string | number) => parseNumberToPixel(value);
 
   const parseTypography = (obj: Record<string, string | number> = {}) => {
     const { fontWeight, lineHeight, letterSpacing } = obj;
@@ -191,11 +189,17 @@ const build = () => {
     return expanded;
   };
 
-  const formatRestyleTypographyValues = (obj) => {
+  const formatRestyleTypographyValues = (
+    obj: Record<PropertyKey, ObjInput>
+  ) => {
     const items = Object.entries(obj);
-    const expanded = {};
+    const expanded: Record<PropertyKey, any> = {};
     items.forEach(([k, v]) => {
-      if (v[k]) return (expanded[k] = v[k]);
+      if (isValue(v)) {
+        if (k === "value") return (expanded[k] = v.value);
+      } else {
+        if (v[k]) return (expanded[k] = v[k]);
+      }
       if (k === "ios") return (expanded.ios = v);
 
       const innerItems = Object.entries(v);
@@ -223,7 +227,7 @@ const build = () => {
           // expanded[item] = v;
           return;
         }
-        variants.forEach(([variant, value]) => {
+        variants.forEach(([variant, value]: [string, any]) => {
           const transformedVal = Object.entries(value).reduce(
             (transformed, [key, value]) => {
               if (key === "paragraphSpacing") return transformed;
@@ -378,7 +382,7 @@ const build = () => {
 
   StyleDictionary.registerFormat({
     name: "restyleTypography",
-    formatter: ({ dictionary }) => {
+    formatter: ({ dictionary }: { dictionary: { tokens: TokensObj } }) => {
       const formatted = JSON.parse(
         formatEntries(dictionary?.tokens["type set"])
       );
