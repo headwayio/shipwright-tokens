@@ -11,6 +11,7 @@ const copyThemeFile = async ({
     {
       [StyleSystems.Tailwind]: "tailwind.config.js",
       [StyleSystems.Mui]: "muiTheme.js",
+      [StyleSystems.Restyle]: "restyleTheme.js",
     }[styleSystem] || "muiTheme.js";
 
   const themeSource = path.join(actionPath, "theme_templates", themeTemplate);
