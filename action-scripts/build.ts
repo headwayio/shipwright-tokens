@@ -29,8 +29,9 @@ const build = () => {
   /* ============================ Helpers ============================ */
 
   const flattenObj = (key: PropertyKey, obj: ObjInput): FlattenObjReturn => {
-    if (obj === undefined || obj.value === undefined) return;
+    if (obj === undefined) return;
     if (isValue(obj)) {
+      if (obj.value === undefined) return;
       const value =
         key === "lineHeight" || key === "fontSize"
           ? parseNumberToPixel(obj.value)
