@@ -1,5 +1,5 @@
-import { shipwrightScript } from "action-scripts/shipwright-script";
-import { StyleSystems } from "action-scripts/build-config";
+import { shipwrightScript } from "./action-scripts/shipwright-script";
+import { StyleSystems } from "./action-scripts/build-config";
 
 // script execution
 const [figmaTokenFile, outputFolder, styleSystem, actionPath] =
