@@ -32,11 +32,7 @@ const build = () => {
     if (obj === undefined) return;
     if (isValue(obj)) {
       if (obj.value === undefined) return;
-      const value =
-        key === "lineHeight" || key === "fontSize"
-          ? parseNumberToPixel(obj.value)
-          : obj.value;
-      // TODO make switch to parse fontWeight
+      const value = formatValue(key, obj.value);
       return [key, value];
     }
 
@@ -85,10 +81,29 @@ const build = () => {
     return JSON.stringify(reduced);
   };
 
+  const formatValue = (key: PropertyKey, value: string | number) => {
+    switch (key) {
+      case "lineHeight":
+        return parseNumberToPixel(value);
+      case "fontSize":
+        return parseNumberToPixel(value);
+      case "fontWeight":
+        return parseFontWeight(value);
+      default:
+        return value;
+    }
+  };
+
   const parseFontWeight = (value: string | number) => {
     if (typeof value !== "string") return value;
     const val = value?.toLowerCase().replace(" ", "");
     switch (val) {
+      case "thin":
+        return 100;
+      case "extra light":
+        return 200;
+      case "light":
+        return 300;
       case "regular":
         return 400;
       case "medium":
@@ -97,8 +112,12 @@ const build = () => {
         return 600;
       case "bold":
         return 700;
-      case "black":
+      case "extra bold":
         return 800;
+      case "black":
+        return 900;
+      case "extra black":
+        return 950;
       default:
         return val;
     }
@@ -118,6 +137,7 @@ const build = () => {
 
   const parseNumberToPixel = (value: string | number) =>
     typeof value === "string" ? value : `${value}px`;
+
   const parseLineHeight = (value: string | number) => parseNumberToPixel(value);
 
   const parseTypography = (obj: Record<string, string | number> = {}) => {
