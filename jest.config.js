@@ -16,4 +16,5 @@ export default {
       },
     ],
   },
+  testPathIgnorePatterns: ["example/"],
 };
