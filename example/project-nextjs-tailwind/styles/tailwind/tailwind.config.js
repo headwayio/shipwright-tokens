@@ -1,5 +1,4 @@
 const plugin = require("tailwindcss/plugin");
-
 const colors = require("./colors");
 const shadows = require("./shadows");
 const typography = require("./typography");
@@ -23,7 +22,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    plugin(function ({ addBase, addComponents }) {
+    plugin(function ({ addComponents }) {
       addComponents({
         ...typography,
       });

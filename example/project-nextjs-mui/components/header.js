@@ -7,7 +7,6 @@ const Header = () => {
   return (
     <Container>
       <Image
-        objectFit="cover"
         src={Logo}
         alt="Make Waves"
         layout="fill"

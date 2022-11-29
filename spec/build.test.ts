@@ -1,11 +1,10 @@
 import fs from "fs";
 import { execSync } from "child_process";
-import { shipwrightScript } from "../main";
+import { shipwrightScript } from "../action-scripts/shipwright-script";
 import { StyleSystems } from "../action-scripts/build-config.js";
 
 describe("shipwright tokens action", () => {
-
-  beforeEach(async () => {
+  beforeAll(async () => {
     execSync("rm -rf build/ config.json");
 
     await shipwrightScript({
@@ -15,7 +14,7 @@ describe("shipwright tokens action", () => {
     });
   });
 
-  afterEach(() => {
+  afterAll(() => {
     execSync("rm -rf build/ config.json");
   });
 

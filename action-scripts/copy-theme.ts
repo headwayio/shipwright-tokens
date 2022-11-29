@@ -18,7 +18,7 @@ const copyThemeFile = async ({
   const themeDest = path.join(outputFolder, themeTemplate);
 
   await fs.copyFile(themeSource, themeDest, (err) =>
-    console.warn(`Copy File Error: ${err}`)
+     err && console.warn(`Copy File Error: ${err}`)
   );
 };
 
