@@ -32,7 +32,7 @@ runs:
       shell: bash
 
       # run main.ts script
-    - run: ts-node-esm ${{ github.action_path }}/main.ts ${{ inputs.tokenFile }} ${{ inputs.outputFolder }} ${{inputs.styleSystem}} ${{github.action_path}}
+    - run: ts-node --esm ${{ github.action_path }}/main.ts ${{ inputs.tokenFile }} ${{ inputs.outputFolder }} ${{inputs.styleSystem}} ${{github.action_path}}
       shell: bash
 
       # commit new files
