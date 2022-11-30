@@ -9,6 +9,10 @@ describe("example projects", () => {
     "./theme_templates/muiTheme.js",
     "utf8"
   );
+  const restyleThemeTemplate = fs.readFileSync(
+    "./theme_templates/restyleTheme.ts",
+    "utf8"
+  );
 
   describe("next / tailwind", () => {
     it("theme config matches provided theme template", () => {
@@ -47,6 +51,16 @@ describe("example projects", () => {
         "utf8"
       );
       expect(themeConfig).toEqual(tailwindThemeTemplate);
+    });
+  });
+
+  describe("react native / restyle", () => {
+    it("theme config matches provided theme template", () => {
+      const themeConfig = fs.readFileSync(
+        "./example/project-native-restyle/styles/restyleTheme.ts",
+        "utf8"
+      );
+      expect(themeConfig).toEqual(restyleThemeTemplate);
     });
   });
 });
