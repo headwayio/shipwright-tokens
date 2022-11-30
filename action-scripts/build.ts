@@ -232,6 +232,7 @@ const build = () => {
           const transformedVal = Object.entries(v).reduce(
             (transformed, [key, value]) => {
               if (key === "paragraphSpacing") return transformed;
+              if (key === "paragraphIndent") return transformed;
               if (key === "textCase") {
                 if (value === "none") return transformed;
                 return { ...transformed, textTransform: value };
@@ -252,6 +253,7 @@ const build = () => {
           const transformedVal = Object.entries(value).reduce(
             (transformed, [key, value]) => {
               if (key === "paragraphSpacing") return transformed;
+              if (key === "paragraphIndent") return transformed;
               if (key === "textCase") {
                 if (value === "none") return transformed;
                 return { ...transformed, textTransform: value };
