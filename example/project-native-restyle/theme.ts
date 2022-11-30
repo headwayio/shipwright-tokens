@@ -1,4 +1,5 @@
 import shipwrightTheme from "./styles/restyleTheme";
+
 const theme = {
   ...shipwrightTheme,
   textVariants: {
@@ -8,5 +9,6 @@ const theme = {
     },
   },
 };
+
 export type Theme = typeof theme;
 export default theme;
