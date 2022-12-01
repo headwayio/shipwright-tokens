@@ -273,22 +273,23 @@ const build = () => {
       }
 
       return allTokens
-        .reduce((fontList: string[], prop: TransformedToken) => {
+        ?.reduce((fontList: string[], prop: TransformedToken) => {
           const { attributes, formats, value: path } = prop;
 
           const { family, weight, style } = attributes || {};
 
-          const urls = formats.map(
+          const urls = formats?.map(
             (extension: keyof typeof FormatsMap) =>
               `url("${fontPathPrefix}${path}.${extension}") format("${FormatsMap[extension]}")`
           );
+          const src = urls?.join(",\n\t\t\t ");
 
           const fontCss = [
             "@font-face {",
-            `\n\tfont-family: "${family}";`,
-            `\n\tfont-style: ${style};`,
-            `\n\tfont-weight: ${weight};`,
-            `\n\tsrc: ${urls.join(",\n\t\t\t ")};`,
+            `\n\tfont-family: "${family || path || `""`}";`,
+            `\n\tfont-style: ${style || `""`};`,
+            `\n\tfont-weight: ${weight || `""`};`,
+            `\n\tsrc: ${src || `""`};`,
             "\n\tfont-display: fallback;",
             "\n}\n",
           ].join("");
@@ -297,7 +298,7 @@ const build = () => {
 
           return fontList;
         }, [])
-        .join("\n");
+        ?.join("\n");
     },
   });
 
