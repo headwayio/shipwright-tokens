@@ -65,16 +65,13 @@ const buildConfig = ({
     },
     [StyleSystems.CSSFontFace]: {
       transforms: ["attribute/font"],
-      buildPath: "build/css/",
+      buildPath: `${outputFolder}/`,
       files: [
         {
           destination: "fonts.css",
           format: "font-face",
           filter: {
-            attributes: {
-              category: "asset",
-              type: "font",
-            },
+            type: "fontFamilies",
           },
           options: {
             fontPathPrefix: "../",
