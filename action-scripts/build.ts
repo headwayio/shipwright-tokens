@@ -201,12 +201,31 @@ const build = () => {
       const innerItems = Object.entries(v);
 
       innerItems.forEach(([item, v]) => {
-        const variants = Object.entries(v);
+        const variants: Variant[] = Object.entries(v);
         const firstChildVal = variants[0][1];
         if (typeof firstChildVal === "string") {
           expanded[k] = v;
           return;
         }
+
+        const defaultVal = variants.reduce((prev, curr): Variant => {
+          const [prevVariant] = prev;
+          const [currVariant] = curr;
+          if (prevVariant === "regular" || prevVariant === "default")
+            return prev;
+          if (currVariant === "regular" || currVariant === "default")
+            return curr;
+
+          if (parseInt(prevVariant) < parseInt(currVariant)) {
+            return prev;
+          } else if (parseInt(prevVariant) > parseInt(currVariant)) return curr;
+          return prev;
+        }, variants[0])[1];
+
+        expanded[item] = expanded[item]
+          ? { ...expanded[item], ...defaultVal }
+          : defaultVal;
+
         variants.forEach(([variant, value]) => {
           expanded[item + "-" + variant] = value;
         });
