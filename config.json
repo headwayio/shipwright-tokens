@@ -1,0 +1,1 @@
+{"source":["build/style-dictionary/tokens.json"],"platforms":{"scss-font-face":{"transforms":["attribute/font"],"buildPath":"build/","files":[{"destination":"_fonts.scss","format":"font-face","filter":{"type":"fontFamilies"},"options":{"fontPathPrefix":"#{$font-path}/"}}]}}}
