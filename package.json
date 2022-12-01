@@ -2,11 +2,12 @@
   "name": "headway-shipwright-token-style",
   "version": "1.0.0",
   "description": "to be determined",
-  "main": "index.js",
+  "main": "main.ts",
   "type": "module",
   "scripts": {
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build-tailwind": "node --experimental-specifier-resolution=node --loader ts-node/esm main.ts tokens/raw/tokens.json build tailwind"
   },
   "repository": {
     "type": "git",

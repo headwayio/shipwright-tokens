@@ -5,6 +5,7 @@ const build = () => {
   /* ======================= Types / Typeguards ======================= */
 
   type Value = { value?: string | number };
+  type Variant = [string, Record<string, unknown>];
   type ObjInput =
     | Value
     | Record<PropertyKey, Value | Record<PropertyKey, unknown>>;
@@ -125,31 +126,62 @@ const build = () => {
   const formatTwTypographyValues = (obj: Record<string | number, ObjInput>) => {
     const items = Object.entries(obj);
     const expanded: Record<string | number, any> = {};
+
     items.forEach(([k, v]: Entry) => {
+      // e.g. ['headline', { h1: { '400': [Object] }, h2: { '400': [Object], '700': [Object] } } ]
+      // OR
+      // ['paragraph 1', {'400': { fontFamily: 'Inter', fontWeight: 'Regular' } } ]
+
       if (isValue(v)) {
         if (k === "value") return (expanded["." + k] = v.value);
-      } else {
-        if (v[k]) return (expanded["." + k] = v[k]);
-      }
+      } else if (v[k]) expanded["." + k] = v[k];
+
       if (k === "ios") return (expanded[".ios"] = v);
 
       const innerItems = Object.entries(v);
 
       innerItems.forEach(([item, v]) => {
-        const variants = Object.entries(v);
-        const firstChild = variants[0][1];
-        const itemKey = "." + item;
-        if (typeof firstChild === "string" || typeof firstChild === "number") {
-          expanded[itemKey] = v;
-          return;
+        const variants: Variant[] = Object.entries(v);
+        const firstChildVal = variants[0][1];
+
+        if (typeof firstChildVal === "string") {
+          return (expanded[`.${k}`] = v);
         }
-        variants.forEach(([variant, value]) => {
-          if (variant === "regular") return (expanded[itemKey] = value);
+        const itemKey = "." + item; // e.g. ".h1"
+
+        if (variants.length === 1) {
+          const [variant, value] = variants[0];
           expanded[itemKey] = {
-            ...expanded[itemKey],
+            ...value,
             [`&.${item}-${variant}`]: value,
           };
-        });
+        } else {
+          const defaultVal = variants.reduce((prev, curr): Variant => {
+            const [prevVariant] = prev;
+            const [currVariant] = curr;
+            if (prevVariant === "regular" || prevVariant === "default")
+              return prev;
+            if (currVariant === "regular" || currVariant === "default")
+              return curr;
+
+            if (parseInt(prevVariant) < parseInt(currVariant)) {
+              return prev;
+            } else if (parseInt(prevVariant) > parseInt(currVariant))
+              return curr;
+            return prev;
+          }, variants[0])[1];
+
+          expanded[itemKey] = expanded[itemKey]
+            ? { ...expanded[itemKey], ...defaultVal }
+            : defaultVal;
+
+          variants.forEach(([variant, value]: Variant) => {
+            expanded[itemKey] = {
+              ...expanded[itemKey],
+              [`&.${item}-${variant}`]: value,
+            };
+          });
+        }
       });
     });
     return expanded;
@@ -170,8 +202,11 @@ const build = () => {
 
       innerItems.forEach(([item, v]) => {
         const variants = Object.entries(v);
-        const firstChild = variants[0][1];
-        if (typeof firstChild === "string" || typeof firstChild === "number") {
+        const firstChildVal = variants[0][1];
+        if (
+          typeof firstChildVal === "string" ||
+          typeof firstChildVal === "number"
+        ) {
           expanded[item] = v;
           return;
         }
