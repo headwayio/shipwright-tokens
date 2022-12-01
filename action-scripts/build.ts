@@ -203,11 +203,8 @@ const build = () => {
       innerItems.forEach(([item, v]) => {
         const variants = Object.entries(v);
         const firstChildVal = variants[0][1];
-        if (
-          typeof firstChildVal === "string" ||
-          typeof firstChildVal === "number"
-        ) {
-          expanded[item] = v;
+        if (typeof firstChildVal === "string") {
+          expanded[k] = v;
           return;
         }
         variants.forEach(([variant, value]) => {
