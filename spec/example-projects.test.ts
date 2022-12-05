@@ -39,4 +39,14 @@ describe("example projects", () => {
       expect(themeConfig).toEqual(tailwindThemeTemplate);
     });
   });
+
+  describe("web components / tailwind", () => {
+    it("theme config matches provided theme template", () => {
+      const themeConfig = fs.readFileSync(
+        "./example/project-webcomponents-tailwind/styles/tailwind.config.js",
+        "utf8"
+      );
+      expect(themeConfig).toEqual(tailwindThemeTemplate);
+    });
+  });
 });
