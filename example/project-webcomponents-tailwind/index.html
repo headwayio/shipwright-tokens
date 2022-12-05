@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Shipwright Tokens - Web Components / Tailwind</title>
+    <link rel="stylesheet" href="/assets/output.css" />
+  </head>
+  <body class="w-full">
+    <main
+      class="flex flex-col items-center justify-center w-full bg-type-white-tertiary"
+    >
+      <div class="flex flex-col items-center w-3/4 pb-3 mb-5 border-b-2">
+        <token-header></token-header>
+      </div>
+      <div class="flex flex-col items-center w-3/4 pb-3 mb-5 border-b-2">
+        <h4 class="h4 h4-400 text-type-black-secondary">Typography</h4>
+        <typo-comp></typo-comp>
+      </div>
+      <div class="flex flex-col items-center w-3/4 pb-3 mb-5 border-b-2">
+        <h4 class="h4 h4-400 text-type-black-secondary">Colors</h4>
+        <div class="flex flex-col items-center">
+          <h5 class="h5 h5-400 pt-3">Primary</h5>
+          <div class="flex flex-row items-center flex-wrap">
+            <color-card title="Main" color="bg-primary-main"></color-card>
+            <color-card title="Dark" color="bg-primary-dark"></color-card>
+            <color-card title="Light" color="bg-primary-light"></color-card>
+          </div>
+        </div>
+        <div class="flex flex-col items-center">
+          <h5 class="h5 h5-400 pt-3">Secondary</h5>
+          <div class="flex flex-row items-center flex-wrap">
+            <color-card title="Main" color="bg-secondary-main"></color-card>
+            <color-card title="Dark" color="bg-secondary-dark"></color-card>
+            <color-card title="Light" color="bg-secondary-light"></color-card>
+          </div>
+        </div>
+        <div class="flex flex-col items-center">
+          <h5 class="h5 h5-400 pt-3">Grey</h5>
+          <div class="flex flex-row items-center flex-wrap">
+            <color-card title="Main" color="bg-grey-main"></color-card>
+            <color-card title="Dark" color="bg-grey-dark"></color-card>
+            <color-card title="Light" color="bg-grey-light"></color-card>
+          </div>
+        </div>
+        <div class="flex flex-col items-center">
+          <h5 class="h5 h5-400 pt-3">Warning</h5>
+          <div class="flex flex-row items-center flex-wrap">
+            <color-card title="Main" color="bg-warning-main"></color-card>
+            <color-card title="Dark" color="bg-warning-dark"></color-card>
+            <color-card title="Light" color="bg-warning-light"></color-card>
+          </div>
+        </div>
+        <div class="flex flex-col items-center">
+          <h5 class="h5 h5-400 pt-3">Info</h5>
+          <div class="flex flex-row items-center flex-wrap">
+            <color-card title="Main" color="bg-info-main"></color-card>
+            <color-card title="Dark" color="bg-info-dark"></color-card>
+            <color-card title="Light" color="bg-info-light"></color-card>
+          </div>
+        </div>
+        <div class="flex flex-col items-center">
+          <h5 class="h5 h5-400 pt-3">Success</h5>
+          <div class="flex flex-row items-center flex-wrap">
+            <color-card title="Main" color="bg-success-main"></color-card>
+            <color-card title="Dark" color="bg-success-dark"></color-card>
+            <color-card title="Light" color="bg-success-light"></color-card>
+          </div>
+        </div>
+        <div class="flex flex-col items-center">
+          <h5 class="h5 h5-400 pt-3">Error</h5>
+          <div class="flex flex-row items-center flex-wrap">
+            <color-card title="Main" color="bg-error-main"></color-card>
+            <color-card title="Dark" color="bg-error-dark"></color-card>
+            <color-card title="Light" color="bg-error-light"></color-card>
+          </div>
+        </div>
+        <div class="flex flex-col items-center">
+          <h5 class="h5 h5-400 pt-3">Button</h5>
+          <div class="flex flex-row items-center flex-wrap">
+            <color-card title="Active" color="bg-button-active"></color-card>
+            <color-card title="Hover" color="bg-button-hover"></color-card>
+            <color-card
+              title="Selected"
+              color="bg-button-selected"
+            ></color-card>
+            <color-card
+              title="Deactivated"
+              color="bg-button-deactivated"
+            ></color-card>
+          </div>
+        </div>
+        <div class="flex flex-col items-center">
+          <h5 class="h5 h5-400 pt-3">Type</h5>
+          <div class="flex flex-col items-center">
+            <h6 class="h6 h6-400 pt-3">Black</h6>
+            <div class="flex flex-row items-center flex-wrap">
+              <color-card
+                title="Primary"
+                color="bg-type-black-primary"
+              ></color-card>
+              <color-card
+                title="Secondary"
+                color="bg-type-black-secondary"
+              ></color-card>
+              <color-card
+                title="Tertiary"
+                color="bg-type-black-tertairy"
+              ></color-card>
+              <color-card
+                title="Deactivated"
+                color="bg-type-black-deactivated"
+              ></color-card>
+            </div>
+          </div>
+          <div class="flex flex-col items-center">
+            <h6 class="h6 h6-400 pt-3">White</h6>
+            <div class="flex flex-row items-center flex-wrap">
+              <color-card
+                title="Primary"
+                color="bg-type-white-primary"
+              ></color-card>
+              <color-card
+                title="Secondary"
+                color="bg-type-white-secondary"
+              ></color-card>
+              <color-card
+                title="Tertiary"
+                color="bg-type-white-tertairy"
+              ></color-card>
+              <color-card
+                title="Deactivated"
+                color="bg-type-white-deactivated"
+              ></color-card>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col items-center">
+          <h5 class="h5 h5-400 pt-3">Background</h5>
+          <div class="flex flex-col items-center">
+            <h5 class="h5 h5-400 pt-3">Type</h5>
+            <div class="flex flex-col items-center">
+              <h6 class="h6 h6-400 pt-3">Black</h6>
+              <div class="flex flex-row items-center flex-wrap">
+                <color-card
+                  title="Primary"
+                  color="bg-type-black-primary"
+                ></color-card>
+                <color-card
+                  title="Secondary"
+                  color="bg-type-black-secondary"
+                ></color-card>
+                <color-card
+                  title="Tertiary"
+                  color="bg-type-black-tertairy"
+                ></color-card>
+                <color-card
+                  title="Deactivated"
+                  color="bg-type-black-deactivated"
+                ></color-card>
+              </div>
+            </div>
+            <div class="flex flex-col items-center">
+              <h6 class="h6 h6-400 pt-3">White</h6>
+              <div class="flex flex-row items-center flex-wrap">
+                <color-card
+                  title="Primary"
+                  color="bg-type-white-primary"
+                ></color-card>
+                <color-card
+                  title="Secondary"
+                  color="bg-type-white-secondary"
+                ></color-card>
+                <color-card
+                  title="Tertiary"
+                  color="bg-type-white-tertairy"
+                ></color-card>
+                <color-card
+                  title="Deactivated"
+                  color="bg-type-white-deactivated"
+                ></color-card>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col items-center">
+            <h6 class="h6 h6-400 pt-3">Black</h6>
+            <div class="flex flex-row items-center flex-wrap">
+              <color-card
+                title="Base"
+                color="bg-background-black-base"
+              ></color-card>
+              <color-card
+                title="Primary"
+                color="bg-background-black-primary"
+              ></color-card>
+              <color-card
+                title="Secondary"
+                color="bg-background-black-secondary"
+              ></color-card>
+              <color-card
+                title="Line"
+                color="bg-background-black-line"
+              ></color-card>
+            </div>
+          </div>
+          <div class="flex flex-col items-center">
+            <h6 class="h6 h6-400 pt-3">White</h6>
+            <div class="flex flex-row items-center flex-wrap">
+              <color-card
+                title="Base"
+                color="bg-background-white-base"
+              ></color-card>
+              <color-card
+                title="Primary"
+                color="bg-background-white-primary"
+              ></color-card>
+              <color-card
+                title="Secondary"
+                color="bg-background-white-secondary"
+              ></color-card>
+              <color-card
+                title="Line"
+                color="bg-background-white-line"
+              ></color-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="components/token-header.js"></script>
+    <script src="components/typo-comp.js"></script>
+    <script src="components/color-container.js"></script>
+    <script src="components/color-card.js"></script>
+  </body>
+</html>
