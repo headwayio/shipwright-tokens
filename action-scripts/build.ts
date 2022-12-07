@@ -20,6 +20,7 @@ const build = () => {
     shadows?: Record<string, EntryInput>;
     "color set"?: Record<string, EntryInput>;
     "type set"?: Record<string, EntryInput>;
+    fontWeights?: Record<string, EntryInput>;
   };
   const isValue = (obj: ObjInput): obj is Value => "value" in obj;
 
@@ -30,11 +31,12 @@ const build = () => {
   const flattenObj = (key: PropertyKey, obj: ObjInput): FlattenObjReturn => {
     if (obj === undefined) return;
     if (isValue(obj)) {
-      return [key, obj.value];
+      if (obj.value === undefined) return;
+      const value = formatValue(key, obj.value);
+      return [key, value];
     }
 
     const entries = Object.entries(obj);
-
     const mapped = entries.map(([k, v]) => flattenObj(k, v));
 
     return [
@@ -79,10 +81,29 @@ const build = () => {
     return JSON.stringify(reduced);
   };
 
+  const formatValue = (key: PropertyKey, value: string | number) => {
+    switch (key) {
+      case "lineHeight":
+        return parseNumberToPixel(value);
+      case "fontSize":
+        return parseNumberToPixel(value);
+      case "fontWeight":
+        return parseFontWeight(value);
+      default:
+        return value;
+    }
+  };
+
   const parseFontWeight = (value: string | number) => {
     if (typeof value !== "string") return value;
     const val = value?.toLowerCase().replace(" ", "");
     switch (val) {
+      case "thin":
+        return 100;
+      case "extra light":
+        return 200;
+      case "light":
+        return 300;
       case "regular":
         return 400;
       case "medium":
@@ -91,8 +112,12 @@ const build = () => {
         return 600;
       case "bold":
         return 700;
-      case "black":
+      case "extra bold":
         return 800;
+      case "black":
+        return 900;
+      case "extra black":
+        return 950;
       default:
         return val;
     }
@@ -110,8 +135,10 @@ const build = () => {
     return `${value}px`;
   };
 
-  const parseLineHeight = (value: string | number) =>
+  const parseNumberToPixel = (value: string | number) =>
     typeof value === "string" ? value : `${value}px`;
+
+  const parseLineHeight = (value: string | number) => parseNumberToPixel(value);
 
   const parseTypography = (obj: Record<string, string | number> = {}) => {
     const { fontWeight, lineHeight, letterSpacing } = obj;
@@ -234,9 +261,72 @@ const build = () => {
     return expanded;
   };
 
-  /* =================================================================== */
+  const formatRestyleTypographyValues = (
+    obj: Record<PropertyKey, ObjInput>
+  ) => {
+    const items = Object.entries(obj);
+    const expanded: Record<PropertyKey, any> = {};
+    items.forEach(([k, v]) => {
+      if (isValue(v)) {
+        if (k === "value") return (expanded[k] = v.value);
+      } else {
+        if (v[k]) return (expanded[k] = v[k]);
+      }
+      if (k === "ios") return (expanded.ios = v);
 
-  /* ===================== StyleDictionary Registers ===================== */
+      const innerItems = Object.entries(v);
+
+      innerItems.forEach(([item, v]) => {
+        const variants = Object.entries(v);
+        const firstChild = variants[0][1];
+        if (typeof firstChild === "string" || typeof firstChild === "number") {
+          const transformedVal = Object.entries(v).reduce(
+            (transformed, [key, value]) => {
+              if (key === "paragraphSpacing") return transformed;
+              if (key === "paragraphIndent") return transformed;
+              if (key === "textCase") {
+                if (value === "none") return transformed;
+                return { ...transformed, textTransform: value };
+              }
+              if (key === "textDecoration") {
+                if (value === "none") return transformed;
+                return { ...transformed, textDecorationLine: value };
+              }
+              return { ...transformed, [key]: value };
+            },
+            {}
+          );
+          expanded[item] = transformedVal;
+          // expanded[item] = v;
+          return;
+        }
+        variants.forEach(([variant, value]: [string, any]) => {
+          const transformedVal = Object.entries(value).reduce(
+            (transformed, [key, value]) => {
+              if (key === "paragraphSpacing") return transformed;
+              if (key === "paragraphIndent") return transformed;
+              if (key === "textCase") {
+                if (value === "none") return transformed;
+                return { ...transformed, textTransform: value };
+              }
+              if (key === "textDecoration") {
+                if (value === "none") return transformed;
+                return { ...transformed, textDecorationLine: value };
+              }
+              return { ...transformed, [key]: value };
+            },
+            {}
+          );
+
+          expanded[item + "-" + variant] = transformedVal;
+          // expanded[item] = value;
+        });
+      });
+    });
+    return expanded;
+  };
+
+  /* ============================================================= */
 
   StyleDictionary.registerTransform({
     name: "shadows/css",
@@ -360,6 +450,17 @@ const build = () => {
         formatEntries(dictionary?.tokens["type set"])
       );
       const formattedValues = formatMuiTypographyValues(formatted);
+      return JSON.stringify(formattedValues);
+    },
+  });
+
+  StyleDictionary.registerFormat({
+    name: "restyleTypography",
+    formatter: ({ dictionary }: { dictionary: { tokens: TokensObj } }) => {
+      const formatted = JSON.parse(
+        formatEntries(dictionary?.tokens["type set"])
+      );
+      const formattedValues = formatRestyleTypographyValues(formatted);
       return JSON.stringify(formattedValues);
     },
   });
