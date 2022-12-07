@@ -2,7 +2,7 @@ const container = document
   .createElement("container")
   .setAttribute("id", "color-container");
 container.innerHTML = `
-<style>@import "assets/output.css";</style>
+<style>@import "./assets/output.css";</style>
 <div class="flex flex-col items-center">
     <h5 class="h5 h5-400"></h5>
         <div class="flex flex-row items-center flex-wrap">
