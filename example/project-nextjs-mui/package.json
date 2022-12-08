@@ -37,6 +37,7 @@
     "eslint-config-next": "13.0.0",
     "eslint-plugin-storybook": "^0.6.8",
     "jest": "^29.3.1",
-    "jest-environment-jsdom": "^29.3.1"
+    "jest-environment-jsdom": "^29.3.1",
+    "storybook-addon-next": "^1.7.1"
   }
 }
