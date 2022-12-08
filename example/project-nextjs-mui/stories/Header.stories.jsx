@@ -1,4 +1,6 @@
 import React from "react";
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import theme from "../styles/mui/muiTheme";
 
 import Header from "../components/header";
 
@@ -11,7 +13,15 @@ export default {
   },
 };
 
-const Template = (args) => <Header {...args} />;
+const Template = (args) => (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Header {...args} />
+  </ThemeProvider>
+);
 
-export const DefaultHeader = Template.bind({});
-DefaultHeader.args = {};
+export const H2Warning = Template.bind({});
+H2Warning.args = {
+  color: "warning.main",
+  variant: "h2-700",
+};
