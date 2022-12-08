@@ -7,9 +7,11 @@ const Header = () => {
   return (
     <Container>
       <Image
-        src={Logo}
+        src={"/" + Logo}
         alt="Make Waves"
         layout="fill"
+        width={100}
+        height={100}
         priority
       />
       <Typography variant="h4-400" sx={{ color: "type.black.secondary" }}>
