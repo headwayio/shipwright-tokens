@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Typography } from "@mui/material";
-import Container from "./contaner";
+import Container from "./container";
 import Logo from "../public/images/headway.png";
 
 const Header = ({ color = "type.black.secondary", variant = "h4-400" }) => {

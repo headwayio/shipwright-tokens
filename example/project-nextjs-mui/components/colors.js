@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import Container from "./contaner";
+import Container from "./container";
 import ColorCardContainer from "./color-card-container";
 import ColorCard from "./color-card";
 
