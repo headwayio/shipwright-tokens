@@ -1,18 +1,13 @@
 import Image from "next/image";
 import { Typography } from "@mui/material";
-import Container from "./contaner";
+import Container from "./container";
 import Logo from "../public/images/headway.png";
 
-const Header = () => {
+const Header = ({ color = "type.black.secondary", variant = "h4-400" }) => {
   return (
     <Container>
-      <Image
-        src={Logo}
-        alt="Make Waves"
-        layout="fill"
-        priority
-      />
-      <Typography variant="h4-400" sx={{ color: "type.black.secondary" }}>
+      <Image src={Logo} alt="Make Waves" layout="fill" priority />
+      <Typography variant={variant} sx={{ color }}>
         Shipwright Tokens - Next JS / MUI
       </Typography>
     </Container>
