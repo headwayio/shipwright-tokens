@@ -3,6 +3,7 @@ import fs from "fs";
 enum StyleSystems {
   Tailwind = "tailwind",
   Mui = "mui",
+  Restyle = "restyle",
 }
 
 type Props = {
@@ -46,6 +47,28 @@ const buildConfig = ({
         {
           destination: "typography.json",
           format: "muiTypography",
+        },
+        {
+          destination: "misc.json",
+          format: "jsMisc",
+        },
+        {
+          destination: "colors.json",
+          format: "jsColors",
+        },
+        {
+          destination: "shadows.json",
+          format: "jsShadows",
+        },
+      ],
+    },
+    [StyleSystems.Restyle]: {
+      transformGroup: "js/custom",
+      buildPath: `${outputFolder}/`,
+      files: [
+        {
+          destination: "typography.json",
+          format: "restyleTypography",
         },
         {
           destination: "misc.json",
