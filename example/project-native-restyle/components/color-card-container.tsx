@@ -1,14 +1,23 @@
 import Box from "../Box";
 import Text from "../Text";
 
-const ColorCardContainer = ({ title, children }) => {
+const ColorCardContainer = ({
+  titleVariant = "h5-400",
+  title,
+  children,
+  bgColor,
+  textColor,
+}) => {
   return (
     <Box
       flexDirection={"column"}
       justifyContent={"center"}
       alignItems={"center"}
+      backgroundColor={bgColor}
     >
-      <Text variant="h5-400">{title}</Text>
+      <Text variant={titleVariant} color={textColor}>
+        {title}
+      </Text>
       <Box
         flexDirection={"row"}
         justifyContent={"center"}

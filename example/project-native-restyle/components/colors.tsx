@@ -1,6 +1,7 @@
 import Container from "./container";
 import ColorCardContainer from "./color-card-container";
 import ColorCard from "./color-card";
+import Text from "../Text";
 
 const Colors = () => {
   return (
@@ -44,38 +45,85 @@ const Colors = () => {
         <ColorCard title="Active" bgColor="buttonActive" />
         <ColorCard title="Hover" bgColor="buttonHover" />
         <ColorCard title="Selected" bgColor="buttonSelected" />
-        <ColorCard title="Deactivated" bgColor="buttonDeactivated" />
-        <ColorCard
-          title="Deactivated Background"
-          bgColor="buttonDeactivatedBackground"
-        />
+        <ColorCardContainer bgColor="backgroundBlackPrimary">
+          <ColorCard
+            title="Deactivated"
+            textColor="typeWhitePrimary"
+            bgColor="buttonDeactivated"
+          />
+          <ColorCard
+            title="Deactivated Background"
+            textColor="typeWhitePrimary"
+            bgColor="buttonDeactivatedBackground"
+          />
+        </ColorCardContainer>
       </ColorCardContainer>
-      <ColorCardContainer title="Type">
+      <ColorCardContainer title="Type" titleVariant="h4-400">
         <ColorCardContainer title="Black">
           <ColorCard title="Primary" bgColor="typeBlackPrimary" />
           <ColorCard title="Secondary" bgColor="typeBlackSecondary" />
           <ColorCard title="Tertiary" bgColor="typeBlackTertiary" />
           <ColorCard title="Deactivated" bgColor="typeBlackDeactivated" />
         </ColorCardContainer>
-        <ColorCardContainer title="White">
-          <ColorCard title="Primary" bgColor="typeWhitePrimary" />
-          <ColorCard title="Secondary" bgColor="typeWhiteSecondary" />
-          <ColorCard title="Tertiary" bgColor="typeWhiteTertiary" />
-          <ColorCard title="Deactivated" bgColor="typeWhiteDeactivated" />
+        <ColorCardContainer
+          title="White"
+          bgColor="backgroundBlackPrimary"
+          textColor="typeWhitePrimary"
+        >
+          <ColorCard
+            title="Primary"
+            bgColor="typeWhitePrimary"
+            textColor="typeWhitePrimary"
+          />
+          <ColorCard
+            title="Secondary"
+            bgColor="typeWhiteSecondary"
+            textColor="typeWhitePrimary"
+          />
+          <ColorCard
+            title="Tertiary"
+            bgColor="typeWhiteTertiary"
+            textColor="typeWhitePrimary"
+          />
+          <ColorCard
+            title="Deactivated"
+            bgColor="typeWhiteDeactivated"
+            textColor="typeWhitePrimary"
+          />
         </ColorCardContainer>
       </ColorCardContainer>
-      <ColorCardContainer title="Background">
+      <ColorCardContainer title="Background" titleVariant="h4-400">
         <ColorCardContainer title="Black">
           <ColorCard title="Base" bgColor="backgroundBlackBase" />
           <ColorCard title="Primary" bgColor="backgroundBlackPrimary" />
           <ColorCard title="Secondary" bgColor="backgroundBlackSecondary" />
           <ColorCard title="Line" bgColor="backgroundBlackLine" />
         </ColorCardContainer>
-        <ColorCardContainer title="White">
-          <ColorCard title="Base" bgColor="backgroundBlackBase" />
-          <ColorCard title="Primary" bgColor="backgroundBlackPrimary" />
-          <ColorCard title="Secondary" bgColor="backgroundBlackSecondary" />
-          <ColorCard title="Line" bgColor="backgroundBlackLine" />
+        <ColorCardContainer
+          title="White"
+          bgColor="backgroundBlackPrimary"
+          textColor="typeWhitePrimary"
+        >
+          <ColorCard
+            title="Base"
+            bgColor="backgroundWhiteBase"
+            textColor="typeWhitePrimary"
+          />
+          <ColorCard
+            title="Primary"
+            bgColor="backgroundWhitePrimary"
+            textColor="typeWhitePrimary"
+          />
+          <ColorCard
+            title="Secondary"
+            bgColor="backgroundWhiteSecondary"
+            textColor="typeWhitePrimary"
+          />
+          <ColorCard
+            title="Line"
+            bgColor="backgroundWhiteLine"
+            textColor="typeWhitePrimary"
+          />
         </ColorCardContainer>
       </ColorCardContainer>
     </Container>
