@@ -111,7 +111,7 @@
     "fontWeight": 700,
     "lineHeight": "24px",
     "fontSize": "21.33px",
-    "letterSpacing": "0px",
+    "letterSpacing": "0px"
   },
   "ios": {
     "largeTitle": {
