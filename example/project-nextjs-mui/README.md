@@ -5,4 +5,4 @@ Example project showing how to integrate & use Shipwright Tokens in a project ut
 To run this project:
 - cd into `example/project-next-js-mui`
 - `npm run dev`
-- Project is now viewable at `localhost:3000`
+- Project is now viewable at `localhost:3000` test husky
