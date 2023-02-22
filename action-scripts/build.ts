@@ -30,17 +30,19 @@ const build = () => {
 
   const flattenObj = (key: PropertyKey, obj: ObjInput): FlattenObjReturn => {
     if (obj === undefined) return;
+    const formattedK = typeof key === "string" ? key.replace(" ", "-") : key;
+
     if (isValue(obj)) {
       if (obj.value === undefined) return;
       const value = formatValue(key, obj.value);
-      return [key, value];
+      return [formattedK, value];
     }
 
     const entries = Object.entries(obj);
     const mapped = entries.map(([k, v]) => flattenObj(k, v));
 
     return [
-      key,
+      formattedK,
       mapped.reduce<ObjInput>((prev, curr) => {
         if (curr) {
           const [k, v] = curr;
@@ -62,7 +64,8 @@ const build = () => {
     const mapped: FlattenObjReturn[] = entries[0]?.length
       ? entries.map(([k, v]: Entry) => {
           const isStringOrNum = typeof v === "string" || typeof v === "number";
-          return isStringOrNum ? [k, v] : flattenObj(k, v);
+          const formattedK = typeof k === "string" ? k.replace(" ", "-") : k;
+          return isStringOrNum ? [formattedK, v] : flattenObj(formattedK, v);
         })
       : [];
 
@@ -81,6 +84,7 @@ const build = () => {
     return JSON.stringify(reduced);
   };
 
+  /* Take in numeric/string value for lineHeight/fontSize/fontWeight and return a properly formatted string */
   const formatValue = (key: PropertyKey, value: string | number) => {
     switch (key) {
       case "lineHeight":
@@ -94,13 +98,14 @@ const build = () => {
     }
   };
 
+  /* Take in numeric/string value and return a properly formatted numeric fontWeight */
   const parseFontWeight = (value: string | number) => {
     if (typeof value !== "string") return value;
     const val = value?.toLowerCase().replace(" ", "");
     switch (val) {
       case "thin":
         return 100;
-      case "extra light":
+      case "extralight":
         return 200;
       case "light":
         return 300;
@@ -112,17 +117,18 @@ const build = () => {
         return 600;
       case "bold":
         return 700;
-      case "extra bold":
+      case "extrabold":
         return 800;
       case "black":
         return 900;
-      case "extra black":
+      case "extrablack":
         return 950;
       default:
         return val;
     }
   };
 
+  /* Take in numeric/string value and return a properly formatted letterSpacing string */
   const parseLetterSpacing = (value: string | number) => {
     if (typeof value === "string") {
       const lastChar = value.slice(-1);
@@ -135,29 +141,36 @@ const build = () => {
     return `${value}px`;
   };
 
+  /* Take in numeric/string value and return a string, appending 'px' if the value was numeric */
   const parseNumberToPixel = (value: string | number) =>
     typeof value === "string" ? value : `${value}px`;
 
+  /* Take in numeric/string value and return the output of parseNumberToPixel on that value */
   const parseLineHeight = (value: string | number) => parseNumberToPixel(value);
 
+  /* Take in object of typography values and return the object updated with parsed values */
   const parseTypography = (obj: Record<string, string | number> = {}) => {
-    const { fontWeight, lineHeight, letterSpacing } = obj;
+    const { fontWeight, lineHeight, letterSpacing, textCase } = obj;
     return {
       ...obj,
       fontWeight: parseFontWeight(fontWeight),
       lineHeight: parseLineHeight(lineHeight),
       letterSpacing: parseLetterSpacing(letterSpacing),
+      textTransform: textCase,
     };
   };
 
+  /* Take in object and return the object with values nested and parsed for Tailwind styles */
   const formatTwTypographyValues = (obj: Record<string | number, ObjInput>) => {
     const items = Object.entries(obj);
     const expanded: Record<string | number, any> = {};
 
     items.forEach(([k, v]: Entry) => {
-      // e.g. ['headline', { h1: { '400': [Object] }, h2: { '400': [Object], '700': [Object] } } ]
-      // OR
-      // ['paragraph 1', {'400': { fontFamily: 'Inter', fontWeight: 'Regular' } } ]
+      /*
+        e.g. ['headline', { h1: { '400': [Object] }, h2: { '400': [Object], '700': [Object] } } ]
+        OR
+        ['paragraph 1', {'400': { fontFamily: 'Inter', fontWeight: 'Regular' } } ]
+      */
 
       if (isValue(v)) {
         if (k === "value") return (expanded["." + k] = v.value);
@@ -214,6 +227,7 @@ const build = () => {
     return expanded;
   };
 
+  /* Take in object and return the object with values parsed for MUI styles */
   const formatMuiTypographyValues = (obj: Record<PropertyKey, ObjInput>) => {
     const items = Object.entries(obj);
     const expanded: Record<PropertyKey, any> = {};
@@ -261,6 +275,7 @@ const build = () => {
     return expanded;
   };
 
+  /* Take in object and return the object with values parsed for Restyle styles */
   const formatRestyleTypographyValues = (
     obj: Record<PropertyKey, ObjInput>
   ) => {
