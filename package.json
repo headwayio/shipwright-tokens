@@ -54,12 +54,12 @@
   },
   "husky": {
     "hooks": {
-        "pre-push": "npm test && prepush-if-changed"
+        "pre-push": "npm test"
     }
   },
   "prepush-if-changed": {
     "example/project-nextjs-tailwind/*": "cd example/project-nextjs-tailwind && npm test",
-    "example/project-nextjs-mui/*": "example/project-nextjs-mui && npm test",
-    "example/project-elixir": "example/project-elixir-tailwind && mix test"
+    "example/project-nextjs-mui/*": "cd example/project-nextjs-mui && npm test",
+    "example/project-elixir": "cd example/project-elixir-tailwind && mix test"
   }
 }
