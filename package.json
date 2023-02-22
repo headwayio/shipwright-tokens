@@ -7,6 +7,7 @@
   "scripts": {
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
     "prepare": "husky install",
+    "prepush-if-changed": "prepush-if-changed",
     "build-tailwind": "node --experimental-specifier-resolution=node --loader ts-node/esm main.ts tokens/raw/tokens.json build tailwind",
     "build-mui": "node --experimental-specifier-resolution=node --loader ts-node/esm main.ts tokens/raw/tokens.json build mui"
   },
