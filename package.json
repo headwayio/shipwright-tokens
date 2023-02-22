@@ -41,6 +41,7 @@
     "postcss": "^8.4.16",
     "postcss-cli": "^10.0.0",
     "postcss-import": "^15.0.0",
+    "prepush-if-changed": "^1.0.8",
     "tailwindcss": "^3.1.8",
     "ts-jest": "^29.0.3",
     "typescript": "^4.9.3"
@@ -50,5 +51,15 @@
       "@babel/preset-env",
       "@babel/preset-typescript"
     ]
+  },
+  "husky": {
+    "hooks": {
+        "pre-push": "npm test && prepush-if-changed"
+    }
+  },
+  "prepush-if-changed": {
+    "example/project-nextjs-tailwind/*": "cd example/project-nextjs-tailwind && npm test",
+    "example/project-nextjs-mui/*": "example/project-nextjs-mui && npm test",
+    "example/project-elixir": "example/project-elixir-tailwind && mix test"
   }
 }
