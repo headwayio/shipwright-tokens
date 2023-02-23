@@ -30,7 +30,8 @@ const build = () => {
 
   const flattenObj = (key: PropertyKey, obj: ObjInput): FlattenObjReturn => {
     if (obj === undefined) return;
-    const formattedK = typeof key === "string" ? key.replace(" ", "-") : key;
+    let formattedK = typeof key === "string" ? key.replace(" ", "-") : key;
+    formattedK = formattedK === "textCase" ? "textTransform" : formattedK;
 
     if (isValue(obj)) {
       if (obj.value === undefined) return;
