@@ -54,8 +54,9 @@
     ]
   },
   "prepush-if-changed": {
-    "example/project-nextjs-tailwind/**/*": "cd example/project-nextjs-tailwind && npm test && cd ../..",
-    "example/project-nextjs-mui/**/*": "cd example/project-nextjs-mui && npm test && cd ../..",
-    "example/project-elixir-tailwind/**/*": "cd example/project-elixir-tailwind && mix test && cd ../.."
+      "example/project-elixir-tailwind/**/*": "cd example/project-elixir-tailwind && mix test && cd ../..",
+      "example/project-html-tailwind/**/*": "cd example/project-html-tailwind && npm test && cd ../..",
+      "example/project-nextjs-mui/**/*": "cd example/project-nextjs-mui && npm test && cd ../..",
+      "example/project-nextjs-tailwind/**/*": "cd example/project-nextjs-tailwind && npm test && cd ../.."
   }
 }

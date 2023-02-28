@@ -1,0 +1,21 @@
+name: Shipwright Tokens
+
+on:
+  push:
+    branches:
+      - 'tokens/**'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Shipwright Tokens
+        uses: headwayio/shipwright-tokens@main
+        with:
+          styleSystem: tailwind
+          tokenFile: assets/tokens/raw.json
+          outputFolder: assets/styles
+
+
