@@ -3,8 +3,8 @@
 ## Contents
 
 - [Configure: Filter Actions](#configure-filter-actions)
-- [Integreate Tailwind CSS](#integrate-tailwind-css)
-- [Integreate MUI](#integrate-mui)
+- [Integrate Tailwind CSS](#integrate-tailwind-css)
+- [Integrate MUI](#integrate-mui)
 - [Integrate Restyle](#integrate-restyle)
 
 ---
@@ -227,6 +227,7 @@ const theme = createTheme({
   },
 });
 ```
+
 ---
 
 ## Integrate Restyle
@@ -234,6 +235,7 @@ const theme = createTheme({
 This section will show you how to configure your Shipwright Tokens action to output a custom React Native Restyle theme.
 
 ### Generate a Custom Theme
+
 Ensure that the `.yml` file that calls Shipwright Tokens includes `restyle` as the value for the `styleSystem` property:
 
 ```
@@ -247,9 +249,11 @@ Ensure that the `.yml` file that calls Shipwright Tokens includes `restyle` as t
 With this configuration option set, Shipwright Tokens will generate 5 files that will be used for your custom theme: `restyleTheme.js`, `colors.json`, `misc.json`, `shadows.json`, and `typography.json`. These files will be generated in the directory that you specify for the `outputFolder` property.
 
 ### Using the Custom Theme
+
 By default, the generated `restyleTheme.ts` file will import and extend the 4 generated `.json` files, making your all styles in your custom theme available for use. To start using your custom theme, you simply need to pass your custom theme to Restyle's `ThemeProvider` component by doing the following:
 
 - Import and extend your custom theme in `theme.ts`:
+
 ```
 import shipwrightTheme from "./styles/restyleTheme";
 
@@ -268,11 +272,13 @@ export default theme;
 ```
 
 - Import your theme in `App.tsx`:
+
 ```
 import theme from "./theme";
 ```
 
 - Pass the them to the `ThemeProvider`:
+
 ```
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
@@ -280,15 +286,19 @@ import theme from "./theme";
 ```
 
 ### Pick and Choose Styles
+
 You can pick and choose which styles are availble in your project by editing the generated `restyleTheme.ts` to only include the styles you want by adding/removing the following snippets:
 
 ### Colors:
+
 - Import your generated `colors.json` file:
+
 ```
 const palette = require("./yourOutputDirectory/colors");
 ```
 
 - Choose which colors you want in your project by assigning them a property name in the `createTheme` object:
+
 ```
 const theme = createTheme({
   colors: {
@@ -303,12 +313,15 @@ const theme = createTheme({
 ```
 
 ### Shadows:
+
 - Import your generated `shadows.json` file
+
 ```
 const shadows = require("./yourOutputDirectory/shadows");
 ```
 
 - Include `shadows` in the object passed to the `createTheme` function:
+
 ```
 const theme = createTheme({
   shadows: {
@@ -318,12 +331,15 @@ const theme = createTheme({
 ```
 
 ### Typography:
+
 - Import your generated `typography.json` file:
+
 ```
 const typography = require("./typography");
 ```
 
 - Spread the values of `typography` in the object passed to the `createTheme` function:
+
 ```
 const theme = createTheme({
   textVariants: {
@@ -331,4 +347,5 @@ const theme = createTheme({
   }
 });
 ```
+
 ---
