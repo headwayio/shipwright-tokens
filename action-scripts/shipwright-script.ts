@@ -26,13 +26,16 @@ const shipwrightScript = async ({
   buildConfig({ transformedTokenPath, outputFolder, styleSystem });
 
   // execute the style-dictionary transformations
-  import("./build.js").then((module) => {
+  await import("./build.js").then((module) => {
     const build = module.default;
     build();
   });
 
   // copy themeFile
   copyThemeFile({ outputFolder, styleSystem, actionPath });
+
+  // format generated token files
+  execSync(`npx prettier --write ${actionPath}${outputFolder}/**`);
 };
 
 export { shipwrightScript };
