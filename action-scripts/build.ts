@@ -150,7 +150,7 @@ const build = () => {
   const parseLineHeight = (value: string | number) => parseNumberToPixel(value);
 
   /* Take in object of typography values and return the object updated with parsed values */
-  const parseTypography = (obj: Record<string, string | number> = {}) => {
+  const parseTypography = ({ fontWeight, lineHeight, letterSpacing, textCase, ...obj }: Record<string, string | number> = {}) => {
     const { fontWeight, lineHeight, letterSpacing, textCase } = obj;
     return {
       ...obj,
