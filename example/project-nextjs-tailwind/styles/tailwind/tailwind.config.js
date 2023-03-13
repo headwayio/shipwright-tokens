@@ -16,6 +16,9 @@ module.exports = {
       colors,
       shadows,
       ...misc,
+      boxShadow: {
+        ...shadows,
+      },
     },
   },
   variants: {
