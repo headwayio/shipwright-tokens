@@ -1,0 +1,87 @@
+{#
+  Atom/Buttons
+
+  ### Variables
+  name              | type        | default        | options
+  -----------------------------------------------------------------
+  arrow               string        "right"          "none", "left", "right", "both"
+  attributes          object        {}
+  disabled            boolean       false
+  icon                boolean       false
+  iconDir             string        "right"          "left", "right"
+  iconNum             string        ""
+  id                  string        ""
+  isSmall             boolean       false             
+  text                string        ""
+  variant             string        "fill"           "fill", "stroke", "ghost"
+
+  ### How to use
+  {% include 'templates/shipwright/componentsatoms/button.html.twig' with {
+    'arrow': 'left',
+    'attributes': { key: value },
+    'disabled': false,
+    'id': 'your-id',
+    'isSmall': false,
+    'mode': 'dark',
+    'text': 'Your Text',
+    'variant': 'stroke'
+    }
+  %}
+
+### Icon version
+  {% include 'templates/shipwright/components/atoms/button.html.twig' with {
+    'attributes': { key: value },
+    'disabled': false,
+    'icon': true,
+    'iconDir': 'left',
+    'id': 'your-id',
+    'mode': 'dark',
+    'variant': 'stroke'
+    }
+  %}
+#}
+
+{% set arrow = arrow|default('none') %}
+{% set attributes = attributes|default({}) %}
+{% set iconDir = iconDir|default('right') %}
+{% set disabled = disabled|default(false) %}
+{% set icon = icon|default(false) %}
+{% set iconDir = iconDir|default('right') %}
+{% set iconNum = iconNum|default('') %}
+{% set id = id|default('') %}
+{% set isSmall = isSmall|default(false) %}
+{% set size = size|default('rg') %}
+{% set text = text|default('') %}
+{% set variant = variant|default('fill') %}
+
+{% set classes = {
+    fill: 'text-type-white-primary bg-button-active  hover:bg-button-hover disabled:text-type-white-primary disabled:bg-button-deactivated',
+    outline: 'text-button-active border-button-active border hover:text-button-hover hover:border-button-hover disabled:text-button-deactivated disabled:border-button-deactivated',
+    ghost: 'text-button-active hover:text-button-hover disabled:text-button-deactivated',
+} %}
+
+{% set height = isSmall ? 'py-[8px]' : 'py-[16px]' %}
+{% set shape = icon ? 'w-[48px] h-[48px]' : 'px-[24px]' %}
+{% set dir = "arrow-" ~ iconDir %}
+
+<button class='flex justify-center items-center rounded-full {{shape}} {{classes[variant]}}' {% if attributes %} {% for attr, val in attributes %} {{ attr }}={{val}} {% endfor %} {% endif %} {% if disabled %} disabled {% endif %} {% if id %} id='{{id}}' {% endif %}>
+    {% if icon %}
+        {% if iconNum %}
+            <div classname="flex items-center justify-center">{{iconNum}}</div>
+        {% else %}
+            <div data-feather={{dir}}></div>
+        {% endif %}
+    {% else %}
+        {% if arrow == 'left' or arrow == 'both' %}
+            <div class="w-[16px] h-[16px] mr-[8px]" data-feather="arrow-left"></div>
+        {% endif %}
+
+        <span class='{{height}}'>
+            <p class="caption">{{text}}</p>
+        </span>
+
+        {% if arrow == 'right' or arrow == 'both' %}
+            <div class="w-[16px] h-[16px] ml-[8px]" data-feather="arrow-right"></div>
+        {% endif %}
+    {% endif %}
+</button>

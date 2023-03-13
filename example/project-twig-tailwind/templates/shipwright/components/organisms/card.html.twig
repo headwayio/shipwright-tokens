@@ -1,0 +1,58 @@
+{# 
+  Organism/Card
+
+  ### Variables
+  name              | type        | default        | options
+  ------------------------------------------------------------------
+  button              object        {}
+  image               string        ""
+  isStandard          boolean       false
+  text                string        ""
+  title               string        ""
+
+  ### How to use
+  {%  include 'templates/shipwright/components/organisms/card.html.twig' with {
+        'button': {},
+        'image': "img/src",
+        'isStandard': false,
+        'text': "Your text here.",
+        'title: "Your Title"
+      }
+  %}
+#}
+
+{% set button = button|default({}) %}
+{% set image = image|default('') %}
+{% set isStandard = isStandard|default(false) %}
+{% set text = text|default('') %}
+{% set title = title|default('') %}
+
+{% set height = isStandard ? 'h-[396px]' : 'max-h-[396px]'  %}
+
+<div class='flex flex-col gap-y-[16px] p-[16px] w-[295px] bg-background-white-base rounded-lg shadow-large {{height}}'>
+    {% if image %}
+        <img src={{image}} class="w-[263px] max-h-[160px] rounded-lg shadow-inner"></img>
+    {% endif %}
+
+    <div class="mb-[16px]">
+        <h6 class="h6 h6-400 pb-[4px]">{{title}}</h6>
+        <p class="paragraph2 text-type-black-secondary">{{text}}</p>
+    </div>
+
+    <div class="w-full h-[1px] mb-[16px] bg-background-white-line"></div>
+
+    <div class="flex flex-row justify-end">
+        {% include '../atoms/button.html.twig' with {
+            arrow: button.arrow,
+            attributes: button.attributes,
+            disabled: button.disabled,
+            icon: button.icon,
+            iconDir: button.iconDir,
+            iconNum: button.iconNum,
+            id: button.id,
+            isSmall: button.isSmall,
+            text: button.text,
+            variant: button.variant
+        } only %}
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<script>
+  // The configuration below is to listen for changes to the document
+  // And run the icon replace when a new iframe is loaded in
+  const config = { attributes: false, childList: true, subtree: true };
+
+  const observer = new MutationObserver(() => {
+    feather.replace()
+  });
+
+  observer.observe(document.body, config);
+</script>

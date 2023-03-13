@@ -1,0 +1,111 @@
+<div class="flex flex-col items-center w-3/4 pb-3 mb-5 border-b-2">
+    <h4 class="mb-3 h4 h4-700 text-type-black-secondary">Colors</h4>
+    <div class="flex flex-col items-center mb-3">
+        <h5 class="h5 h5-400">Primary</h5>
+        <div class="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
+            {% include "./color-card.html.twig" with { text: "Main", bg: "bg-primary-main"} only %}
+            {% include "./color-card.html.twig" with { text: "Dark", bg: "bg-primary-dark"} only %}
+            {% include "./color-card.html.twig" with { text: "Light", bg: "bg-primary-light"} only %}
+        </div>
+    </div>
+    <div class="flex flex-col items-center mb-3">
+        <h5 class="h5 h5-400">Secondary</h5>
+        <div class="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
+            {% include "./color-card.html.twig" with { text: "Main", bg: "bg-secondary-main"} only %}
+            {% include "./color-card.html.twig" with { text: "Dark", bg: "bg-secondary-dark"} only %}
+            {% include "./color-card.html.twig" with { text: "Light", bg: "bg-secondary-light"} only %}
+        </div>
+    </div>
+    <div class="flex flex-col items-center mb-3">
+        <h5 class="h5 h5-400">Grey</h5>
+        <div class="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
+            {% include "./color-card.html.twig" with { text: "Main", bg: "bg-grey-main"} only %}
+            {% include "./color-card.html.twig" with { text: "Dark", bg: "bg-grey-dark"} only %}
+            {% include "./color-card.html.twig" with { text: "Light", bg: "bg-grey-light"} only %}
+        </div>
+    </div>
+    <div class="flex flex-col items-center mb-3">
+        <h5 class="h5 h5-400">Warning</h5>
+        <div class="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
+            {% include "./color-card.html.twig" with { text: "Main", bg: "bg-warning-main"} only %}
+            {% include "./color-card.html.twig" with { text: "Dark", bg: "bg-warning-dark"} only %}
+            {% include "./color-card.html.twig" with { text: "Light", bg: "bg-warning-light"} only %}
+        </div>
+    </div>
+    <div class="flex flex-col items-center mb-3">
+        <h5 class="h5 h5-400">Info</h5>
+        <div class="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
+            {% include "./color-card.html.twig" with { text: "Main", bg: "bg-info-main"} only %}
+            {% include "./color-card.html.twig" with { text: "Dark", bg: "bg-info-dark"} only %}
+            {% include "./color-card.html.twig" with { text: "Light", bg: "bg-info-light"} only %}
+        </div>
+    </div>
+    <div class="flex flex-col items-center mb-3">
+        <h5 class="h5 h5-400">Success</h5>
+        <div class="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
+            {% include "./color-card.html.twig" with { text: "Main", bg: "bg-success-main"} only %}
+            {% include "./color-card.html.twig" with { text: "Dark", bg: "bg-success-dark"} only %}
+            {% include "./color-card.html.twig" with { text: "Light", bg: "bg-success-light"} only %}
+        </div>
+    </div>
+    <div class="flex flex-col items-center mb-3">
+        <h5 class="h5 h5-400">Error</h5>
+        <div class="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
+            {% include "./color-card.html.twig" with { text: "Main", bg: "bg-error-main"} only %}
+            {% include "./color-card.html.twig" with { text: "Dark", bg: "bg-error-dark"} only %}
+            {% include "./color-card.html.twig" with { text: "Light", bg: "bg-error-light"} only %}
+        </div>
+    </div>
+    <div class="flex flex-col items-center mb-3">
+        <h5 class="h5 h5-400">Button</h5>
+        <div class="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
+            {% include "./color-card.html.twig" with { text: "Active", bg: "bg-button-active"} only %}
+            {% include "./color-card.html.twig" with { text: "Hover", bg: "bg-button-hover"} only %}
+            {% include "./color-card.html.twig" with { text: "Selected", bg: "bg-button-selected"} only %}
+            {% include "./color-card.html.twig" with { text: "Deactivated", bg: "bg-button-deactivated"} only %}
+            {% include "./color-card.html.twig" with { text: "Deactivated Background", bg: "bg-button-deactivatedBackground"} only %}
+        </div>
+    </div>
+    <div class="flex flex-col items-center mb-3">
+        <h5 class="h5 h5-400">Type</h5>
+        <div class="flex flex-col flex-wrap items-center justify-center pb-3 mt-1 space-x-2">
+            <h6 class="h6 h6-400">Black</h6>
+            <div class="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
+                {% include "./color-card.html.twig" with { text: "Primary", bg: "bg-type-black-primary"} only %}
+                {% include "./color-card.html.twig" with { text: "Secondary", bg: "bg-type-black-secondary"} only %}
+                {% include "./color-card.html.twig" with { text: "Tertiary", bg: "bg-type-black-tertairy"} only %}
+                {% include "./color-card.html.twig" with { text: "Deactivated", bg: "bg-type-black-deactivated"} only %}
+            </div>
+            <div class="flex flex-col flex-wrap items-center justify-center pb-3 space-x-2">
+                <h6 class="h6 h6-400">White</h6>
+                <div class="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
+                    {% include "./color-card.html.twig" with { text: "Primary", bg: "bg-type-white-primary"} only %}
+                    {% include "./color-card.html.twig" with { text: "Secondary", bg: "bg-type-white-secondary"} only %}
+                    {% include "./color-card.html.twig" with { text: "Tertiary", bg: "bg-type-white-tertiary"} only %}
+                    {% include "./color-card.html.twig" with { text: "Deactivated", bg: "bg-type-white-deactivated"} only %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col items-center mb-3">
+        <h5 class="h5 h5-400">Background</h5>
+        <div class="flex flex-col flex-wrap items-center justify-center pb-3 mt-1 space-x-2">
+            <h6 class="h6 h6-400">Black</h6>
+            <div class="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
+                {% include "./color-card.html.twig" with { text: "Base", bg: "bg-background-black-base"} only %}
+                {% include "./color-card.html.twig" with { text: "Primary", bg: "bg-background-black-primary"} only %}
+                {% include "./color-card.html.twig" with { text: "Secondary", bg: "bg-background-black-secondary"} only %}
+                {% include "./color-card.html.twig" with { text: "Line", bg: "bg-background-black-line"} only %}
+            </div>
+            <div class="flex flex-col flex-wrap items-center justify-center pb-3 space-x-2">
+                <h6 class="h6 h6-400">White</h6>
+                <div class="flex flex-row flex-wrap items-center justify-center pb-3 space-x-2">
+                    {% include "./color-card.html.twig" with { text: "Base", bg: "bg-background-white-base"} only %}
+                    {% include "./color-card.html.twig" with { text: "Primary", bg: "bg-background-white-primary"} only %}
+                    {% include "./color-card.html.twig" with { text: "Secondary", bg: "bg-background-white-secondary"} only %}
+                    {% include "./color-card.html.twig" with { text: "Line", bg: "bg-background-white-line"} only %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
