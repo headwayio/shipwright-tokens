@@ -1,0 +1,15 @@
+import { Meta, Title, IconGallery, IconItem } from "@storybook/addon-docs/";
+import FeatherIcon from "feather-icons-react/build/FeatherIcon";
+import tokens from "./assets/tokens.json";
+
+<Meta title="Atoms/Iconography" />
+
+# Iconography
+
+<IconGallery>
+  {tokens.icons.map((icon, idx) => (
+    <IconItem key={idx} name={icon}>
+      <FeatherIcon icon={icon} className="text-xs"></FeatherIcon>
+    </IconItem>
+  ))}
+</IconGallery>
