@@ -1,6 +1,6 @@
-import Header from "../components/header";
-import Typography from "../components/typography";
-import Colors from "../components/colors";
+import Header from "../components/tokens/header";
+import Typography from "../components/tokens/typography";
+import Colors from "../components/tokens/colors";
 
 export default function Home() {
   return (

@@ -14,8 +14,10 @@ module.exports = {
   theme: {
     extend: {
       colors,
-      shadows,
       ...misc,
+      boxShadow: {
+        ...shadows,
+      },
     },
   },
   variants: {
