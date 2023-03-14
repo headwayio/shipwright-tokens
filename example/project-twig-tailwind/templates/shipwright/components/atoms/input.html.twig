@@ -1,0 +1,107 @@
+{# 
+  Atom/Input
+
+  ### Variables
+  name              | type        | default        | options
+  ------------------------------------------------------------------
+  arrow               boolean       true
+  disabled            boolean       false
+  errorMessage        string        ""
+  hintText            string        ""
+  icon                string        "search"         "", "search", "credit-card", "mail", "phone", "user"
+  label               string        ""
+  name                string        ""
+  placeholder         string        ""
+  required            boolean       false
+  rows                string        "4"
+  successMessage      string        ""
+  type                string        "text"
+  value               string        ""
+  variant             string        "input"          "input", "textarea"
+
+  ### How to use
+  {%  include 'templates/shipwright/components/atoms/input.html.twig' with {
+        'name': 'email',
+        'label': 'Email',
+        'required': true,
+        etc.
+      }
+  %}
+#}
+
+{% set arrow = arrow|default(true) %}
+{% set attributes = attributes|default([]) %}
+{% set disabled = disabled|default(false) %}
+{% set errorMessage = errorMessage|default('') %}
+{% set hintText = hintText|default('') %}
+{% set icon = icon|default('search') %}
+{% set label = label|default('') %}
+{% set name = name|default('') %}
+{% set placeholder = placeholder|default('') %}
+{% set required = required|default(false) %}
+{% set rows = rows|default('4') %}
+{% set successMessage = successMessage|default('') %}
+{% set type = type|default('text') %}
+{% set value = value|default('') %}
+{% set variant = variant|default('input') %}
+
+
+{% set borderColor =  errorMessage ? "border-error-dark" : "border-background-black-line" %}
+{% set fontColor = errorMessage ? "text-error-dark" : "text-type-black-primary" %}
+{% set isInput = variant == "input" %}
+{% set isTextArea = variant == "textarea" %}
+{% set arrowPresent = arrow and isInput %}
+{% set iconPresent = icon and isInput %}
+
+
+<div class="flex flex-col align-start gap-[8px]">
+    <div
+        class="flex flex-row items-center justify-between">
+        {# Label #}
+        <label for="{{- name -}}" class="flex flex-row items-center p-[0px] text-base font-normal {{ disabled ? " text-type-black-deactivated" : fontcolor }}">
+            {{- label -}}
+            <span aria-label="required">{{ required ? "*" }}</span>
+        </label>
+
+        {# Hint textt #}
+        {% if hintText is not empty %}
+            <p class="paragraph2">{{hintText}}</p>
+        {% endif %}
+    </div>
+
+    <div
+        class="flex flex-row relative border w-full focus-within:outline focus-within:outline-button-active focus-within:border-button-active {{ bordercolor }}
+                                        {{ disabled ? " bg-button-deactivatedbackground border-type-black-deactivated" : 'text-type-black-primary' }}
+                                         {% if errormessage is not empty %}outline outline-error-dark{% endif %}">
+
+
+        {# Input/Textarea #}
+        <{{-variant}} {% if isInput %} type="{{ type }}" {% endif %} name="{{ name }}" class="peer focus:outline-none text-sm py-[14px] px-[16px] {% if iconPresent %}pl-[48px] {% endif -%} w-full {{- isTextArea ? " resize-none" -}}" placeholder="{{ placeholder }}" {% if isInput %} value="{{ value }}" {% endif %} {% if isTextArea %} rows="{{ rows }}" {% endif %} {% for attr, val in attributes %} {{ attr -}}="{{ val }}" {% endfor %} {{ disabled ? "disabled" : "" }} {{ required ? "required" : "" }}>
+            {% if isTextArea %}
+                {{- value -}}
+            {% endif %}
+        </{{-variant-}}>
+
+        {# Icon at beginning of field #}
+        {% if iconPresent %}
+            <i data-feather="{{ icon }}" class="absolute pointer-events-none left-[16px] top-[14px] peer-disabled:text-type-black-deactivated text-type-black-primary" height="20" width="20"></i>
+        {% endif %}
+
+        {# Icon at end of field #}
+        {% if arrowPresent %}
+            <i data-feather="arrow-right" class="pointer-events-none mr-[16px] mt-[14px] peer-disabled:text-type-black-deactivated text-type-black-primary"></i>
+        {% endif %}
+    </div>
+
+    {# Error message #}
+    {% if errorMessage is not empty %}
+        <span class="flex items-center paragraph2 text-error-dark">
+            <i data-feather="alert-triangle" height="16" width="16"></i>&nbsp;{{ errorMessage }}</span>
+    {% endif %}
+
+    {# Success message #}
+    {% if successMessage is not empty %}
+        <span class="flex items-center paragraph2 text-success-dark">
+            <i data-feather="check-circle" height="16" width="16"></i>&nbsp;{{ successMessage }}</span>
+    {% endif %}
+</div>

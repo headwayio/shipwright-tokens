@@ -1,0 +1,14 @@
+import { Meta, Title, IconGallery, IconItem } from "@storybook/addon-docs/";
+import tokens from "./assets/tokens.json";
+
+<Meta title="Atoms/Iconography" />
+
+# Iconography
+
+<IconGallery>
+  {tokens.icons.map((icon, idx) => (
+    <IconItem key={idx} name={icon}>
+      <i data-feather={icon} className="text-xs"></i>
+    </IconItem>
+  ))}
+</IconGallery>
