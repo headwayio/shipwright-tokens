@@ -1,11 +1,15 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, ScrollView, View } from "react-native";
 import { createBox, createText, ThemeProvider } from "@shopify/restyle";
+import * as Font from "expo-font";
 import theme from "./theme";
 import Header from "./components/header";
 import Typography from "./components/typography";
 import Colors from "./components/colors";
 
+// Font.loadAsync({
+//   "Inter": require("./assets/fonts/Inter/Inter-VariableFont_slnt_wght.tff"),
+// });
 
 // export default function App() {
 //   console.log(theme.textVariants.ios.largeTitle);

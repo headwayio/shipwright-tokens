@@ -1,21 +1,21 @@
 {
   "400": {
     "fontFamily": "Inter",
-    "fontWeight": 400,
+    "fontWeight": "400",
     "lineHeight": "16px",
     "fontSize": "12px",
     "letterSpacing": "0.4px"
   },
   "500": {
     "fontFamily": "Inter",
-    "fontWeight": 500,
+    "fontWeight": "500",
     "lineHeight": "24px",
     "fontSize": "12.003px",
     "letterSpacing": "0.1px"
   },
   "600": {
     "fontFamily": "Inter",
-    "fontWeight": 600,
+    "fontWeight": "600",
     "lineHeight": "16px",
     "fontSize": "12px",
     "letterSpacing": "1.5px",
@@ -23,7 +23,7 @@
   },
   "700": {
     "fontFamily": "Inter",
-    "fontWeight": 700,
+    "fontWeight": "700",
     "lineHeight": "16px",
     "fontSize": "12px",
     "letterSpacing": "1.25px",
@@ -31,84 +31,84 @@
   },
   "h1-400": {
     "fontFamily": "Inter",
-    "fontWeight": 400,
+    "fontWeight": "400",
     "lineHeight": "112px",
     "fontSize": "89.764px",
     "letterSpacing": "-1.5px"
   },
   "h1-700": {
     "fontFamily": "Inter",
-    "fontWeight": 700,
+    "fontWeight": "700",
     "lineHeight": "112px",
     "fontSize": "89.76px",
     "letterSpacing": "-1.5px"
   },
   "h2-400": {
     "fontFamily": "Inter",
-    "fontWeight": 400,
+    "fontWeight": "400",
     "lineHeight": "72px",
     "fontSize": "67.34px",
     "letterSpacing": "-0.5px"
   },
   "h2-700": {
     "fontFamily": "Inter",
-    "fontWeight": 700,
+    "fontWeight": "700",
     "lineHeight": "72px",
     "fontSize": "67.34px",
     "letterSpacing": "-0.5px"
   },
   "h3-400": {
     "fontFamily": "Inter",
-    "fontWeight": 400,
+    "fontWeight": "400",
     "lineHeight": "56px",
     "fontSize": "50.517px",
     "letterSpacing": "0em"
   },
   "h3-700": {
     "fontFamily": "Inter",
-    "fontWeight": 700,
+    "fontWeight": "700",
     "lineHeight": "56px",
     "fontSize": "50.52px",
     "letterSpacing": "0em"
   },
   "h4-700": {
     "fontFamily": "Inter",
-    "fontWeight": 700,
+    "fontWeight": "700",
     "lineHeight": "40px",
     "fontSize": "37.897px",
     "letterSpacing": "0.25px"
   },
   "h4-400": {
     "fontFamily": "Inter",
-    "fontWeight": 400,
+    "fontWeight": "400",
     "lineHeight": "40px",
     "fontSize": "37.897px",
     "letterSpacing": "0.25px"
   },
   "h5-400": {
     "fontFamily": "Inter",
-    "fontWeight": 400,
+    "fontWeight": "400",
     "lineHeight": "32px",
     "fontSize": "28.43px",
     "letterSpacing": "-0.18px"
   },
   "h5-700": {
     "fontFamily": "Inter",
-    "fontWeight": 700,
+    "fontWeight": "700",
     "lineHeight": "32px",
     "fontSize": "28.43px",
     "letterSpacing": "-0.18px"
   },
   "h6-400": {
     "fontFamily": "Inter",
-    "fontWeight": 400,
+    "fontWeight": "400",
     "lineHeight": "24px",
     "fontSize": "21.328px",
     "letterSpacing": "0px"
   },
   "h6-700": {
     "fontFamily": "Inter",
-    "fontWeight": 700,
+    "fontWeight": "700",
     "lineHeight": "24px",
     "fontSize": "21.33px",
     "letterSpacing": "0px"
@@ -116,7 +116,7 @@
   "ios": {
     "largeTitle": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": 400,
+      "fontWeight": "400",
       "lineHeight": "41px",
       "fontSize": "34px",
       "letterSpacing": "0px",
@@ -127,7 +127,7 @@
     },
     "title1": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": 600,
+      "fontWeight": "600",
       "lineHeight": "34px",
       "fontSize": "28px",
       "letterSpacing": "0px",
@@ -138,7 +138,7 @@
     },
     "title2": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": 600,
+      "fontWeight": "600",
       "lineHeight": "28px",
       "fontSize": "22px",
       "letterSpacing": "0px",
@@ -149,7 +149,7 @@
     },
     "title3": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": 600,
+      "fontWeight": "600",
       "lineHeight": "24px",
       "fontSize": "20px",
       "letterSpacing": "0px",
@@ -160,7 +160,7 @@
     },
     "headline": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": 700,
+      "fontWeight": "700",
       "lineHeight": "22px",
       "fontSize": "17px",
       "letterSpacing": "0px",
@@ -171,7 +171,7 @@
     },
     "body": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": 400,
+      "fontWeight": "400",
       "lineHeight": "22px",
       "fontSize": "17px",
       "letterSpacing": "0px",
@@ -182,7 +182,7 @@
     },
     "largeButton": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": 400,
+      "fontWeight": "400",
       "lineHeight": "22px",
       "fontSize": "17px",
       "letterSpacing": "0px",
@@ -193,7 +193,7 @@
     },
     "callout": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": 500,
+      "fontWeight": "500",
       "lineHeight": "21px",
       "fontSize": "16px",
       "letterSpacing": "0px",
@@ -204,7 +204,7 @@
     },
     "subheadline": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": 500,
+      "fontWeight": "500",
       "lineHeight": "16px",
       "fontSize": "14px",
       "letterSpacing": "0px",
@@ -215,7 +215,7 @@
     },
     "smallButton": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": 400,
+      "fontWeight": "400",
       "lineHeight": "20px",
       "fontSize": "15px",
       "letterSpacing": "0px",
@@ -226,7 +226,7 @@
     },
     "footnote": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": 400,
+      "fontWeight": "400",
       "lineHeight": "18px",
       "fontSize": "13px",
       "letterSpacing": "0px",
@@ -237,7 +237,7 @@
     },
     "caption1": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": 400,
+      "fontWeight": "400",
       "lineHeight": "16px",
       "fontSize": "12px",
       "letterSpacing": "0px",
@@ -248,7 +248,7 @@
     },
     "caption2": {
       "fontFamily": "SF Pro Text",
-      "fontWeight": 400,
+      "fontWeight": "400",
       "lineHeight": "13px",
       "fontSize": "11px",
       "letterSpacing": "0px",
