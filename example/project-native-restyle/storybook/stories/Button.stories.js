@@ -4,7 +4,7 @@ import { ThemeProvider } from "@shopify/restyle";
 import theme from "../../theme";
 import { storiesOf } from "@storybook/react-native";
 import { action } from "@storybook/addon-actions";
-import Typography from "../../components/tokens/typography";
+import ButtonDefault from "../../components/atoms/button";
 
 const styles = StyleSheet.create({
   container: {
@@ -16,10 +16,10 @@ const styles = StyleSheet.create({
 });
 
 export const task = {
-  title: "Tokens/Typography",
+  title: "Atoms/Button",
 };
 
-storiesOf("Typography", module)
+storiesOf("Button", module)
   .addDecorator((story) => (
     <ScrollView>
       <View style={styles.container}>
@@ -27,4 +27,7 @@ storiesOf("Typography", module)
       </View>
     </ScrollView>
   ))
-  .add("Typography", () => <Typography />);
+  .add("Fill", () => <ButtonDefault text="Button" id="fill" variant="fill"/>)
+  .add("Outline", () => <ButtonDefault text="Button" id="outline" variant="outline"/>)
+  .add("Ghost", () => <ButtonDefault text="Button" id="ghost" variant="ghost"/>)
+  .add("Small", () => <ButtonDefault text="Button" id="small" variant="fill" isSmall={true} />);

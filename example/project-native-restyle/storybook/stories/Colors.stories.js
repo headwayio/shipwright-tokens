@@ -4,7 +4,7 @@ import { ThemeProvider } from "@shopify/restyle";
 import theme from "../../theme";
 import { storiesOf } from "@storybook/react-native";
 import { action } from "@storybook/addon-actions";
-import Colors from "../../components/colors";
+import Colors from "../../components/tokens/colors";
 
 const styles = StyleSheet.create({
   container: {

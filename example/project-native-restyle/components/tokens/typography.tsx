@@ -1,5 +1,5 @@
 import Container from "./container";
-import Text from "../Text";
+import Text from "../../Text";
 
 const Typography = () => {
   return (
