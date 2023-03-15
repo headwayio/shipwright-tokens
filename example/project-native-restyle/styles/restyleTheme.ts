@@ -51,6 +51,8 @@ const theme = createTheme({
     backgroundBlackLine: palette.background.black.line,
   },
   spacing: {
+    xxs: 2,
+    xs: 4,
     s: 8,
     m: 16,
     l: 24,

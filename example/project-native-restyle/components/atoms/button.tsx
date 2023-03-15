@@ -1,13 +1,25 @@
+// Atom/Button
+
+// ### Variables
+// name              | type        | default        | options
+// -----------------------------------------------------------------
+// disabled            boolean       false
+// icon                boolean       false
+// id                  string        ""
+// isSmall             boolean       false
+// text                string        ""
+// variant             string        "fill"           "fill", "outline", "ghost"
+
 import Text from "../../Text";
 import { TouchableOpacity, StyleSheet } from "react-native";
 import theme from "../../theme";
 
-const ButtonDefault = ({
-    disabled = false,
-    id,
-    isSmall = false,
-    text,
-    variant = "fill"
+const Button = ({
+  disabled = false,
+  id,
+  isSmall = false,
+  text,
+  variant = "fill",
 }) => {
   const classes = {
     fill: {
@@ -27,7 +39,6 @@ const ButtonDefault = ({
       color: "buttonActive",
     },
   };
-
 
   const styles = StyleSheet.create({
     button: {
@@ -54,4 +65,4 @@ const ButtonDefault = ({
   );
 };
 
-export default ButtonDefault;
+export default Button;
