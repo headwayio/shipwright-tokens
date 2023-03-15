@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, ScrollView, View } from "react-native";
 import { createBox, createText, ThemeProvider } from "@shopify/restyle";
-import * as Font from "expo-font";
 import theme from "./theme";
 import Header from "./components/tokens/header";
 import Typography from "./components/tokens/typography";
