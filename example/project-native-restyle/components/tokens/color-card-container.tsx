@@ -1,5 +1,5 @@
-import Box from "../Box";
-import Text from "../Text";
+import Box from "../../Box";
+import Text from "../../Text";
 
 const ColorCardContainer = ({
   titleVariant = "h5-400",

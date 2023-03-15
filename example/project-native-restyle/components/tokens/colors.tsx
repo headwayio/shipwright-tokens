@@ -1,7 +1,6 @@
 import Container from "./container";
 import ColorCardContainer from "./color-card-container";
 import ColorCard from "./color-card";
-import Text from "../Text";
 
 const Colors = () => {
   return (
