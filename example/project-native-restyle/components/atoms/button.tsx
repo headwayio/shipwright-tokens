@@ -42,17 +42,17 @@ const Button = ({
 
   const styles = StyleSheet.create({
     button: {
-      paddingHorizontal: theme.spacing.xxl,
-      paddingVertical: isSmall ? theme.spacing.s : theme.spacing.m,
+      alignItems: "center",
       backgroundColor: classes[variant].backgroundColor,
+      borderColor: classes[variant].borderColor,
       borderRadius: 50,
       borderStyle: classes[variant].borderStyle,
-      borderColor: classes[variant].borderColor,
       borderWidth: classes[variant].borderWidth,
       flex: 1,
       flexDirection: "row",
       justifyContent: "center",
-      alignItems: "center",
+      paddingHorizontal: theme.spacing.xxl,
+      paddingVertical: isSmall ? theme.spacing.s : theme.spacing.m,
     },
   });
 

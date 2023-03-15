@@ -16,10 +16,10 @@ import { useState } from "react";
 import theme from "../../theme";
 
 const Input = ({
+  errorMessage,
   hintText,
   label,
   placeholder,
-  errorMessage,
   successMessage,
 }) => {
   const [focus, setFocus] = useState(false);
@@ -31,26 +31,26 @@ const Input = ({
   const styles = StyleSheet.create({
     container: {
       alignSelf: "stretch",
-      paddingHorizontal: theme.spacing.m,
       flex: 1,
       flexDirection: "column",
       gap: theme.spacing.s,
+      paddingHorizontal: theme.spacing.m,
     },
     input: {
-      borderWidth: 1,
       borderColor: focus
         ? theme.colors.buttonActive
         : theme.colors.backgroundBlackLine,
-      paddingHorizontal: theme.spacing.s,
-      paddingVertical: theme.spacing.xs,
+      borderWidth: 1,
       flex: 1,
       marginVertical: theme.spacing.xs,
+      paddingHorizontal: theme.spacing.s,
+      paddingVertical: theme.spacing.xs,
     },
     label: {
       alignItems: "center",
-      justifyContent: "space-between",
       flex: 1,
       flexDirection: "row",
+      justifyContent: "space-between",
     },
   });
 
