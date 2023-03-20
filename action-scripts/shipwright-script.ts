@@ -41,7 +41,7 @@ const shipwrightScript = async ({
 
   console.log("5-----------------");
   // format generated token files
-  execSync(`npx prettier --write ${actionPath}${outputFolder}/**`);
+  execSync(`npx prettier --write ${actionPath}/${outputFolder}/**`);
   console.log("6-----------------");
 };
 
