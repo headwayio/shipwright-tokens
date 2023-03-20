@@ -35,7 +35,7 @@ const shipwrightScript = async ({
   copyThemeFile({ outputFolder, styleSystem, actionPath });
 
   // format generated token files
-  execSync(`npx prettier --write ${actionPath}${outputFolder}/**`);
+  execSync(`npx prettier --write ${outputFolder}/**`);
 };
 
 export { shipwrightScript };
