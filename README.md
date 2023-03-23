@@ -74,7 +74,7 @@ With this configuration option set, Shipwright Tokens will generate 5 files that
 
 ### Using the Custom Theme
 
-By default, the generated `tailwind.config.js` file will import and extend the 4 generated `.json` files, making your all styles in your custom theme available as a base for your existing tailwing config. To incorporate the generated theme with your existing tailwind config, add the following snippet to `module.exports` within your projects existing `tailwind.config.js` file:
+By default, the generated `tailwind.config.js` file will import and extend the 4 generated `.json` files, making all styles in your custom theme available as a base for your existing tailwing config. To incorporate the generated theme with your existing tailwind config, add the following snippet to `module.exports` within your projects existing `tailwind.config.js` file:
 
 ```
   presets: [
@@ -82,9 +82,9 @@ By default, the generated `tailwind.config.js` file will import and extend the 4
   ],
 ```
 
-If your project does not have an existing tailwind config, move the generated `tailwing.config.js` file to the root directory of your project and update the import paths to the genrated `.json` files.
+If your project does not have an existing tailwind config, move the generated `tailwing.config.js` file to the root directory of your project and update the import paths to the generated `.json` files.
 
-You can pick and choose which styles are availble in your project by editing the generated `tailwind.config.js` to only include the styles you want, the two sections below will show you how to do this.
+You can pick and choose which styles are available in your project by editing the generated `tailwind.config.js` to only include the styles you want, the two sections below will show you how to do this.
 
 ### Colors, Shadows, and Misc styles:
 
@@ -156,7 +156,7 @@ With this configuration option set, Shipwright Tokens will generate 5 files that
 
 ### Using the Custom Theme
 
-By default, the generated `muiTheme.js` file will import and extend the 4 generated `.json` files, making your all styles in your custom theme available for use. To start using your custom theme, you simply need to pass your custom theme to MUI's `ThemeProvider` component by doing the following:
+By default, the generated `muiTheme.js` file will import and extend the 4 generated `.json` files, making all styles in your custom theme available for use. To start using your custom theme, you simply need to pass your custom theme to MUI's `ThemeProvider` component by doing the following:
 
 - Import your custom theme:
 
@@ -250,7 +250,7 @@ With this configuration option set, Shipwright Tokens will generate 5 files that
 
 ### Using the Custom Theme
 
-By default, the generated `restyleTheme.ts` file will import and extend the 4 generated `.json` files, making your all styles in your custom theme available for use. To start using your custom theme, you simply need to pass your custom theme to Restyle's `ThemeProvider` component by doing the following:
+By default, the generated `restyleTheme.ts` file will import and extend the 4 generated `.json` files, making all styles in your custom theme available for use. To start using your custom theme, you simply need to pass your custom theme to Restyle's `ThemeProvider` component by doing the following:
 
 - Import and extend your custom theme in `theme.ts`:
 
