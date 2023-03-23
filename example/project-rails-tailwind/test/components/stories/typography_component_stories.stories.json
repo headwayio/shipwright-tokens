@@ -1,0 +1,13 @@
+{
+  "title": "Tokens",
+  "stories": [
+    {
+      "name": "typography",
+      "parameters": {
+        "server": {
+          "id": "typography_component/typography"
+        }
+      }
+    }
+  ]
+}

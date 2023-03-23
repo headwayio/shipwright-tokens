@@ -1,0 +1,38 @@
+{
+  "title": "Atoms",
+  "stories": [
+    {
+      "name": "button",
+      "parameters": {
+        "server": {
+          "id": "button_component/button"
+        }
+      },
+      "args": {
+        "variant": "fill",
+        "label": "Button"
+      },
+      "argTypes": {
+        "variant": {
+          "control": {
+            "type": "select"
+          },
+          "name": "Variant",
+          "description": "selects styling of button.",
+          "options": [
+            "fill",
+            "outline",
+            "ghost"
+          ]
+        },
+        "label": {
+          "control": {
+            "type": "text"
+          },
+          "name": "Label",
+          "description": "sets the label of the button."
+        }
+      }
+    }
+  ]
+}

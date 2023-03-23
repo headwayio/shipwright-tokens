@@ -1,0 +1,124 @@
+{
+  "title": "Atoms",
+  "stories": [
+    {
+      "name": "input",
+      "parameters": {
+        "server": {
+          "id": "input_component/input"
+        }
+      },
+      "args": {
+        "disabled": false,
+        "arrow": false,
+        "error_message": "",
+        "icon": "search",
+        "name": "",
+        "placeholder": "Placeholder Text",
+        "required": false,
+        "rows": "4",
+        "success_message": "",
+        "type": "text",
+        "value": "",
+        "variant": "input"
+      },
+      "argTypes": {
+        "disabled": {
+          "control": {
+            "type": "boolean"
+          },
+          "name": "Disabled",
+          "description": "attribute for disabled field."
+        },
+        "arrow": {
+          "control": {
+            "type": "boolean"
+          },
+          "name": "Arrow",
+          "description": "display arrow at end of input. available if `variant` is `input`."
+        },
+        "error_message": {
+          "control": {
+            "type": "text"
+          },
+          "name": "Error Message",
+          "description": "error message for input.message informing user of invalid input."
+        },
+        "icon": {
+          "control": {
+            "type": "select"
+          },
+          "name": "Icon",
+          "description": "feather icon name to place on left-hand side of input. you can use any feather icon name in this field, but the most common have been added as options to storybook. available if `variant` is `input`.",
+          "options": [
+            "search",
+            "credit-card",
+            "mail",
+            "phone",
+            "user"
+          ]
+        },
+        "name": {
+          "control": {
+            "type": "text"
+          },
+          "name": "Name",
+          "description": "form input name."
+        },
+        "placeholder": {
+          "control": {
+            "type": "text"
+          },
+          "name": "Placeholder",
+          "description": "attribute for placeholder that appears within input."
+        },
+        "required": {
+          "control": {
+            "type": "boolean"
+          },
+          "name": "Required",
+          "description": "attribute for required field."
+        },
+        "rows": {
+          "control": {
+            "type": "text"
+          },
+          "name": "Rows",
+          "description": "number of rows passed to textarea. available if `variant` is `textarea`."
+        },
+        "success_message": {
+          "control": {
+            "type": "text"
+          },
+          "name": "Success Message",
+          "description": "message informing user of valid input."
+        },
+        "type": {
+          "control": {
+            "type": "text"
+          },
+          "name": "Type",
+          "description": "form input type (i.e. email, password, text, etc.). available if `variant` is `input`."
+        },
+        "value": {
+          "control": {
+            "type": "text"
+          },
+          "name": "Value",
+          "description": "value of the input. useful for filling in form with previously submitted fields."
+        },
+        "variant": {
+          "control": {
+            "type": "select"
+          },
+          "name": "Variant",
+          "description": "either input field, select, or textarea.",
+          "options": [
+            "input",
+            "textarea"
+          ]
+        }
+      }
+    }
+  ]
+}

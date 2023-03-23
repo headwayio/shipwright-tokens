@@ -1,0 +1,49 @@
+{
+  "title": "Organisms",
+  "stories": [
+    {
+      "name": "card",
+      "parameters": {
+        "server": {
+          "id": "card_component/card"
+        }
+      },
+      "args": {
+        "is_standard": false,
+        "title": "Card Title",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "image": "https://investorplace.com/wp-content/uploads/2019/07/tech1600a-768x432.jpg"
+      },
+      "argTypes": {
+        "is_standard": {
+          "control": {
+            "type": "boolean"
+          },
+          "name": "Is Standard",
+          "description": "ensure card has standardized height, regardless of content."
+        },
+        "title": {
+          "control": {
+            "type": "text"
+          },
+          "name": "Title",
+          "description": "add title to card. title appears above text."
+        },
+        "text": {
+          "control": {
+            "type": "text"
+          },
+          "name": "Text",
+          "description": "add text to card. text appears below title."
+        },
+        "image": {
+          "control": {
+            "type": "text"
+          },
+          "name": "Image",
+          "description": "add image to card, enter path to image."
+        }
+      }
+    }
+  ]
+}
