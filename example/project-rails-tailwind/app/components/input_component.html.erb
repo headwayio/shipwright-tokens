@@ -4,10 +4,9 @@ fontColor =
   @error_message.present? ? "text-error-dark" : "text-type-black-primary"
 
 isInput = @variant === "input"
-isTextArea = @variant === "textarea"
 iconPresent = @icon && isInput
 type = isInput ? @value : ""
-value = isInput || isTextArea ? @value : "" %>
+value = isInput ? @value : "" %>
 
 <div class="flex flex-col align-start gap-[8px]">
   <div class="flex flex-row items-center justify-between">
@@ -62,13 +61,13 @@ value = isInput || isTextArea ? @value : "" %>
         px-[16px]
         w-full
         <%= iconPresent && 'pl-[48px]' %>
-        <%= isTextArea ? 'resize-none' : '' %>
       "
       disable="<%= @disabled %>"
       placeholder="<%= @placeholder %>"
       name="<%= @name %>"
       required="<%= @required %>"
       type="<%= @type %>"
+      value="<%= value %>"
     />
 
     <%# Icon %>

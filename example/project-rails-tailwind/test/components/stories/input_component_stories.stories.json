@@ -51,11 +51,7 @@
           "name": "Icon",
           "description": "feather icon name to place on left-hand side of input. you can use any feather icon name in this field, but the most common have been added as options to storybook. available if `variant` is `input`.",
           "options": [
-            "search",
-            "credit-card",
-            "mail",
-            "phone",
-            "user"
+            "search"
           ]
         },
         "name": {
@@ -114,8 +110,7 @@
           "name": "Variant",
           "description": "either input field, select, or textarea.",
           "options": [
-            "input",
-            "textarea"
+            "input"
           ]
         }
       }
