@@ -1,9 +1,15 @@
 <button class="<%= classes %>">
   <div class="flex items-center justify-center">
-    <%= tag.i class: %w[mr-[8px]], data: { feather: "arrow-left" } %>
+    <%= tag.i class: %w[mr-[8px] w-[10.67px] h-[10.67px]],
+          data: {
+            feather: "arrow-left"
+          } %>
     <p class="caption">
-      <%= content %>
+      <%= content.upcase %>
     </p>
-    <%= tag.i class: %w[ml-[8px]], data: { feather: "arrow-right" } %>
+    <%= tag.i class: %w[ml-[8px] w-[10.67px] h-[10.67px]],
+          data: {
+            feather: "arrow-right"
+          } %>
   </div>
 </button>
