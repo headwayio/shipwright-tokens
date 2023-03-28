@@ -4,6 +4,8 @@ defmodule Components.Organisms.Card do
   attr :is_standard, :boolean, default: true
   attr :text, :string, default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   attr :title, :string, default: "Card Title"
+  attr :button_variant, :string, default: "fill"
+  attr :button_label, :string, default: "Button"
   
 
   def card(assigns) do
@@ -27,7 +29,7 @@ defmodule Components.Organisms.Card do
 
       <div class="w-full h-[1px] mb-[16px] bg-background-white-line"></div>
       <div class="flex flex-row justify-end">
-        <Components.Atoms.Button.button variant="fill" label="Button" />
+        <Components.Atoms.Button.button variant={@button_variant} label={@button_label} />
       </div>
     </div>
     """
