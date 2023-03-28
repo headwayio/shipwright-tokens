@@ -28,11 +28,11 @@ value = isInput ? @value : "" %>
     </label>
 
     <%# Hint Text %>
-    <% if @hintText %>
+    <% if @hint_text.present? %>
       <p
         class="paragraph-2 <%= @disabled ? 'text-type-black-deactivated' : 'text-type-black-secondary' %>"
       >
-        <%= @hintText %>
+        <%= @hint_text %>
       </p>
     <% end %>
   </div>

@@ -1,6 +1,8 @@
 class InputComponentStories < ViewComponent::Storybook::Stories
   title 'Atoms'
 
+  control :label, as: :text, description: 'label for input.'
+  control :hint_text, as: :text, description: 'hint text for input.'
   control :disabled, as: :boolean, description: 'attribute for disabled field.'
   control :arrow, as: :boolean,
                   description: 'display arrow at end of input. available if `variant` is `input`.'
@@ -20,9 +22,9 @@ class InputComponentStories < ViewComponent::Storybook::Stories
                   description: 'value of the input. useful for filling in form with previously submitted fields.'
   control :variant, as: :select, options: %w[input],
                     description: 'either input field, select, or textarea.'
-  def input(disabled: false, arrow: false, error_message: '', icon: 'search', name: '', placeholder: 'Placeholder Text',
+  def input(label: '', hint_text: '', disabled: false, arrow: false, error_message: '', icon: 'search', name: '', placeholder: 'Placeholder Text',
             required: false, rows: '4', success_message: '', type: 'text', value: '', variant: 'input')
-    render(InputComponent.new(disabled:, arrow:, error_message:, icon:, name:, placeholder:, required:, rows:,
+    render(InputComponent.new(label:, hint_text:, disabled:, arrow:, error_message:, icon:, name:, placeholder:, required:, rows:,
                               success_message:, type:, value:, variant:))
   end
 end

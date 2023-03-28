@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class InputComponent < ViewComponent::Base
-  attr_accessor :arrow, :disabled, :icon, :label, :name, :placeholder, :required, :rows, :successMessage, :type, :value,
+  attr_accessor :hint_text, :arrow, :disabled, :icon, :label, :name, :placeholder, :required, :rows, :successMessage, :type, :value,
                 :variant
 
-  def initialize(arrow: false, disabled: false, error_message: '', icon: 'search', label: '', name: '', placeholder: '', required: false,
+  def initialize(hint_text: '', arrow: false, disabled: false, error_message: '', icon: 'search', label: '', name: '', placeholder: '', required: false,
                  rows: '4', success_message: '', type: 'text', value: '', variant: 'input')
 
+    @hint_text = hint_text
     @arrow = arrow
     @disabled = disabled
     @error_message = error_message

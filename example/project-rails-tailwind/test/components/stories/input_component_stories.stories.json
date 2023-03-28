@@ -9,6 +9,8 @@
         }
       },
       "args": {
+        "label": "",
+        "hint_text": "",
         "disabled": false,
         "arrow": false,
         "error_message": "",
@@ -23,6 +25,20 @@
         "variant": "input"
       },
       "argTypes": {
+        "label": {
+          "control": {
+            "type": "text"
+          },
+          "name": "Label",
+          "description": "label for input."
+        },
+        "hint_text": {
+          "control": {
+            "type": "text"
+          },
+          "name": "Hint Text",
+          "description": "hint text for input."
+        },
         "disabled": {
           "control": {
             "type": "boolean"
