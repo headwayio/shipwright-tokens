@@ -60,7 +60,7 @@ defmodule Components.Atoms.Input do
 
       <div
         class={[
-          "flex flex-row relative border focus-within:border-button-active focus-within:w-full",
+          "flex flex-row relative border rounded focus-within:border-button-active focus-within:w-full",
           @borderColor,
           !string_empty?(@error_message) && "border-error-dark",
           (if @disabled, do: "bg-button-deactivatedBackground border-type-black-deactivated", else: "text-type-black-primary")
