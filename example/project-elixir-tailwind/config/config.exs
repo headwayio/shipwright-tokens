@@ -7,12 +7,18 @@
 # General application configuration
 import Config
 
+config :shipwright_elixir_tailwind,
+  ecto_repos: [ShipwrightElixirTailwind.Repo]
+
 # Configures the endpoint
-config :elixir_tw, ElixirTwWeb.Endpoint,
+config :shipwright_elixir_tailwind, ShipwrightElixirTailwindWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: ElixirTwWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: ElixirTw.PubSub,
-  live_view: [signing_salt: "oDb58eYw"]
+  render_errors: [
+    formats: [html: ShipwrightElixirTailwindWeb.ErrorHTML, json: ShipwrightElixirTailwindWeb.ErrorJSON],
+    layout: false
+  ],
+  pubsub_server: ShipwrightElixirTailwind.PubSub,
+  live_view: [signing_salt: "Q7t6M8Ay"]
 
 # Configures the mailer
 #
@@ -21,19 +27,36 @@ config :elixir_tw, ElixirTwWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :elixir_tw, ElixirTw.Mailer, adapter: Swoosh.Adapters.Local
-
-# Swoosh API client is needed for adapters other than SMTP.
-config :swoosh, :api_client, false
+config :shipwright_elixir_tailwind, ShipwrightElixirTailwind.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,
-  version: "0.14.29",
+  version: "0.17.11",
   default: [
     args:
-      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+      ~w(js/app.js js/storybook.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ]
+
+# Configure tailwind (the version is required)
+config :tailwind,
+  version: "3.2.7",
+  default: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=css/app.css
+      --output=../priv/static/assets/app.css
+    ),
+    cd: Path.expand("../assets", __DIR__)
+  ],
+  storybook: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=css/storybook.css
+      --output=../priv/static/assets/storybook.css
+    ),
+    cd: Path.expand("../assets", __DIR__)
   ]
 
 # Configures Elixir's Logger
@@ -43,16 +66,6 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
-
-# Configure Tailwind
-config :tailwind, version: "3.2.1", default: [
-  args: ~w(
-    --config=tailwind.config.js
-    --input=css/app.css
-    --output=../priv/static/assets/app.css
-  ),
-  cd: Path.expand("../assets", __DIR__)
-]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

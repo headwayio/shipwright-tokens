@@ -1,1 +1,0 @@
-{"source":["assets/styles/tailwind/style-dictionary/*.json"],"platforms":{"tailwind":{"transformGroup":"js/custom","buildPath":"assets/styles/tailwind/","files":[{"destination":"typography.json","format":"twTypography"},{"destination":"misc.json","format":"jsMisc"},{"destination":"colors.json","format":"jsColors"},{"destination":"shadows.json","format":"jsShadows"}]}}}

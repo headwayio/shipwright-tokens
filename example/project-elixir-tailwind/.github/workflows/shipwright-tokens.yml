@@ -3,7 +3,7 @@ name: Shipwright Tokens
 on:
   push:
     branches:
-      - 'tokens/**'
+      - "tokens/**"
 
   workflow_dispatch:
 
@@ -17,4 +17,3 @@ jobs:
           styleSystem: tailwind
           tokenFile: assets/tokens/tokens.json
           outputFolder: assets/styles/tailwind
-
