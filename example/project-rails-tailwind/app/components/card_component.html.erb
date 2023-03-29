@@ -1,0 +1,30 @@
+<div
+  class="
+    flex
+    flex-col
+    gap-y-[16px]
+    p-[16px]
+    w-[295px]
+    bg-background-white-base
+    rounded-lg
+    shadow-large
+    <%= @is_standard ? "h-[396px]" : "max-h-[396px]" %>
+  "
+>
+  <% if @image %>
+    <img
+      src="<%= @image %>"
+      class="w-[263px] max-h-[160px] rounded-lg shadow-inner"
+    />
+  <% end %>
+
+  <div class="mb-[16px]">
+    <h6 class="h6 h6-400 pb-[4px]"><%= @title %></h6>
+    <p class="paragraph-2 text-type-black-secondary"><%= @text %></p>
+  </div>
+
+  <div class="w-full h-[1px] mb-[16px] bg-background-white-line"></div>
+  <div class="flex flex-row justify-end">
+    <%= render(ButtonComponent.new(variant: :fill)) { "Button" } %>
+  </div>
+</div>

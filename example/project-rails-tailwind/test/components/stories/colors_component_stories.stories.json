@@ -1,0 +1,13 @@
+{
+  "title": "Tokens",
+  "stories": [
+    {
+      "name": "colors",
+      "parameters": {
+        "server": {
+          "id": "colors_component/colors"
+        }
+      }
+    }
+  ]
+}

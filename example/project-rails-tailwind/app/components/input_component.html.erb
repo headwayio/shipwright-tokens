@@ -1,0 +1,107 @@
+<% borderColor =
+  @error_message.present? ? "border-error-dark" : "border-background-black-line"
+fontColor =
+  @error_message.present? ? "text-error-dark" : "text-type-black-primary"
+
+isInput = @variant === "input"
+iconPresent = @icon && isInput
+type = isInput ? @value : ""
+value = isInput ? @value : "" %>
+
+<div class="flex flex-col align-start gap-[8px]">
+  <div class="flex flex-row items-center justify-between">
+    <%# Label %>
+    <label
+      for="<%=name%>"
+      class="
+        flex
+        flex-row
+        items-center
+        p-0
+        text-base
+        font-normal
+        <%= @disabled ? 'text-type-black-deactivated' : fontColor %>
+      "
+    >
+      <%= label %>
+      <span aria-label="required"><% required ? "*" : "" %></span>
+    </label>
+
+    <%# Hint Text %>
+    <% if @hint_text.present? %>
+      <p
+        class="paragraph-2 <%= @disabled ? 'text-type-black-deactivated' : 'text-type-black-secondary' %>"
+      >
+        <%= @hint_text %>
+      </p>
+    <% end %>
+  </div>
+
+  <div
+    class="
+      flex
+      flex-row
+      relative
+      border
+      rounded
+      focus-within:border-button-active
+      focus-within:w-full
+      <%= borderColor %>
+      <%= @error_message.present? ? 'border-error-dark' : '' %>
+      <%= @disabled ? 'bg-button-deactivatedBackground border-type-black-deactivated' : 'text-type-black-primary' %>
+    "
+  >
+    <%# Input / Text Area %>
+    <input
+      class="
+        peer
+        focus:outline-none
+        text-sm
+        py-[14px]
+        px-[16px]
+        w-full
+        <%= iconPresent && 'pl-[48px]' %>
+      "
+      disable="<%= @disabled %>"
+      placeholder="<%= @placeholder %>"
+      name="<%= @name %>"
+      required="<%= @required %>"
+      type="<%= @type %>"
+      value="<%= value %>"
+    />
+
+    <%# Icon %>
+    <% if iconPresent %>
+      <%= tag.i class:
+              "absolute pointer-events-none left-[16px] top-[14px] peer-disabled:text-type-black-deactivated text-type-black-primary",
+            data: {
+              feather: "search"
+            } %>
+    <% end %>
+
+    <%# Arrow %>
+    <% if @arrow && isInput %>
+      <%= tag.i class:
+              "absolute pointer-events-none right-[16px] top-[14px] peer-disabled:text-type-black-deactivated text-type-black-primary",
+            data: {
+              feather: "arrow-right"
+            } %>
+    <% end %>
+  </div>
+
+  <%# Error Message %>
+  <% if @error_message.present? %>
+    <span class="flex items-center paragraph-2 text-error-dark">
+      <%= tag.i class: "pr-[4px]", data: { feather: "alert-triangle" } %>
+      <%= @error_message %>
+    </span>
+  <% end %>
+
+  <%# Success Message %>
+  <% if @success_message.present? %>
+    <span class="flex items-center paragraph-2 text-success-dark">
+      <%= tag.i class: "pr-[4px]", data: { feather: "check-circle" } %>
+      <%= @success_message %>
+    </span>
+  <% end %>
+</div>

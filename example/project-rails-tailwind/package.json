@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "storybook": "start-storybook",
+    "storybook:build": "build-storybook -o public/_storybook"
+  },
+  "devDependencies": {
+    "@storybook/addon-controls": "^6.5.16",
+    "@storybook/server": "^6.5.16"
+  }
+}
