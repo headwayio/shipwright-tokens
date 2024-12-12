@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-primary-active {
+  @apply w-32 px-6 py-4 m-3 rounded-full body-700 bg-button-active text-type-white-primary hover:bg-button-hover;
+}
+
+.btn-primary-hover {
+  @apply w-32 px-6 py-4 m-3 rounded-full body-700 bg-button-hover text-type-white-primary;
+}
+
+.btn-primary-selected {
+  @apply w-32 px-6 py-4 m-3 rounded-full body-700 bg-button-selected text-type-white-primary;
+}
+
+.btn-primary-deactivated {
+  @apply w-32 px-6 py-4 m-3 rounded-full body-700 bg-button-deactivated text-type-white-primary;
+}
+
+.btn-alt-active {
+  @apply w-32 px-6 py-4 m-3 border rounded-full body-700 bg-background-white-base text-button-active border-button-active;
+}
+
+.btn-alt-hover {
+  @apply w-32 px-6 py-4 m-3 border rounded-full body-700 bg-background-white-base text-button-hover border-button-hover;
+}
+
+.btn-alt-selected {
+  @apply w-32 px-6 py-4 m-3 border rounded-full body-700 bg-background-white-base text-button-selected border-button-selected;
+}
